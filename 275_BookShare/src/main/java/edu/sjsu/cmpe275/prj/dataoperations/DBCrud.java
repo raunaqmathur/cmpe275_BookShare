@@ -6,6 +6,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import edu.sjsu.cmpe275.prj.models.Book;
+import edu.sjsu.cmpe275.prj.models.Category;
 import edu.sjsu.cmpe275.prj.models.user;
 
 /*
@@ -23,9 +25,9 @@ public class DBCrud<T> {
 	 * Function to save new record
 	 * 
 	 */
-	public long Insert(T obj){
+	public int Insert(T obj){
 		System.out.println("in crud");
-		long id = 0;
+		int id = 0;
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
@@ -35,14 +37,16 @@ public class DBCrud<T> {
 			user p = (user)obj;
 			id = p.getUserId();
 		}
-		/*else if(obj instanceof Sponsor){
-			Sponsor s = (Sponsor)obj;
-			id = s.getId();
+		else if(obj instanceof Category){
+			Category s = (Category)obj;
+			id = s.getCategoryId();
+			System.out.println("in crud category " + id);
 		}
-		else if(obj instanceof Address){
-			Address s = (Address)obj;
-			id = s.getId();
-		}*/
+		else if(obj instanceof Book){
+			Book s = (Book)obj;
+			id = s.getBookId();
+			System.out.println("in crud book " + id);
+		}
 		
 		session.close();
 		s.close();
@@ -56,7 +60,7 @@ public class DBCrud<T> {
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
-	public T get(T obj, long id){
+	public T get(T obj, int id){
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
@@ -65,6 +69,7 @@ public class DBCrud<T> {
 		
 		session.close();
 		s.close();
+		
 		return newR;
 	}
 	
@@ -99,22 +104,21 @@ public class DBCrud<T> {
 	}
 
 	
-	/*
-	 * Function to get count
-	 * of sponsor in player table
-	 */
-/*	public int getSponsor(long sponsorId){
+	
+	public int getExistingEmail(String emailId){
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
 		Query query = session.createSQLQuery(
-				"select * from player s where s.sponsor_id = :sCode")
+				"select * from user  where EmailID = :sCode")
 				.addEntity(user.class)
-				.setParameter("sCode", sponsorId);
+				.setParameter("sCode", emailId);
 				int  result = query.list().size();
 		session.close();
 		s.close();
+		
+		System.out.println("----" + result);
 		return result;
 	}
-	*/
+	
 }

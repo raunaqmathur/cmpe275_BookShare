@@ -189,7 +189,7 @@ public class UserDAOImpl implements UserDAO {
 	        }
 }
 
-			public long insert(HomePageModel user) {
+			public int insert(HomePageModel user) {
 				// TODO Auto-generated method stub
 				return 0;
 			}
@@ -208,6 +208,11 @@ public class UserDAOImpl implements UserDAO {
 			public void update(HomePageModel user) {
 				// TODO Auto-generated method stub
 				
+			}
+
+			public user getUser(int userId) {
+				// TODO Auto-generated method stub
+				return null;
 			}
 
 			

@@ -23,7 +23,7 @@ public class user implements Serializable {
 	// Persistent Fields:
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "UserID")
-    private int userId;
+    private int user_Id;
     
     @Column(name = "EmailID", length  = 50)
     private String emailId;
@@ -47,12 +47,12 @@ public class user implements Serializable {
     private int active;
     
     public int getUserId() {
-		return userId;
+		return user_Id;
 	}
 
 
 	public void setUserId(int userId) {
-		this.userId = userId;
+		this.user_Id = userId;
 	}
 
 

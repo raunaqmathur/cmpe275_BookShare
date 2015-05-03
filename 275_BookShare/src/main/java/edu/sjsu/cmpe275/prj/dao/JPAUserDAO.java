@@ -28,10 +28,10 @@ public class JPAUserDAO implements UserDAO{
 	 * 
 	 */
 	
-	public long insert(user address) 
+	public int insert(user address) 
 	{
-		System.out.println("in jpa");
-		long addressId= 0;
+		System.out.println("in user jpa");
+		int addressId= 0;
 		try {
 			DBCrud<user> db = new DBCrud<user>();
 			addressId = db.Insert(address);
@@ -84,10 +84,43 @@ public class JPAUserDAO implements UserDAO{
 	}
 
 
+	/*
+	 * Function to delete address from databse
+	 * 
+	 */
+	public int getExistingEmail(String emailId) {
+		
+		int result = 0;
+		
+		try {
+			DBCrud<user> db = new DBCrud<user>();
+			result = db.getExistingEmail(emailId);
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return result;
+	}
 	
+	
+	public user getUser(int userId) {
+		user tempUser = new user();
+		try {
+			DBCrud<user> db = new DBCrud<user>();
+			tempUser=  db.get(tempUser, userId);
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return tempUser;
+	}
 
 
-	public long insert(HomePageModel user) {
+	public int insert(HomePageModel user) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -133,6 +166,9 @@ public class JPAUserDAO implements UserDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	
 
 
 	
