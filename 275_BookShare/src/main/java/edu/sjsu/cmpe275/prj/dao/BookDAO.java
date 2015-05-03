@@ -14,6 +14,7 @@ public interface BookDAO {
 	public void update(Book category);
 	
 	
+	public Book getBook(int bookId);
 	
 	
 }

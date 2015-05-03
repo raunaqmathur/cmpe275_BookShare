@@ -11,8 +11,8 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.sjsu.cmpe275.prj.dataoperations.DBCrud;
-
 import edu.sjsu.cmpe275.prj.models.Book;
+import edu.sjsu.cmpe275.prj.models.user;
 
 
 /*
@@ -81,6 +81,21 @@ public class JPABookDAO implements BookDAO{
 		}
 
 		
+	}
+
+
+	public Book getBook(int bookId) {
+		Book tempBook = new Book();
+		try {
+			DBCrud<Book> db = new DBCrud<Book>();
+			tempBook=  db.get(tempBook, bookId);
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return tempBook	;
 	}
 
 

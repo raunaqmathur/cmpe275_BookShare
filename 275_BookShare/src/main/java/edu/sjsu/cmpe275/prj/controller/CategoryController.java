@@ -36,10 +36,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
+
 import edu.sjsu.cmpe275.prj.dao.*;
-
-
-
 import edu.sjsu.cmpe275.prj.models.Book;
 import edu.sjsu.cmpe275.prj.models.Category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
@@ -48,15 +46,13 @@ import edu.sjsu.cmpe275.prjservices.UserRecordService;
  
 @SuppressWarnings("unused")
 @Controller
-public class FirstController {
+public class CategoryController {
  
     
     
-    @Autowired 
-    private UserRecordService userRecordService;
- 
+   
     
-    private HomePageModel homepageModel;
+   
     
     private user userModel;
     
@@ -64,83 +60,68 @@ public class FirstController {
     private Category categoryModel;
     HttpSession session;
     
-    //1.Creating the u.i for user sign up page
-    @RequestMapping(value = "/userhome",method = RequestMethod.GET)
-    public ModelAndView initN() {
-    	userModel = new user();
+    
+    
+    
+    //ex ends
+  //1.Creating the u.i for user sign up page
+    
+    @RequestMapping(value = "/category",method = RequestMethod.GET)
+    public ModelAndView uploadCategory() {
+    	categoryModel = new Category();
     	
 		
-       return new ModelAndView("userhome", "userdetails", userModel);
+       return new ModelAndView("category", "categorydetails", categoryModel);
     }
     
-   
     
-    
-    
-    
-   
-    @RequestMapping(value = "/userhome",method = RequestMethod.POST)
-    public ModelAndView initN1(@ModelAttribute("userdetails")user userModel1, BindingResult bindingResult, 
+    @RequestMapping(value = "/category",method = RequestMethod.POST)
+    public ModelAndView recieveCategory(@ModelAttribute("categorydetails")Category categoryModel1, BindingResult bindingResult, 
             HttpServletRequest request,  HttpServletResponse response) 
     {
         try 
         {
         	String msg=null;
            
-            //ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult,"id","id", "id can not be empty.");
-            ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult,"name","name", "name not be empty");
-            ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "emailId", "emailId", "emailId cant be empty");
- 
-            JPAUserDAO tempEmail = new JPAUserDAO();
             
-            if(tempEmail.getExistingEmail(userModel1.getEmailId()) > 0)
-            {
-            	
-            	 ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "emailId", "emailId", "emailId already exists");
-            	 System.out.println("ININININ");
-            }	
+            ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult,"name","name", "Name can't be empty");
+            
+            
+            
             if (bindingResult.hasErrors())
             {
                 //returning the errors on same page if any errors..
-                return new ModelAndView("userhome", "userdetails", userModel1);
+                return new ModelAndView("category", "categorydetails", categoryModel1);
             }
             else
             {
-            	System.out.println("user model details here --" +userModel1.getName()+userModel1.getPhone());
-            	// insert the record by calling the service
-            	//userRecordService.insertUser(userModel1);
             	
-            	userModel1.setActive(1);
             	
-            	JPAUserDAO obj= new JPAUserDAO();
-            	long l =obj.insert(userModel1);
+            	categoryModel1.setActive(1);
+            	
+            	JPACategoryDAO obj= new JPACategoryDAO();
+            	long l =obj.insert(categoryModel1);
             	System.out.println(l);
             	
-            	msg="Your Page created successfully";
-            	ModelAndView model = new ModelAndView("userhome");
-            	model.addObject("userpageDetails", userModel1);
+            	msg="Your Category is entered successfully";
+            	ModelAndView model = new ModelAndView("category");
+            	categoryModel = new Category();
+            	
+            	model.addObject("categoryDetails", categoryModel);
            	 	model.addObject("Message", msg);
            	 	return model;
           }
         } catch (Exception e) {
             System.out.println("Exception in FirstController "+e.getMessage());
             e.printStackTrace();
-            return new ModelAndView("userhome", "userdetails", userModel1);
+            return new ModelAndView("category", "categorydetails", categoryModel1);
         }
         
     }
     
+   
+
     
-    
-    /*
-     * This method loads the homepage on application startup.
-     * Works on "/" mapping.     * */
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    public ModelAndView initM() {
-    	
-    	System.out.println("entrii");
-    	
-    	return initN();
-    }
+   
 
 }
