@@ -32,6 +32,9 @@
 		<mapping class="edu.sjsu.cmpe275.prj.models.user"/>
 		<mapping class="edu.sjsu.cmpe275.prj.models.Category"/>
 		<mapping class="edu.sjsu.cmpe275.prj.models.Book"/>
+		<mapping class="edu.sjsu.cmpe275.prj.models.RequestBook"/>
+		<mapping class="edu.sjsu.cmpe275.prj.models.Feedback"/>
+		<mapping class="edu.sjsu.cmpe275.prj.models.Transaction"/>
 		
 		
     </session-factory>

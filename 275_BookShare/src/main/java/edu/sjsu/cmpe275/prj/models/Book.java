@@ -2,7 +2,7 @@ package edu.sjsu.cmpe275.prj.models;
 
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -81,20 +81,8 @@ public class Book implements Serializable {
     @Column(name = "PickupAddress")
     private String pickupAddress;
     
-    @Column(name = "BookTime")
-    private Date bookTime;
     
-    public Date getBookTime() {
-		return bookTime;
-	}
-
-
-	public void setBookTime(Date date) {
-		this.bookTime = date;
-	}
-
-
-	@Column(name = "Active")
+    @Column(name = "Active")
     private int active;
 
 

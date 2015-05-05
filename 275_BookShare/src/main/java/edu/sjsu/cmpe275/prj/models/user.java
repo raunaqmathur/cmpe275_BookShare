@@ -39,12 +39,15 @@ public class user implements Serializable {
     private String phone ;
 	
     
-    @Column(name = "Age")
+    @Column(name = "Age", length = 11)
     private int age;
 	
 
     @Column(name = "Active")
     private int active;
+    
+    @Column(name = "Password", length = 100)
+    private String password ;
     
     public int getUserId() {
 		return user_Id;
@@ -115,6 +118,14 @@ public class user implements Serializable {
 		this.active = active;
 	}
 
+	public int getPassword() {
+		return active;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	
 }
