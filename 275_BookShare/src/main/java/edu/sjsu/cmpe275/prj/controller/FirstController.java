@@ -8,7 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import redis.clients.jedis.Jedis;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,10 +36,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
+
+import redis.clients.jedis.Jedis;
 import edu.sjsu.cmpe275.prj.dao.*;
-
-
-
 import edu.sjsu.cmpe275.prj.models.Book;
 import edu.sjsu.cmpe275.prj.models.Category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
@@ -63,6 +62,8 @@ public class FirstController {
     private Book bookModel;
     private Category categoryModel;
     HttpSession session;
+    
+    private static Jedis jedis;
     
     //1.Creating the u.i for user sign up page
     @RequestMapping(value = "/userhome",method = RequestMethod.GET)
@@ -138,7 +139,7 @@ public class FirstController {
 		
 		
 		
-    	return init();
+    	return initN();
     }
     
     //method to testredis
