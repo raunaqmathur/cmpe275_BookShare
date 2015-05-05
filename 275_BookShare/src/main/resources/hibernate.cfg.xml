@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE hibernate-configuration PUBLIC
-        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+ <!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
 
@@ -9,9 +9,9 @@
 
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/booksharedb</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password"></property>
+        <property name="connection.url">jdbc:mysql://cmpe275bookshare.cpusgzoh9nxr.us-west-1.rds.amazonaws.com:3306/booksharedb</property>
+        <property name="connection.username">**</property>
+        <property name="connection.password">***</property>
 
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">20</property>
@@ -35,6 +35,7 @@
 		<mapping class="edu.sjsu.cmpe275.prj.models.RequestBook"/>
 		<mapping class="edu.sjsu.cmpe275.prj.models.Feedback"/>
 		<mapping class="edu.sjsu.cmpe275.prj.models.Transaction"/>
+		<mapping class="edu.sjsu.cmpe275.prj.models.statistics"/>
 		
 		
     </session-factory>
