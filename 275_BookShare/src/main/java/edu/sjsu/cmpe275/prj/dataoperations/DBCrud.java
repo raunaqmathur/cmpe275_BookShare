@@ -2,16 +2,14 @@ package edu.sjsu.cmpe275.prj.dataoperations;
 
 
 
-import java.util.List;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import edu.sjsu.cmpe275.prj.models.Book;
 import edu.sjsu.cmpe275.prj.models.Category;
-import edu.sjsu.cmpe275.prj.models.Feedback;
-import edu.sjsu.cmpe275.prj.models.RequestBook;
+import edu.sjsu.cmpe275.prj.models.Transaction;
+import edu.sjsu.cmpe275.prj.models.UserStatistics;
 import edu.sjsu.cmpe275.prj.models.user;
 
 /*
@@ -32,7 +30,6 @@ public class DBCrud<T> {
 	public int Insert(T obj){
 		System.out.println("in crud");
 		int id = 0;
-		
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
@@ -52,16 +49,15 @@ public class DBCrud<T> {
 			id = s.getBookId();
 			System.out.println("in crud book " + id);
 		}
-		else if(obj instanceof RequestBook){
-			RequestBook s = (RequestBook)obj;
-			id = s.getRequestId();
-			System.out.println("in crud book " + id);
+		else if(obj instanceof Transaction){
+			Transaction s = (Transaction)obj;
+			id = s.getTransactionId();
+			System.out.println("in crud Transaction " + id);
 		}
-		
-		else if(obj instanceof Feedback){
-			Feedback s = (Feedback)obj;
-			id = s.getFeedbackId();
-			System.out.println("in crud book " + id);
+		else if(obj instanceof UserStatistics){
+			UserStatistics s = (UserStatistics)obj;
+			id = s.getUsId();
+			System.out.println("in crud UserStatistics " + id);
 		}
 		session.close();
 		s.close();
@@ -135,40 +131,28 @@ public class DBCrud<T> {
 		System.out.println("----" + result);
 		return result;
 	}
+
+	
 	
 	@SuppressWarnings("unchecked")
-	public List<Feedback> getSellerComments(int buyerID){
+	public T getUserStatisticsByUser(int userId){
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
+		T obj = null;
 		Query query = session.createSQLQuery(
-				"select * from feedback  where BuyerID = :sCode")
-				.addEntity(Feedback.class)
-				.setParameter("sCode", buyerID);
-				List<Feedback>  result = (List<Feedback>)query.list();
+				"select * from UserStatistics  where UserId = :sCode")
+				.addEntity(UserStatistics.class)
+				.setParameter("sCode", userId);
+				int  result = query.list().size();
+				
+		if(result > 0)
+			obj = (T)query.list().get(0);
+		
 		session.close();
 		s.close();
 		
 		System.out.println("----" + result);
-		return result;
+		return obj;
 	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Feedback> getBuyerComments(int sellerID){
-		s = SessionFactoryObj.getSessionFactory();
-		session = s.openSession();
-		session.beginTransaction();
-		Query query = session.createSQLQuery(
-				"select * from feedback  where SellerID = :sCode")
-				.addEntity(Feedback.class)
-				.setParameter("sCode", sellerID);
-				List<Feedback>  result = (List<Feedback>)query.list();
-		session.close();
-		s.close();
-		
-		System.out.println("----" + result);
-		return result;
-	}
-	
-	
 }
