@@ -2,6 +2,8 @@ package edu.sjsu.cmpe275.prj.dataoperations;
 
 
 
+
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -30,6 +32,7 @@ public class DBCrud<T> {
 	public int Insert(T obj){
 		System.out.println("in crud");
 		int id = 0;
+
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
@@ -49,12 +52,34 @@ public class DBCrud<T> {
 			id = s.getBookId();
 			System.out.println("in crud book " + id);
 		}
+		else if(obj instanceof RequestBook){
+			RequestBook s = (RequestBook)obj;
+			id = s.getRequestId();
+
+
+			System.out.println("in crud book " + id);
+		}
+		
+		else if(obj instanceof Feedback){
+			Feedback s = (Feedback)obj;
+			id = s.getFeedbackId();
+
+
+			System.out.println("in crud book " + id);
+		}
+		
+		
 		else if(obj instanceof Transaction){
+
+
 			Transaction s = (Transaction)obj;
 			id = s.getTransactionId();
 			System.out.println("in crud Transaction " + id);
 		}
+
 		else if(obj instanceof UserStatistics){
+
+
 			UserStatistics s = (UserStatistics)obj;
 			id = s.getUsId();
 			System.out.println("in crud UserStatistics " + id);
@@ -133,8 +158,25 @@ public class DBCrud<T> {
 	}
 
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	@SuppressWarnings("unchecked")
+
 	public T getUserStatisticsByUser(int userId){
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
@@ -155,4 +197,6 @@ public class DBCrud<T> {
 		System.out.println("----" + result);
 		return obj;
 	}
+
+
 }
