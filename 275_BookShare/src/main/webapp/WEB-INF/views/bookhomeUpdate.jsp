@@ -2,9 +2,45 @@
 <html>
 <head>
 <title>CMPE 275 BOOK SHARE</title>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
+
+<script >
+
+
+		$(document).ready(function(){
+		    if(document.getElementById('active').value == 0)
+				document.getElementById('activeX').checked = true;
+		    else
+		    	document.getElementById('activeX').checked = false;
+			
+			
+		});
+
+
+
+	function changeRemove()
+	{
+		
+		var x = document.getElementById('activeX').checked;
+		
+		//alert('' + document.getElementById('active').value);
+		
+		if(x == true)
+			document.getElementById('active').value = 0;
+		else
+			document.getElementById('active').value = 1;
+		
+		
+		//alert('' + document.getElementById('active').value);
+		
+	}
+
+	
+	
+</script>
 </head>
 <body>
-    <form:form id="bookhomeUpdate" action="bookhomeUpdate" method="post" 
+    <form:form id="bookhomeUpdate" action="${path}" method="POST" 
         commandName="bookdetails">
         <table>
             <tr>
@@ -14,7 +50,7 @@
             
             <tr>
                 <td><label>Title</label></td>
-                <td><form:input path="title"></form:input></td>
+                <td><form:input path="title"></form:input><form:input type="hidden" path="bookId"></form:input><form:input type="hidden" path="status"></form:input></td>
                 <td><font color="red"><form:errors path="title"></form:errors></font></td>
             </tr>
            
@@ -39,10 +75,10 @@
             </tr>
              <tr>
                 <td><label>Picture</label></td>
-                <td><input type="file" id="picturePath" name="picturePath" />
+                <td>
                 <form:input path="pictureId" ></form:input></td>
                 
-                
+                <td></td>
             </tr>
              <tr>
                 <td><label>Price</label></td>
@@ -73,15 +109,21 @@
                 <td><font color="red"><form:errors path="pickupAddress"></form:errors></font></td>
                 
             </tr>
+             <tr>
+                <td></td>
+                 <td><input type="checkbox" name="activeX" id="activeX" value="1" onClick="javascript: changeRemove();"></input><label>Remove</label> 
+                <form:input type="hidden" path="active"></form:input></td>
+                <td></td>
+                
+            </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit"
-                    value="Create" /></td>
+                    value="Update"  /></td>
                 <td></td>
             </tr>
             <tr>
                 <td colspan="3" align="center"><font color="red"><form:errors /></font></td>
             </tr>
         </table>
-    </form:form>
-</body>
+    </form:form></body>
 </html>

@@ -2,9 +2,22 @@
 <html>
 <head>
 <title>CMPE 275 BOOK SHARE</title>
+<script>
+
+function checkCat()
+{
+	if(document.getElementById("categoryX").value == '')
+		document.getElementById("errorCat").value = "Category can't be left blank";
+	
+	
+}
+
+</script>
+
+
 </head>
 <body>
-    <form:form id="bookhome" action="bookhome" method="post" 
+    <form:form id="bookhome" action="${path}" method="post" 
         commandName="bookdetails">
         <table>
             <tr>
@@ -14,7 +27,7 @@
             
             <tr>
                 <td><label>Title</label></td>
-                <td><form:input path="title"></form:input></td>
+                <td><form:input path="title"></form:input><form:input type="hidden" path="bookId"></form:input><form:input type="hidden" path="status"></form:input></td>
                 <td><font color="red"><form:errors path="title"></form:errors></font></td>
             </tr>
            
@@ -34,20 +47,19 @@
              <tr>
                 <td><label>Description</label></td>
                 <td><form:input path="description" ></form:input></td>
-                
+                 <td><font color="red"><form:errors path="description"></form:errors></font></td>
                 
             </tr>
              <tr>
                 <td><label>Picture</label></td>
-                <td><input type="file" id="picturePath" name="picturePath" />
-                <form:input path="pictureId" ></form:input></td>
-                
+                <td><form:input path="pictureId" ></form:input></td>
+                <td></td>
                 
             </tr>
              <tr>
                 <td><label>Price</label></td>
                 <td><form:input path="price"></form:input></td>
-                
+                <td><font color="red"><form:errors path="price"></form:errors></font></td>
             </tr>
             <tr>
                 <td><label>Condition</label></td>
@@ -58,13 +70,13 @@
              <tr>
                 <td><label>Keywords</label></td>
                 <td><form:input path="keywords" ></form:input></td>
-                
+                 <td><font color="red"><form:errors path="keywords"></form:errors></font></td>
                 
             </tr>
             <tr>
                 <td><label>Category</label></td>
-                <td><input type="text" name="categoryX" id="categoryX" ></input></td>
-                
+                <td><input type="text" name="categoryX" id="categoryX" value="${categ}"></input></td>
+                <td><font color="red"><label id="errorCat"></label></font></td>
                 
             </tr>
            <tr>
@@ -75,7 +87,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit"
-                    value="Create" /></td>
+                    value="${buttonX}" onClick="javascript: checkCat();" /></td>
                 <td></td>
             </tr>
             <tr>
