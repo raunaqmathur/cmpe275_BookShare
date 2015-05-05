@@ -8,6 +8,7 @@
     <session-factory>
 
         <!-- Database connection settings -->
+        <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://cmpe275bookshare.cpusgzoh9nxr.us-west-1.rds.amazonaws.com:3306/booksharedb</property>
         <property name="connection.username">**</property>
