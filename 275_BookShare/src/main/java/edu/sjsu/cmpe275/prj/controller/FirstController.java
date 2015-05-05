@@ -4,11 +4,11 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
-
+import redis.clients.jedis.Jedis;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import redis.clients.jedis.Jedis;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,11 +37,12 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
-import redis.clients.jedis.Jedis;
+
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.Book;
 import edu.sjsu.cmpe275.prj.models.Category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
+import edu.sjsu.cmpe275.prj.models.UserStatistics;
 import edu.sjsu.cmpe275.prj.models.user;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
  
@@ -62,8 +63,7 @@ public class FirstController {
     private Book bookModel;
     private Category categoryModel;
     HttpSession session;
-    
-    private static Jedis jedis;
+private static Jedis jedis;
     
     //1.Creating the u.i for user sign up page
     @RequestMapping(value = "/userhome",method = RequestMethod.GET)
@@ -76,7 +76,20 @@ public class FirstController {
     
    
     
-    
+    @RequestMapping(value = "/showuser/{userId}",method = RequestMethod.GET)
+    public ModelAndView showBook(@PathVariable int userId, HttpServletRequest request) {
+    	
+    	ModelAndView mv = new ModelAndView();
+    	userModel = new user();
+    	
+    	JPAUserDAO obj= new JPAUserDAO();
+    	userModel = obj.getUser(userId);
+	
+        mv.addObject("userdetails", userModel);
+        mv.setViewName("showuser");
+        
+       return mv;
+    }
     
     
    
@@ -115,12 +128,28 @@ public class FirstController {
             	
             	JPAUserDAO obj= new JPAUserDAO();
             	long l =obj.insert(userModel1);
+            	
+            	JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
+            	UserStatistics userStatistics = new UserStatistics();
+            	userStatistics.setNoOfBookDeleted(0);
+            	userStatistics.setNoOfBookPurchased(0);
+            	userStatistics.setNoOfBookTransac(0);
+            	userStatistics.setNoOfBookUploaded(0);
+            	userStatistics.setRatingBuyer(0);
+            	userStatistics.setRatingSeller(0);
+            	userStatistics.setUser(userModel1);
+            	
+            	
+            	objUserStat.insert(userStatistics);
+            	
+            	
             	System.out.println(l);
             	
-            	msg="Your Page created successfully";
-            	ModelAndView model = new ModelAndView("userhome");
-            	model.addObject("userpageDetails", userModel1);
-           	 	model.addObject("Message", msg);
+            	
+            	ModelAndView model = new ModelAndView("showuser");
+            	model.addObject("redirectTo", "./userhome");
+            	model.addObject("userdetails", userModel1);
+           	 	
            	 	return model;
           }
         } catch (Exception e) {
@@ -130,7 +159,20 @@ public class FirstController {
         }
         
     }
-    //karan code starts
+    
+    
+    
+    /*
+     * This method loads the homepage on application startup.
+     * Works on "/" mapping.     * */
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public ModelAndView initM() {
+    	
+    	System.out.println("entrii");
+    	
+    	return initN();
+    }
+ //karan code starts
 	 //method to testCassandra
     @RequestMapping(value = "/Cassandra",method = RequestMethod.GET)
     public ModelAndView initN09() {
@@ -162,17 +204,5 @@ public class FirstController {
        return initN();
     }
 	//karan code ends
-    
-    
-    /*
-     * This method loads the homepage on application startup.
-     * Works on "/" mapping.     * */
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    public ModelAndView initM() {
-    	
-    	System.out.println("entrii");
-    	
-    	return initN();
-    }
 
 }
