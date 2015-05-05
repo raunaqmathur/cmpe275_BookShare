@@ -129,7 +129,38 @@ public class FirstController {
         }
         
     }
+    //karan code starts
+	 //method to testCassandra
+    @RequestMapping(value = "/Cassandra",method = RequestMethod.GET)
+    public ModelAndView initN09() {
+    	
+    	CassandraConnectionDAO.testCassandra();
+		
+		
+		
+    	return init();
+    }
     
+    //method to testredis
+    @RequestMapping(value = "/Redis",method = RequestMethod.GET)
+    public ModelAndView initN10() {
+    	
+    	CassandraConnectionDAO.testCassandra();
+    	userModel = new user();
+    	jedis=new Jedis("localhost");
+		jedis.connect();
+		System.out.println("Successfully connected to the redis server");
+		String [] Kar={"karan khanna","sjsu","se"};
+		System.out.println(Kar);
+		jedis.set("karan", "khanna");
+		System.out.println("saving in redis");
+		System.out.println("getting from redis---" + jedis.get("karan"));
+		
+		
+		
+       return initN();
+    }
+	//karan code ends
     
     
     /*
