@@ -4,12 +4,16 @@ package edu.sjsu.cmpe275.prj.dataoperations;
 
 
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import edu.sjsu.cmpe275.prj.models.Book;
 import edu.sjsu.cmpe275.prj.models.Category;
+import edu.sjsu.cmpe275.prj.models.Feedback;
+import edu.sjsu.cmpe275.prj.models.RequestBook;
 import edu.sjsu.cmpe275.prj.models.Transaction;
 import edu.sjsu.cmpe275.prj.models.UserStatistics;
 import edu.sjsu.cmpe275.prj.models.user;
@@ -158,8 +162,45 @@ public class DBCrud<T> {
 	}
 
 	
+	@SuppressWarnings("unchecked")
+	public List<Feedback> getSellerComments(int buyerID){
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+		Query query = session.createSQLQuery(
+				"select * from feedback  where BuyerID = :sCode")
+				.addEntity(Feedback.class)
+				.setParameter("sCode", buyerID);
+				List<Feedback>  result = (List<Feedback>)query.list();
+		session.close();
+		s.close();
+		
+		System.out.println("----" + result);
+		return result;
+	}
+	
+@SuppressWarnings("unchecked")
+	public List<Feedback> getBuyerComments(int sellerID){
+
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+
+		Query query = session.createSQLQuery(
+				"select * from feedback  where SellerID = :sCode")
+				.addEntity(Feedback.class)
+				.setParameter("sCode", sellerID);
+				List<Feedback>  result = (List<Feedback>)query.list();
 
 
+
+
+		session.close();
+		s.close();
+		
+		System.out.println("----" + result);
+		return result;
+	}
 
 
 
