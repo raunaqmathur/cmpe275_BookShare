@@ -25,24 +25,13 @@
             <tr>
                 <td><label>User Id</label></td>
                 <td><form:input path="userId" ></form:input></td>
-<<<<<<< HEAD
-
                 <td><font color="red"><form:errors path="userId" required="true"></form:errors></font></td>
-
-=======
                 <td><font color="red"><form:errors path="userId"></form:errors></font></td>
->>>>>>> c115ba7b9356b000f56107d666ffbcdd24a5351b
             </tr>
             
             <tr>
                 <td><label>Password </label></td>
-<<<<<<< HEAD
-
                 <td><form:input path="password" type="password" required="true"></form:input></td>
-
-=======
-                <td><form:input path="password" ></form:input></td>
->>>>>>> c115ba7b9356b000f56107d666ffbcdd24a5351b
                 <td><font color="red"><form:errors path="password"></form:errors></font></td>
             </tr>
             
@@ -51,7 +40,7 @@
             </tr>
 
             <tr>
-                <td colspan="2" align="center"><button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button></td>
+                <td colspan="2" align="center"><button class="btn btn-md btn-primary btn-block" type="submit">Sign in</button></td>
                 <td></td>
             </tr>
 
