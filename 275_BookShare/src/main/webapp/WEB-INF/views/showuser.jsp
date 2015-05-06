@@ -23,13 +23,23 @@
 		alert('' + document.getElementById('redirectTo').value);
 		var x = document.getElementById('userId').value;
 		if(document.getElementById('redirectTo').value == '')
-						window.location = "../userhome/" + x;
+						window.location = "../signup/" + x;
 		else
 			window.location = document.getElementById('redirectTo').value + "/" + x;
 
 	}
 
-	
+		function RedirectToTransactions()
+		{
+			alert('' + document.getElementById('redirectToTransac').value);
+			
+			if(document.getElementById('redirectToTransac').value == '')
+							window.location = "../transactions";
+			else
+				window.location = document.getElementById('redirectToTransac').value;
+
+		}
+
 
 	
 </script>
@@ -47,7 +57,8 @@
                 <td><label>Name</label></td>
                 <td><label>${userdetails.name}</label>
                 <input type="hidden" id="userId" value="${userdetails.userId}"></input>
-                <input type="hidden" id="redirectTo" value="${redirectTo}"></input></td>
+                <input type="hidden" id="redirectTo" value="${redirectTo}"></input>
+                <input type="hidden" id="redirectToTransac" value="${redirectToTransac}"></input></td>
                 <td></td>
             </tr>
            
@@ -86,7 +97,8 @@
          
             <tr>
                 <td colspan="2" align="center"><input type="submit"
-                    value="Edit" onClick="javascript: RedirectToEdit();" /></td>
+                    value="View transactions" onClick="javascript: RedirectToTransactions();" />     <input type="submit"
+                    value="Edit Profile" onClick="javascript: RedirectToEdit();" /></td>
                 <td></td>
             </tr>
             <tr>
