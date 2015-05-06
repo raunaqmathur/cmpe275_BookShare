@@ -56,14 +56,13 @@
 	      <ul class="nav navbar-nav navbar-right">
 		      <li><a href="#">Advance Search</a></li>
 		      <li><a href="bookhome">Sell</a></li>
-
-	          <% if ("${sessionScope.USERID}".equals("")) { %>
+			  <% if(null == session.getAttribute("USERID")){ %>
               	<li><a href="login">Login/Register</a></li>
               <% } else { %>
               	<li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hi ${sessionScope.USERNAME} <span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
-		            <li><a href="#">Profile</a></li>
+		            <li><a href="${pageContext.request.contextPath}/showuser/${sessionScope.USERID}">Profile</a></li>
 				    <li><a href="#">View Transactions</a></li>
 				    <li><a href="#">Signout</a></li>
 		          </ul>
