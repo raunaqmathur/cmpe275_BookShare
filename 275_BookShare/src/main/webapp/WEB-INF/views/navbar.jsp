@@ -46,18 +46,34 @@
 	      <ul class="nav navbar-nav">
 	      </ul>
 	      
-	      <ul class="nav navbar-nav navbar-right">
-	      <li><a href="#">Advance Search</a></li>
-	        <li><a href="bookhome">Sell</a></li>
-	        <li><a href="login">Login/Register</a></li>
-	      </ul>
-	      
 	      <form class="navbar-form navbar-right" role="search">
 	        <div class="form-group">
 	          <input type="text" class="form-control" placeholder="Search by ISBN">
 	        </div>
 	        <button type="submit" class="btn btn-default">Submit</button>
 	      </form>
+
+	      <ul class="nav navbar-nav navbar-right">
+		      <li><a href="#">Advance Search</a></li>
+		      <li><a href="bookhome">Sell</a></li>
+
+	          <% if ("${sessionScope.USERID}".equals("")) { %>
+              	<li><a href="login">Login/Register</a></li>
+              <% } else { %>
+              	<li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hi ${sessionScope.USERNAME} <span class="caret"></span></a>
+		          <ul class="dropdown-menu" role="menu">
+		            <li><a href="#">Profile</a></li>
+				    <li><a href="#">View Transactions</a></li>
+				    <li><a href="#">Signout</a></li>
+		          </ul>
+		        </li>
+		</ul>
+				</div>
+              <% } %>
+	          
+	      </ul>
+	      
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 </nav>
