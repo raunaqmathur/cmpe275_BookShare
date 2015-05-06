@@ -77,7 +77,7 @@ $(document).ready(function(){
 
 	function RedirectToEdit()
 	{
-		alert('edit ' + document.getElementById('redirectTo').value);
+		alert('' + document.getElementById('redirectTo').value);
 		var x = document.getElementById('bookId').value;
 		if(document.getElementById('redirectTo').value == '')
 						window.location = "../bookhome/" + x;
@@ -89,7 +89,7 @@ $(document).ready(function(){
 	
 	function RedirectToBuy()
 	{
-		alert('purchase ' + document.getElementById('redirectToBuy').value);
+		alert('' + document.getElementById('redirectToBuy').value);
 		var x = document.getElementById('bookId').value;
 		if(document.getElementById('redirectToBuy').value == '')
 						window.location = "../purchase/" + x;
@@ -151,7 +151,7 @@ $(document).ready(function(){
 			                <td><label>${bookdetails.title}</label>
 			                <input type="hidden" id="bookId" value="${bookdetails.bookId}"></input>
 			                <input type="hidden" id="redirectTo" value="${redirectTo}"></input>
-			                <input type="hidden" id="redirectToBuy" value="${redirectToBuy}"></input></td>
+			                <input type="hidden" id="redirectToBuy" value="${redirectTo}"></input></td>
 			                <td></td>
 			            </tr>
 			           
