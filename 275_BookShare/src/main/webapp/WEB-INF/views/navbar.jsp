@@ -13,6 +13,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<style>
+		.carousel
 		.carousel-inner > .item > img,
 		.carousel-inner > .item > a > img {
 			width: 15%;
@@ -25,7 +26,7 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	  <div class="navbar-header">
-	      <a class="navbar-brand" href="#">
+	      <a class="navbar-brand" href=".">
 	        <img style="max-width:50px; margin-top: -15px;" alt="Brand" src="http://blindlibrary.utah.gov/images/logoBook.gif">
 	      </a>
 	    </div>
@@ -37,7 +38,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#">BookShare</a>
+	      <a class="navbar-brand" href=".">BookShare</a>
 	    </div>
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -47,7 +48,6 @@
 	      
 	      <ul class="nav navbar-nav navbar-right">
 	      <li><a href="#">Advance Search</a></li>
-	        <li><a href="#">Buy</a></li>
 	        <li><a href="bookhome">Sell</a></li>
 	        <li><a href="login">Login/Register</a></li>
 	      </ul>
