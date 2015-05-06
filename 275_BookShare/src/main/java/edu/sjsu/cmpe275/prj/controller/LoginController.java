@@ -115,7 +115,7 @@ public class LoginController {
             		user tempUser = jp.getUser(loginModel1.getUserId());
             		httpSession.setAttribute("USERNAME", tempUser.getName());
             		System.out.println("my userid in session is" + httpSession.getAttribute("USERID"));
-	           	 	model.setViewName("home");
+            		return new ModelAndView("redirect:/");
             	}
             	
             	
