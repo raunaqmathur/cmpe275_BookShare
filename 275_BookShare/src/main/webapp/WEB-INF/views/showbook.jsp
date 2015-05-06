@@ -1,4 +1,5 @@
 <%@    taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <title>CMPE 275 BOOK SHARE</title>
@@ -18,6 +19,12 @@ div#map_container{
 
 $(document).ready(function(){
    
+	/*alert('' + document.getElementById('owner').value + ' ' + document.getElementById('edit').style.visibility);
+	if(document.getElementById('owner').value == 'false')
+		document.getElementById('edit').style.visibility = 'hidden';
+	
+	alert( document.getElementById('edit').hidden);
+	*/
 	
 	 var geocoder = new google.maps.Geocoder();
 	var address = document.getElementById('address').value;
@@ -151,7 +158,8 @@ $(document).ready(function(){
 			                <td><label>${bookdetails.title}</label>
 			                <input type="hidden" id="bookId" value="${bookdetails.bookId}"></input>
 			                <input type="hidden" id="redirectTo" value="${redirectTo}"></input>
-			                <input type="hidden" id="redirectToBuy" value="${redirectToBuy}"></input></td>
+			                <input type="hidden" id="redirectToBuy" value="${redirectToBuy}"></input>
+			                <input type="hidden" id="owner" value="${owner}"></input></td>
 			                <td></td>
 			            </tr>
 			           
@@ -213,9 +221,13 @@ $(document).ready(function(){
 			            
 			            <tr>
 			                <td colspan="2" align="center"><input type="submit"
-			                    value="Buy" onClick="javascript: RedirectToBuy();" /></td>
-			                <td><input type="submit"
-                    			value="Edit" onClick="javascript: RedirectToEdit();" /></td>
+			                    value="Buy" onClick="javascript: RedirectToBuy();" onClick="javascript: RedirectToEdit();" <c:if test="${owner == 'true'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
+			                <td>
+			                
+			                <input type="submit" id="edit"
+                    			value="Edit" onClick="javascript: RedirectToEdit();" <c:if test="${owner == 'false'}"><c:out value="disabled='disabled'"/> </c:if> />
+                    		
+                    			</td>
 			            </tr>
             
             
