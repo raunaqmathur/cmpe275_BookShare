@@ -55,6 +55,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
+
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.BookImageUpload;
@@ -178,11 +179,19 @@ public class TransactionController {
 	        
 	       return mv;
     	}
-    	//mv.addObject("catId", bookModel1.getCategoryId().getName());
-       // mv.addObject("bookdetails", bookModel1);
-        mv.setViewName("home");
+    	int userId = Integer.parseInt(httpSession.getAttribute("USERID").toString());
+    	/*JPATransactionDAO obj1= new JPATransactionDAO();
+    	List<transaction> txList = new ArrayList<transaction>();
+    	txList=obj1.getTransactionByUser(userId);
+    	System.out.println("redirectings to transcations "+userId);
+    	 mv.setViewName("transactions");
+       
+       
+       mv.addObject("str", txList);
+      */
+    	System.out.println("redirectingX to transcations "+userId);
         
-       return mv;
+       return new ModelAndView("redirect:/transactions");
     }
     
     

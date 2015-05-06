@@ -33,7 +33,7 @@
 		<mapping class="edu.sjsu.cmpe275.prj.models.user"/>
 		<mapping class="edu.sjsu.cmpe275.prj.models.category"/>
 		<mapping class="edu.sjsu.cmpe275.prj.models.book"/>
-		<mapping class="edu.sjsu.cmpe275.prj.models.requestBook"/>
+		<mapping class="edu.sjsu.cmpe275.prj.models.requestbook"/>
 		<mapping class="edu.sjsu.cmpe275.prj.models.feedback"/>
 		<mapping class="edu.sjsu.cmpe275.prj.models.transaction"/>
 		<mapping class="edu.sjsu.cmpe275.prj.models.statistics"/>
