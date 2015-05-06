@@ -118,8 +118,8 @@ public class user implements Serializable {
 		this.active = active;
 	}
 
-	public int getPassword() {
-		return active;
+	public String getPassword() {
+		return password;
 	}
 
 

@@ -4,7 +4,9 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
+
 import redis.clients.jedis.Jedis;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.ValidationUtils;
@@ -21,12 +24,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-//import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
  
 
 
+
+<<<<<<< HEAD
 
 
 
@@ -39,46 +43,49 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 import edu.sjsu.cmpe275.prj.dao.*;
+import edu.sjsu.cmpe275.prj.models.LandingPage;
+=======
+import edu.sjsu.cmpe275.prj.dao.*;
+import edu.sjsu.cmpe275.prj.models.Login;
+>>>>>>> parent of cbd5675... Revert "Merge remote-tracking branch 'origin/master'"
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
 import edu.sjsu.cmpe275.prj.models.statistics;
 import edu.sjsu.cmpe275.prj.models.user;
+import edu.sjsu.cmpe275.prj.utils.PlayPP;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
  
 @SuppressWarnings("unused")
 @Controller
 public class FirstController {
- 
-    
-    
+
     @Autowired 
     private UserRecordService userRecordService;
- 
-    
     private HomePageModel homepageModel;
-    
     private user userModel;
-    
     private book bookModel;
     private category categoryModel;
+    private LandingPage landingPage;
     HttpSession session;
-private static Jedis jedis;
+    private static Jedis jedis;
     
     //1.Creating the u.i for user sign up page
-    @RequestMapping(value = "/userhome",method = RequestMethod.GET)
+    @RequestMapping(value = "/signup",method = RequestMethod.GET)
     public ModelAndView initN() {
     	userModel = new user();
+<<<<<<< HEAD
+        return new ModelAndView("userhome", "userdetails", userModel);
+=======
     	
 		
-       return new ModelAndView("userhome", "userdetails", userModel);
+       return new ModelAndView("signup", "userdetails", userModel);
+>>>>>>> parent of cbd5675... Revert "Merge remote-tracking branch 'origin/master'"
     }
-    
-   
     
     @RequestMapping(value = "/showuser/{userId}",method = RequestMethod.GET)
     public ModelAndView showBook(@PathVariable int userId, HttpServletRequest request) {
-    	
+
     	ModelAndView mv = new ModelAndView();
     	userModel = new user();
     	
@@ -88,12 +95,12 @@ private static Jedis jedis;
         mv.addObject("userdetails", userModel);
         mv.setViewName("showuser");
         
-       return mv;
+        return mv;
     }
     
     
    
-    @RequestMapping(value = "/userhome",method = RequestMethod.POST)
+    @RequestMapping(value = "/signup",method = RequestMethod.POST)
     public ModelAndView initN1(@ModelAttribute("userdetails")user userModel1, BindingResult bindingResult, 
             HttpServletRequest request,  HttpServletResponse response) 
     {
@@ -104,19 +111,41 @@ private static Jedis jedis;
             //ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult,"id","id", "id can not be empty.");
             ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult,"name","name", "name not be empty");
             ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "emailId", "emailId", "emailId cant be empty");
+            //ValidationUtils.r
  
             JPAUserDAO tempEmail = new JPAUserDAO();
             
-            if(tempEmail.getExistingEmail(userModel1.getEmailId()) > 0)
+            String one = userModel1.getEmailId();
+         	String two = ".edu";
+            if(!(one.endsWith(two)))
             {
             	
-            	 ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "emailId", "emailId", "emailId already exists");
-            	 System.out.println("ININININ");
+            	
+            	 
+            	 
+            	 ModelAndView mv = new ModelAndView();
+            	
+            	 mv.addObject("msg", "edu. email required");
+                 mv.setViewName("signup");
+            	
+            	 return mv;
+            	
+            	 
+            	 
+            }	 
+            if(tempEmail.getExistingEmail(userModel1.getEmailId()) > 0)
+            {
+            	 ModelAndView mv1 = new ModelAndView();
+            	 mv1.addObject("msg", "user with this email already exists");
+                 mv1.setViewName("signup");
+            	
+            	 return mv1;
+            	 
             }	
             if (bindingResult.hasErrors())
             {
                 //returning the errors on same page if any errors..
-                return new ModelAndView("userhome", "userdetails", userModel1);
+                return new ModelAndView("signup", "userdetails", userModel1);
             }
             else
             {
@@ -125,10 +154,11 @@ private static Jedis jedis;
             	//userRecordService.insertUser(userModel1);
             	
             	userModel1.setActive(1);
-            	
+            	System.out.println(PlayPP.sha1(userModel1.getPassword()));
+            	userModel1.setPassword(PlayPP.sha1(userModel1.getPassword()));
             	JPAUserDAO obj= new JPAUserDAO();
-            	long l =obj.insert(userModel1);
-            	
+            	int l =obj.insert(userModel1);
+            	userModel1.setUserId(l);
             	JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
             	statistics userStatistics = new statistics();
             	userStatistics.setNoOfBookDeleted(0);
@@ -138,24 +168,26 @@ private static Jedis jedis;
             	userStatistics.setRatingBuyer(0);
             	userStatistics.setRatingSeller(0);
             	userStatistics.setUser(userModel1);
-            	
-            	
             	objUserStat.insert(userStatistics);
-            	
-            	
             	System.out.println(l);
-            	
-            	
+<<<<<<< HEAD
             	ModelAndView model = new ModelAndView("showuser");
             	model.addObject("redirectTo", "./userhome");
             	model.addObject("userdetails", userModel1);
+=======
+            	
+            	Login loginModel = new Login();
+            	ModelAndView model = new ModelAndView("login");
+            	
+            	model.addObject("logindetails", loginModel);
+>>>>>>> parent of cbd5675... Revert "Merge remote-tracking branch 'origin/master'"
            	 	
            	 	return model;
           }
         } catch (Exception e) {
             System.out.println("Exception in FirstController "+e.getMessage());
             e.printStackTrace();
-            return new ModelAndView("userhome", "userdetails", userModel1);
+            return new ModelAndView("signup", "userdetails", userModel1);
         }
         
     }
@@ -167,12 +199,29 @@ private static Jedis jedis;
      * Works on "/" mapping.     * */
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public ModelAndView initM() {
+<<<<<<< HEAD
+		System.out.println("Landing Page");
+		ModelAndView mv = new ModelAndView();
+		// getting data
+		landingPage = new LandingPage();
+		JPALandingPageDAO obj = new JPALandingPageDAO();
+		landingPage.setBooks(obj.getBooks());
+		landingPage.setCategories(obj.getCategories());
+		System.out.println(landingPage);
+		mv.addObject("pagedetails", landingPage);
+		mv.setViewName("home");
+		return mv;
+    }
+    
+ //karan code starts
+=======
     	
-    	System.out.println("first entrii");
+    	
     	
     	 return new ModelAndView("home", "userdetails", null);
     }
- //karan code starts
+ 
+>>>>>>> parent of cbd5675... Revert "Merge remote-tracking branch 'origin/master'"
 	 //method to testCassandra
     @RequestMapping(value = "/Cassandra",method = RequestMethod.GET)
     public ModelAndView initN09() {
@@ -188,7 +237,7 @@ private static Jedis jedis;
     @RequestMapping(value = "/Redis",method = RequestMethod.GET)
     public ModelAndView initN10() {
     	
-    	CassandraConnectionDAO.testCassandra();
+    	/*CassandraConnectionDAO.testCassandra();
     	userModel = new user();
     	jedis=new Jedis("localhost");
 		jedis.connect();
@@ -197,7 +246,7 @@ private static Jedis jedis;
 		System.out.println(Kar);
 		jedis.set("karan", "khanna");
 		System.out.println("saving in redis");
-		System.out.println("getting from redis---" + jedis.get("karan"));
+		System.out.println("getting from redis---" + jedis.get("karan"));*/
 		
 		
 		

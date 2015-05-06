@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -47,7 +48,10 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
+
+
 import edu.sjsu.cmpe275.prj.dao.*;
+import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.BookImageUpload;
 import edu.sjsu.cmpe275.prj.models.category;
@@ -71,7 +75,17 @@ public class BookController {
     
     private book bookModel;
     private category categoryModel;
-    HttpSession session;
+    private Login login;
+    @Autowired
+	private HttpSession httpSession;
+	
+	public HttpSession getHttpSession() {
+		return httpSession;
+	}
+
+	public void setHttpSession(HttpSession httpSession) {
+		this.httpSession = httpSession;
+	}
 
 
     
@@ -99,16 +113,52 @@ public class BookController {
    
     @RequestMapping(value = "/bookhome",method = RequestMethod.GET)
     public ModelAndView uploadBook() {
-    	ModelAndView mv = new ModelAndView();
-    	bookModel = new book();
+    	//session = request.getSession();
     	
+    	
+    	
+    	ModelAndView mv = new ModelAndView();
+    	
+    	/*try
+    	{
 
-    	mv.addObject("path", "bookhome");
-        mv.addObject("categ", "1");
-        mv.addObject("bookdetails", bookModel);
-        mv.addObject("buttonX", "Create");
-        mv.setViewName("bookhome");
-        
+		    	if(!httpSession.getAttribute("USERID").toString().equals(""))
+		    	{
+		*/	    	bookModel = new book();
+			    	
+			    	System.out.println("user logged in as: " + httpSession.getAttribute("USERID"));
+			    	
+			    	mv.addObject("path", "./bookhome");
+			        mv.addObject("categ", "1");
+			        mv.addObject("bookdetails", bookModel);
+			        mv.addObject("buttonX", "Create");
+			        mv.setViewName("bookhome");
+		   /* 	}
+		    	else
+		    	{
+		    		
+		    		System.out.println("user not logged in");
+		    		
+		    		login = new Login();
+		        	
+		    		
+		    	       return new ModelAndView("login", "logindetails", login);
+		    		
+		    		
+		    	}*/
+    	/*}
+    	catch(Exception ex)
+    	{
+    		
+    		System.out.println("user not logged in");
+    		
+    		login = new Login();
+        	
+    		
+    	       return new ModelAndView("login", "logindetails", login);
+    		
+    		
+    	}*/
        return mv;
 
     }
@@ -148,7 +198,7 @@ public class BookController {
 		           
 		        	System.out.println("in book controller" + bookModel1.getBookId() );
 		        	JPAUserDAO objUser= new JPAUserDAO();
-		        	user tempuser = objUser.getUser(11);//session
+		        	user tempuser = objUser.getUser(15);//session
 		        	if(!tempuser.equals(null))
 		        		bookModel1.setUserId(tempuser);
 
@@ -253,7 +303,7 @@ public class BookController {
 		            	//user statistics change -- uploaded, seller
 						JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
 		            	statistics userStatistics = new statistics();
-		            	userStatistics = objUserStat.getUserStatisticsByUser(11); //session
+		            	userStatistics = objUserStat.getUserStatisticsByUser(15); //session
 		            	int noOfBookUploaded = userStatistics.getNoOfBookUploaded();
 		            	userStatistics.setNoOfBookUploaded(noOfBookUploaded + 1);
 		            	objUserStat = new JPAUserStatisticsDAO();
@@ -318,7 +368,7 @@ public class BookController {
                
             	System.out.println("in book update controller  " + bookModel1.getBookId() );
             	JPAUserDAO objUser= new JPAUserDAO();
-            	user tempuser = objUser.getUser(11);
+            	user tempuser = objUser.getUser(15);//session
             	if(!tempuser.equals(null))
             		bookModel1.setUserId(tempuser);
             	
@@ -407,7 +457,7 @@ public class BookController {
 		                	//user statistics change -- deleted, seller
 							JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
 			            	statistics userStatistics = new statistics();
-			            	userStatistics = objUserStat.getUserStatisticsByUser(11); //session
+			            	userStatistics = objUserStat.getUserStatisticsByUser(15); //session
 			            	int noOfBookDeleted = userStatistics.getNoOfBookDeleted();
 			            	userStatistics.setNoOfBookDeleted(noOfBookDeleted + 1);
 			            	objUserStat = new JPAUserStatisticsDAO();

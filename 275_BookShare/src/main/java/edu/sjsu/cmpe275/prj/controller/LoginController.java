@@ -50,10 +50,6 @@ import edu.sjsu.cmpe275.prjservices.UserRecordService;
 public class LoginController {
  
     
-    
-   
-    
-   
     Login loginModel;
     
     @Autowired
@@ -119,9 +115,11 @@ public class LoginController {
             	}
             	else
             	{
-            		
+            		JPAUserDAO jp = new JPAUserDAO();
             		
             		httpSession.setAttribute("USERID", loginModel1.getUserId());
+            		user tempUser = jp.getUser(loginModel1.getUserId());
+            		httpSession.setAttribute("USERNAME", tempUser.getName());
 	           	 	model.setViewName("home");
             	}
             	

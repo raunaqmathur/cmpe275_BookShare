@@ -10,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.feedback;
@@ -201,7 +202,7 @@ public class DBCrud<T> {
 		System.out.println("----" + result);
 		return result;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 
 	public T getUserStatisticsByUser(int userId){
@@ -225,5 +226,54 @@ public class DBCrud<T> {
 		return obj;
 	}
 
+	@SuppressWarnings("unchecked")
+<<<<<<< HEAD
+	public List<category> getCategories(){
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+
+		Query query = session.createSQLQuery("select * from category").addEntity(category.class);
+		
+		List<category> result = (List<category>)query.list();
+		session.close();
+		s.close();
+		
+		System.out.println("----" + result);
+		return result;
+	}
 	
+	@SuppressWarnings("unchecked")
+	public List<book> getBooks(){
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+		Query query = session.createSQLQuery("select * from book").addEntity(book.class);		
+		List<book> result = (List<book>)query.list();
+		session.close();
+		s.close();		
+		System.out.println("----" + result);
+=======
+	public int validate(Login login){
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+		
+		Query query = session.createSQLQuery(
+				"select * from user  where UserId = :sCode and password = :jCode")
+				.addEntity(user.class)
+				.setParameter("sCode", login.getUserId())
+				.setParameter("jCode", login.getPassword());
+		
+		
+				int  result = query.list().size();
+				
+		
+		session.close();
+		s.close();
+		
+		System.out.println("login - " + result);
+>>>>>>> parent of cbd5675... Revert "Merge remote-tracking branch 'origin/master'"
+		return result;
+	}
 }
