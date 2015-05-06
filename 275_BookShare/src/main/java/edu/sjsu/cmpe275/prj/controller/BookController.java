@@ -112,28 +112,28 @@ public class BookController {
     
    
     @RequestMapping(value = "/bookhome",method = RequestMethod.GET)
-    public ModelAndView uploadBook( HttpServletRequest request,  HttpServletResponse response, HttpSession session) {
+    public ModelAndView uploadBook() {
     	//session = request.getSession();
     	
     	
     	
     	ModelAndView mv = new ModelAndView();
     	
-    	try
+    	/*try
     	{
 
 		    	if(!httpSession.getAttribute("USERID").toString().equals(""))
 		    	{
-			    	bookModel = new book();
+		*/	    	bookModel = new book();
 			    	
 			    	System.out.println("user logged in as: " + httpSession.getAttribute("USERID"));
-			    	//mv.addObject("path", "bookhome");
+			    	
 			    	mv.addObject("path", "./bookhome");
 			        mv.addObject("categ", "1");
 			        mv.addObject("bookdetails", bookModel);
 			        mv.addObject("buttonX", "Create");
 			        mv.setViewName("bookhome");
-		    	}
+		   /* 	}
 		    	else
 		    	{
 		    		
@@ -145,8 +145,8 @@ public class BookController {
 		    	       return new ModelAndView("login", "logindetails", login);
 		    		
 		    		
-		    	}
-    	}
+		    	}*/
+    	/*}
     	catch(Exception ex)
     	{
     		
@@ -158,7 +158,7 @@ public class BookController {
     	       return new ModelAndView("login", "logindetails", login);
     		
     		
-    	}
+    	}*/
        return mv;
 
     }
