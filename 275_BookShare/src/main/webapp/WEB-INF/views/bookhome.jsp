@@ -75,7 +75,7 @@ function checkCat()
             </tr>
             <tr>
                 <td><label>Category</label></td>
-                <td><input type="text" name="categoryX" id="categoryX" value="${categ}"></input></td>
+                <td><input type="text" name="categoryX" id="categoryX" value="${categ}" ></input></td>
                 <td><font color="red"><label id="errorCat"></label></font></td>
                 
             </tr>

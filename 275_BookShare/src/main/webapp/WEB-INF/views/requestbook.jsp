@@ -63,7 +63,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="textinput">Request</label>  
 		  <div class="col-md-4">
-		  <input id="message" name="message" type="text" placeholder="type your message" class="form-control input-md">
+		  <input id="message" name="message" type="text" placeholder="enter your desired book" class="form-control input-md">
 		  <font color="red"><form:errors path="message"></form:errors></font> 
 		  </div>
 		</div>
@@ -76,7 +76,7 @@
 		</div>
 		
 		<div><font color="red"><form:errors /></font></div>
-		
+		<font color="red"><label>${msg}</label></font>	
 		</fieldset>
 		
 		</form>

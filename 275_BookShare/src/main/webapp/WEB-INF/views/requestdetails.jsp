@@ -8,7 +8,7 @@
 
         
             <tr>
-                <td colspan="3"><h3>Book Request</h3><br/><label>${RequestID},${UserId}</label></td>
+                <td colspan="3"><h3>Book Request</h3><br/><label>Request Id - ${RequestID},by UserId - ${UserId}</label></td>
                 
                 
                 
