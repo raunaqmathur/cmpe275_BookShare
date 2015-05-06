@@ -26,28 +26,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
- 
-
-
-
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.LandingPage;
-=======
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.Login;
->>>>>>> parent of cbd5675... Revert "Merge remote-tracking branch 'origin/master'"
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
@@ -74,12 +56,7 @@ public class FirstController {
     @RequestMapping(value = "/signup",method = RequestMethod.GET)
     public ModelAndView initN() {
     	userModel = new user();
-
-        return new ModelAndView("userhome", "userdetails", userModel);
-
-    	
-		
-       return new ModelAndView("signup", "userdetails", userModel);
+        return new ModelAndView("signup", "userdetails", userModel);
 
     }
     
