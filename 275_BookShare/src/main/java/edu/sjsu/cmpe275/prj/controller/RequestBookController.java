@@ -39,6 +39,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
+
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
@@ -56,7 +57,16 @@ public class RequestBookController
     private book bookModel;
     private category categoryModel;
     private requestBook requestBookModel;
-    HttpSession session;
+    @Autowired
+   	private HttpSession httpSession;
+   	
+   	public HttpSession getHttpSession() {
+   		return httpSession;
+   	}
+
+   	public void setHttpSession(HttpSession httpSession) {
+   		this.httpSession = httpSession;
+   	}
     //ex ends
   //1.Creating the u.i for user sign up page
     
@@ -77,7 +87,7 @@ public class RequestBookController
         	System.out.println("enter into ");
         	String msg=null;
         	JPAUserDAO objUser= new JPAUserDAO();
-        	user tempuser = objUser.getUser(11);
+        	user tempuser = objUser.getUser(Integer.parseInt(httpSession.getAttribute("USERID").toString()));
         	if(!tempuser.equals(null))
         		requestbookModel1.setUserId(tempuser);
         	

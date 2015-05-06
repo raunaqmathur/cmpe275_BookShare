@@ -277,4 +277,26 @@ public class DBCrud<T> {
 		System.out.println("login - " + result);
 		return result;
 }
+	@SuppressWarnings("unchecked")
+	public List<transaction> getTransactionByUser(int userId){
+		System.out.println(" in all transaction " );
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+
+		Query query = session.createSQLQuery(
+				"select * from transaction  where userID = :sCode")
+				.addEntity(transaction.class)
+				.setParameter("sCode", userId);
+				List<transaction>  result = (List<transaction>)query.list();
+
+
+
+
+		session.close();
+		s.close();
+		
+		
+		return result;
+	}
 }

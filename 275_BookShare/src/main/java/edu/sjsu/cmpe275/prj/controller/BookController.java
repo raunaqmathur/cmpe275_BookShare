@@ -50,6 +50,10 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
+
+
+
+
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
@@ -198,7 +202,7 @@ public class BookController {
 		           
 		        	System.out.println("in book controller" + bookModel1.getBookId() );
 		        	JPAUserDAO objUser= new JPAUserDAO();
-		        	user tempuser = objUser.getUser(15);//session
+		        	user tempuser = objUser.getUser(Integer.parseInt(httpSession.getAttribute("USERID").toString()));//session
 		        	if(!tempuser.equals(null))
 		        		bookModel1.setUserId(tempuser);
 
@@ -303,7 +307,7 @@ public class BookController {
 		            	//user statistics change -- uploaded, seller
 						JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
 		            	statistics userStatistics = new statistics();
-		            	userStatistics = objUserStat.getUserStatisticsByUser(15); //session
+		            	userStatistics = objUserStat.getUserStatisticsByUser(Integer.parseInt(httpSession.getAttribute("USERID").toString())); //session
 		            	int noOfBookUploaded = userStatistics.getNoOfBookUploaded();
 		            	userStatistics.setNoOfBookUploaded(noOfBookUploaded + 1);
 		            	objUserStat = new JPAUserStatisticsDAO();
@@ -368,7 +372,7 @@ public class BookController {
                
             	System.out.println("in book update controller  " + bookModel1.getBookId() );
             	JPAUserDAO objUser= new JPAUserDAO();
-            	user tempuser = objUser.getUser(15);//session
+            	user tempuser = objUser.getUser(Integer.parseInt(httpSession.getAttribute("USERID").toString()));//session
             	if(!tempuser.equals(null))
             		bookModel1.setUserId(tempuser);
             	
@@ -457,7 +461,7 @@ public class BookController {
 		                	//user statistics change -- deleted, seller
 							JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
 			            	statistics userStatistics = new statistics();
-			            	userStatistics = objUserStat.getUserStatisticsByUser(15); //session
+			            	userStatistics = objUserStat.getUserStatisticsByUser(Integer.parseInt(httpSession.getAttribute("USERID").toString())); //session
 			            	int noOfBookDeleted = userStatistics.getNoOfBookDeleted();
 			            	userStatistics.setNoOfBookDeleted(noOfBookDeleted + 1);
 			            	objUserStat = new JPAUserStatisticsDAO();

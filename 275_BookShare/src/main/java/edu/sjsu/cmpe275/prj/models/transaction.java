@@ -16,18 +16,11 @@ import javax.persistence.ManyToOne;
 @Entity
 public class transaction implements Serializable {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 
 
-	/**
-	 * 
-	 */
-	
-	// Persistent Fields:
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "TransactionID")
     private int transactionId;
@@ -46,9 +39,7 @@ public class transaction implements Serializable {
   
     
     
-    @Column(name = "Active")
-    private int active;
-
+    
     
     @Column(name = "price")
     private double price;
@@ -80,14 +71,7 @@ public class transaction implements Serializable {
 		this.user = user;
 	}
 
-	public int getActive() {
-		return active;
-	}
-
-	public void setActive(int active) {
-		this.active = active;
-	}
-
+	
 	public double getPrice() {
 		return price;
 	}

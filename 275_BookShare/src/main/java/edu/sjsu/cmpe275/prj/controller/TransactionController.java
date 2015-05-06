@@ -1,9 +1,11 @@
 package edu.sjsu.cmpe275.prj.controller;
 
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +52,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
+
+
+
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.BookImageUpload;
@@ -64,7 +69,17 @@ import edu.sjsu.cmpe275.prjservices.UserRecordService;
 @Controller
 public class TransactionController {
  
-    
+	@Autowired
+	private HttpSession httpSession;
+	
+	public HttpSession getHttpSession() {
+		return httpSession;
+	}
+
+	public void setHttpSession(HttpSession httpSession) {
+		this.httpSession = httpSession;
+	}
+
     
    
     
@@ -77,7 +92,20 @@ public class TransactionController {
     HttpSession session;
     
   
+    @RequestMapping(value = "/transactions",method = RequestMethod.GET)
+    public ModelAndView getTransactionsOfUser() {
+    	int userId = Integer.parseInt(httpSession.getAttribute("USERID").toString());
+    	JPATransactionDAO obj= new JPATransactionDAO();
+    	List<transaction> txList = new ArrayList<transaction>();
+    	txList=obj.getTransactionByUser(userId);
+    	
+       ModelAndView model = new ModelAndView("transactions");
+       
+       
+       model.addObject("str", txList);
+		return model;
     
+    }
     
     @RequestMapping(value = "/purchase/{bookId}",method = RequestMethod.GET)
     public ModelAndView bookTransaction(@PathVariable int bookId) {
@@ -93,8 +121,14 @@ public class TransactionController {
 		    	
 				System.out.println("in transaction: " +bookModel1.getBookId() );
 				
+				
+				objBook = new JPABookDAO();
+		    	bookModel1.setStatus("Sold");
+		    	objBook.update(bookModel1);
+				
+				
 				JPAUserDAO objUser= new JPAUserDAO();
-		    	user tempuser = objUser.getUser(15);//session
+		    	user tempuser = objUser.getUser(Integer.parseInt(httpSession.getAttribute("USERID").toString()));//session
 		    	
 				
 				
@@ -103,7 +137,7 @@ public class TransactionController {
 				if(!tempuser.equals(null))
 					newTransaction.setUser(tempuser);
 				
-				newTransaction.setActive(1);
+				
 			
 				newTransaction.setBook(bookModel1);
 				newTransaction.setPrice(bookModel1.getPrice());
@@ -114,7 +148,7 @@ public class TransactionController {
 				//user statistics change -- Buyer
 				JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
             	statistics userStatistics = new statistics();
-            	userStatistics = objUserStat.getUserStatisticsByUser(15); //session
+            	userStatistics = objUserStat.getUserStatisticsByUser(Integer.parseInt(httpSession.getAttribute("USERID").toString())); //session
             	int noOfBookPurchased = userStatistics.getNoOfBookPurchased();
             	userStatistics.setNoOfBookPurchased(noOfBookPurchased + 1);
             	objUserStat = new JPAUserStatisticsDAO();
@@ -144,9 +178,9 @@ public class TransactionController {
 	        
 	       return mv;
     	}
-    	mv.addObject("catId", bookModel1.getCategoryId().getName());
-        mv.addObject("bookdetails", bookModel1);
-        mv.setViewName("showbook");
+    	//mv.addObject("catId", bookModel1.getCategoryId().getName());
+       // mv.addObject("bookdetails", bookModel1);
+        mv.setViewName("home");
         
        return mv;
     }
