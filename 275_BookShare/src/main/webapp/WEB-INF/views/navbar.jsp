@@ -26,7 +26,7 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	  <div class="navbar-header">
-	      <a class="navbar-brand" href=".">
+	      <a class="navbar-brand" href="${pageContext.request.contextPath}">
 	        <img style="max-width:50px; margin-top: -15px;" alt="Brand" src="http://blindlibrary.utah.gov/images/logoBook.gif">
 	      </a>
 	    </div>
@@ -38,7 +38,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href=".">BookShare</a>
+	      <a class="navbar-brand" href="${pageContext.request.contextPath}">BookShare</a>
 	    </div>
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
