@@ -124,13 +124,7 @@ public class LoginController {
         } catch (Exception e) {
             System.out.println("Exception in FirstController "+e.getMessage());
             e.printStackTrace();
-            
-            ModelAndView model = new ModelAndView();
-            loginModel = new Login();
-        	model.addObject("msg", "Connection Error");
-        	model.addObject("loginDetails", loginModel);
-       	 	model.setViewName("login");
-       	 	return model;
+            return new ModelAndView("error404");
         }
         
     }
