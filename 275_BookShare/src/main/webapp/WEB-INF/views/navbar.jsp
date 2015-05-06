@@ -46,7 +46,7 @@
 	      <ul class="nav navbar-nav">
 	      </ul>
 	      
-	      <form class="navbar-form navbar-right" role="search">
+	      <form class="navbar-form navbar-left" role="search">
 	        <div class="form-group">
 	          <input type="text" class="form-control" placeholder="Search by ISBN">
 	        </div>
