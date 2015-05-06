@@ -12,7 +12,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class Category implements Serializable {
+public class category implements Serializable {
 	
 	/**
 	 * 

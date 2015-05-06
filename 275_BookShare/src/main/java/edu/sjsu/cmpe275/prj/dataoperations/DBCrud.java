@@ -10,12 +10,12 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import edu.sjsu.cmpe275.prj.models.Book;
-import edu.sjsu.cmpe275.prj.models.Category;
-import edu.sjsu.cmpe275.prj.models.Feedback;
-import edu.sjsu.cmpe275.prj.models.RequestBook;
-import edu.sjsu.cmpe275.prj.models.Transaction;
-import edu.sjsu.cmpe275.prj.models.UserStatistics;
+import edu.sjsu.cmpe275.prj.models.book;
+import edu.sjsu.cmpe275.prj.models.category;
+import edu.sjsu.cmpe275.prj.models.feedback;
+import edu.sjsu.cmpe275.prj.models.requestBook;
+import edu.sjsu.cmpe275.prj.models.transaction;
+import edu.sjsu.cmpe275.prj.models.statistics;
 import edu.sjsu.cmpe275.prj.models.user;
 
 /*
@@ -46,26 +46,26 @@ public class DBCrud<T> {
 			user p = (user)obj;
 			id = p.getUserId();
 		}
-		else if(obj instanceof Category){
-			Category s = (Category)obj;
+		else if(obj instanceof category){
+			category s = (category)obj;
 			id = s.getCategoryId();
 			System.out.println("in crud category " + id);
 		}
-		else if(obj instanceof Book){
-			Book s = (Book)obj;
+		else if(obj instanceof book){
+			book s = (book)obj;
 			id = s.getBookId();
 			System.out.println("in crud book " + id);
 		}
-		else if(obj instanceof RequestBook){
-			RequestBook s = (RequestBook)obj;
+		else if(obj instanceof requestBook){
+			requestBook s = (requestBook)obj;
 			id = s.getRequestId();
 
 
 			System.out.println("in crud book " + id);
 		}
 		
-		else if(obj instanceof Feedback){
-			Feedback s = (Feedback)obj;
+		else if(obj instanceof feedback){
+			feedback s = (feedback)obj;
 			id = s.getFeedbackId();
 
 
@@ -73,20 +73,20 @@ public class DBCrud<T> {
 		}
 		
 		
-		else if(obj instanceof Transaction){
+		else if(obj instanceof transaction){
 
 
-			Transaction s = (Transaction)obj;
+			transaction s = (transaction)obj;
 			id = s.getTransactionId();
-			System.out.println("in crud Transaction " + id);
+			System.out.println("in crud transaction " + id);
 		}
 
-		else if(obj instanceof UserStatistics){
+		else if(obj instanceof statistics){
 
 
-			UserStatistics s = (UserStatistics)obj;
+			statistics s = (statistics)obj;
 			id = s.getUsId();
-			System.out.println("in crud UserStatistics " + id);
+			System.out.println("in crud statistics " + id);
 		}
 		session.close();
 		s.close();
@@ -163,15 +163,15 @@ public class DBCrud<T> {
 
 	
 	@SuppressWarnings("unchecked")
-	public List<Feedback> getSellerComments(int buyerID){
+	public List<feedback> getSellerComments(int buyerID){
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
 		Query query = session.createSQLQuery(
 				"select * from feedback  where BuyerID = :sCode")
-				.addEntity(Feedback.class)
+				.addEntity(feedback.class)
 				.setParameter("sCode", buyerID);
-				List<Feedback>  result = (List<Feedback>)query.list();
+				List<feedback>  result = (List<feedback>)query.list();
 		session.close();
 		s.close();
 		
@@ -180,7 +180,7 @@ public class DBCrud<T> {
 	}
 	
 @SuppressWarnings("unchecked")
-	public List<Feedback> getBuyerComments(int sellerID){
+	public List<feedback> getBuyerComments(int sellerID){
 
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
@@ -188,9 +188,9 @@ public class DBCrud<T> {
 
 		Query query = session.createSQLQuery(
 				"select * from feedback  where SellerID = :sCode")
-				.addEntity(Feedback.class)
+				.addEntity(feedback.class)
 				.setParameter("sCode", sellerID);
-				List<Feedback>  result = (List<Feedback>)query.list();
+				List<feedback>  result = (List<feedback>)query.list();
 
 
 
@@ -224,8 +224,8 @@ public class DBCrud<T> {
 		session.beginTransaction();
 		T obj = null;
 		Query query = session.createSQLQuery(
-				"select * from UserStatistics  where UserId = :sCode")
-				.addEntity(UserStatistics.class)
+				"select * from statistics  where UserId = :sCode")
+				.addEntity(statistics.class)
 				.setParameter("sCode", userId);
 				int  result = query.list().size();
 				

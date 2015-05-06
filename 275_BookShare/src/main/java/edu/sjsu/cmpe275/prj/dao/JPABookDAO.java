@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.sjsu.cmpe275.prj.dataoperations.DBCrud;
-import edu.sjsu.cmpe275.prj.models.Book;
+import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.user;
 
 
@@ -28,12 +28,12 @@ public class JPABookDAO implements BookDAO{
 	 * 
 	 */
 	
-	public int insert(Book book) 
+	public int insert(book book) 
 	{
 		System.out.println("in category jpa");
 		int addressId= 0;
 		try {
-			DBCrud<Book> db = new DBCrud<Book>();
+			DBCrud<book> db = new DBCrud<book>();
 			addressId = db.Insert(book);
 			
 		} catch (Exception e1) {
@@ -48,11 +48,11 @@ public class JPABookDAO implements BookDAO{
 	  * function to update address tuple n the database 
 	  * 
 	  */
-	public void update(Book book) {
+	public void update(book book) {
 		
 		
 				try {
-					DBCrud<Book> db = new DBCrud<Book>();
+					DBCrud<book> db = new DBCrud<book>();
 					db.update(book);
 					
 				} catch (Exception e1) {
@@ -67,12 +67,12 @@ public class JPABookDAO implements BookDAO{
 	 * Function to delete address from databse
 	 * 
 	 */
-	public void delete(Book book) {
+	public void delete(book book) {
 		
 		
 		
 		try {
-			DBCrud<Book> db = new DBCrud<Book>();
+			DBCrud<book> db = new DBCrud<book>();
 			db.delete(book);
 			
 		} catch (Exception e1) {
@@ -84,10 +84,10 @@ public class JPABookDAO implements BookDAO{
 	}
 
 
-	public Book getBook(int bookId) {
-		Book tempBook = new Book();
+	public book getBook(int bookId) {
+		book tempBook = new book();
 		try {
-			DBCrud<Book> db = new DBCrud<Book>();
+			DBCrud<book> db = new DBCrud<book>();
 			tempBook=  db.get(tempBook, bookId);
 			
 		} catch (Exception e1) {

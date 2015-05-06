@@ -39,10 +39,10 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 import edu.sjsu.cmpe275.prj.dao.*;
-import edu.sjsu.cmpe275.prj.models.Book;
-import edu.sjsu.cmpe275.prj.models.Category;
+import edu.sjsu.cmpe275.prj.models.book;
+import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
-import edu.sjsu.cmpe275.prj.models.UserStatistics;
+import edu.sjsu.cmpe275.prj.models.statistics;
 import edu.sjsu.cmpe275.prj.models.user;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
  
@@ -60,8 +60,8 @@ public class FirstController {
     
     private user userModel;
     
-    private Book bookModel;
-    private Category categoryModel;
+    private book bookModel;
+    private category categoryModel;
     HttpSession session;
 private static Jedis jedis;
     
@@ -130,7 +130,7 @@ private static Jedis jedis;
             	long l =obj.insert(userModel1);
             	
             	JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
-            	UserStatistics userStatistics = new UserStatistics();
+            	statistics userStatistics = new statistics();
             	userStatistics.setNoOfBookDeleted(0);
             	userStatistics.setNoOfBookPurchased(0);
             	userStatistics.setNoOfBookTransac(0);
@@ -168,9 +168,9 @@ private static Jedis jedis;
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public ModelAndView initM() {
     	
-    	System.out.println("entrii");
+    	System.out.println("first entrii");
     	
-    	return initN();
+    	 return new ModelAndView("home", "userdetails", null);
     }
  //karan code starts
 	 //method to testCassandra

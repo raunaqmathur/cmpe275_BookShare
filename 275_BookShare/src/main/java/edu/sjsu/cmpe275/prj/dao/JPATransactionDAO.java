@@ -11,8 +11,8 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.sjsu.cmpe275.prj.dataoperations.DBCrud;
-import edu.sjsu.cmpe275.prj.models.Category;
-import edu.sjsu.cmpe275.prj.models.Transaction;
+import edu.sjsu.cmpe275.prj.models.category;
+import edu.sjsu.cmpe275.prj.models.transaction;
 
 
 /*
@@ -28,12 +28,12 @@ public class JPATransactionDAO implements TransactionDAO{
 	 * 
 	 */
 	
-	public int insert(Transaction transaction) 
+	public int insert(transaction transaction) 
 	{
 		System.out.println("in transaction jpa");
 		int transactionId= 0;
 		try {
-			DBCrud<Transaction> db = new DBCrud<Transaction>();
+			DBCrud<transaction> db = new DBCrud<transaction>();
 			transactionId = db.Insert(transaction);
 			
 		} catch (Exception e1) {
@@ -48,11 +48,11 @@ public class JPATransactionDAO implements TransactionDAO{
 	  * function to update address tuple n the database 
 	  * 
 	  */
-	public void update(Transaction transaction) {
+	public void update(transaction transaction) {
 		
 		
 				try {
-					DBCrud<Transaction> db = new DBCrud<Transaction>();
+					DBCrud<transaction> db = new DBCrud<transaction>();
 					db.update(transaction);
 					
 				} catch (Exception e1) {
@@ -67,12 +67,12 @@ public class JPATransactionDAO implements TransactionDAO{
 	 * Function to delete address from databse
 	 * 
 	 */
-	public void delete(Transaction transaction) {
+	public void delete(transaction transaction) {
 		
 		
 		
 		try {
-			DBCrud<Transaction> db = new DBCrud<Transaction>();
+			DBCrud<transaction> db = new DBCrud<transaction>();
 			db.delete(transaction);
 			
 		} catch (Exception e1) {
@@ -91,11 +91,11 @@ public class JPATransactionDAO implements TransactionDAO{
 	
 
 
-	public Transaction getTransaction(int transactionId) {
-		Transaction result = new Transaction();
+	public transaction getTransaction(int transactionId) {
+		transaction result = new transaction();
 		
 		try {
-			DBCrud<Transaction> db = new DBCrud<Transaction>();
+			DBCrud<transaction> db = new DBCrud<transaction>();
 			result = db.get(result,transactionId);
 			
 		} catch (Exception e1) {

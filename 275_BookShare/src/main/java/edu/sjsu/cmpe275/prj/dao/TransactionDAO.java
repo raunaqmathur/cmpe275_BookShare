@@ -6,15 +6,15 @@ import edu.sjsu.cmpe275.prj.models.*;
  * 
  */
 public interface TransactionDAO {
-	public int insert(Transaction transaction);
+	public int insert(transaction transaction);
 	
 	
-	public void delete(Transaction transaction);
+	public void delete(transaction transaction);
 	
-	public void update(Transaction transaction);
+	public void update(transaction transaction);
 	
 	
-	public Transaction getTransaction(int transactionId);
+	public transaction getTransaction(int transactionId);
 	
 	
 }

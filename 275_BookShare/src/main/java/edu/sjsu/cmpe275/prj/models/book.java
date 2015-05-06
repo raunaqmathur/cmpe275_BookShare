@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 
 @Entity
-public class Book implements Serializable {
+public class book implements Serializable {
 	
 	/**
 	 * 
@@ -41,7 +41,7 @@ public class Book implements Serializable {
     
 		@ManyToOne
 	   @JoinColumn(name = "categoryId")
-	    private Category category;
+	    private category category;
 	
     @Column(name = "Title", length  = 100)
     private String title;
@@ -198,12 +198,12 @@ public class Book implements Serializable {
 	}
 
 
-	public Category getCategoryId() {
+	public category getCategoryId() {
 		return category;
 	}
 
 
-	public void setCategoryId(Category category) {
+	public void setCategoryId(category category) {
 		this.category = category;
 	}
 

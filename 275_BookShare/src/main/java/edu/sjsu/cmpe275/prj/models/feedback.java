@@ -19,7 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Feedback implements Serializable
+public class feedback implements Serializable
 {
 	 /**
 	 * 
@@ -60,15 +60,15 @@ public class Feedback implements Serializable
 	 
 	 @ManyToOne
 		@JoinColumn(name = "TransactionID")
-		private Transaction transaction;
+		private transaction transaction;
 	 
 	 
 	 
-	 public Transaction getTransactionId() {
+	 public transaction getTransactionId() {
 			return transaction;
 		}
 
-		public void setTransactionId(Transaction transaction) {
+		public void setTransactionId(transaction transaction) {
 			this.transaction = transaction;
 		}
 	 

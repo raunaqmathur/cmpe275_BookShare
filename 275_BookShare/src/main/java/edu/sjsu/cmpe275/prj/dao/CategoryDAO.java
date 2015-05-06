@@ -6,14 +6,14 @@ import edu.sjsu.cmpe275.prj.models.*;
  * 
  */
 public interface CategoryDAO {
-	public int insert(Category category);
+	public int insert(category category);
 	
 	
-	public void delete(Category category);
+	public void delete(category category);
 	
-	public void update(Category category);
+	public void update(category category);
 	
 	
-	public Category getCategory(int categoryId);
+	public category getCategory(int categoryId);
 	
 }

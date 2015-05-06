@@ -7,6 +7,6 @@ import edu.sjsu.cmpe275.prj.models.*;
  */
 public interface RequestBookDAO {
 	
-	public int insert(RequestBook category);
+	public int insert(requestBook category);
 	
 }

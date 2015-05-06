@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.sjsu.cmpe275.prj.dataoperations.DBCrud;
 
-import edu.sjsu.cmpe275.prj.models.Category;
+import edu.sjsu.cmpe275.prj.models.category;
 
 
 /*
@@ -28,12 +28,12 @@ public class JPACategoryDAO implements CategoryDAO{
 	 * 
 	 */
 	
-	public int insert(Category category) 
+	public int insert(category category) 
 	{
 		System.out.println("in category jpa");
 		int addressId= 0;
 		try {
-			DBCrud<Category> db = new DBCrud<Category>();
+			DBCrud<category> db = new DBCrud<category>();
 			addressId = db.Insert(category);
 			
 		} catch (Exception e1) {
@@ -48,11 +48,11 @@ public class JPACategoryDAO implements CategoryDAO{
 	  * function to update address tuple n the database 
 	  * 
 	  */
-	public void update(Category category) {
+	public void update(category category) {
 		
 		
 				try {
-					DBCrud<Category> db = new DBCrud<Category>();
+					DBCrud<category> db = new DBCrud<category>();
 					db.update(category);
 					
 				} catch (Exception e1) {
@@ -67,12 +67,12 @@ public class JPACategoryDAO implements CategoryDAO{
 	 * Function to delete address from databse
 	 * 
 	 */
-	public void delete(Category category) {
+	public void delete(category category) {
 		
 		
 		
 		try {
-			DBCrud<Category> db = new DBCrud<Category>();
+			DBCrud<category> db = new DBCrud<category>();
 			db.delete(category);
 			
 		} catch (Exception e1) {
@@ -93,7 +93,7 @@ public class JPACategoryDAO implements CategoryDAO{
 		int result = 0;
 		
 		try {
-			DBCrud<Category> db = new DBCrud<Category>();
+			DBCrud<category> db = new DBCrud<category>();
 			result = db.getExistingEmail(name);
 			
 		} catch (Exception e1) {
@@ -105,11 +105,11 @@ public class JPACategoryDAO implements CategoryDAO{
 	}
 
 
-	public Category getCategory(int categoryId) {
-		Category result = new Category();
+	public category getCategory(int categoryId) {
+		category result = new category();
 		
 		try {
-			DBCrud<Category> db = new DBCrud<Category>();
+			DBCrud<category> db = new DBCrud<category>();
 			result = db.get(result,categoryId);
 			
 		} catch (Exception e1) {

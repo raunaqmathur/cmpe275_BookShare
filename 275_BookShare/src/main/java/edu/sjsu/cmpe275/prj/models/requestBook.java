@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-public class RequestBook implements Serializable {
+public class requestBook implements Serializable {
 	
 	 /**
 	 * 

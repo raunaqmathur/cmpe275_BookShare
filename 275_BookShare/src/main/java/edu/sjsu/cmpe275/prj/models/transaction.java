@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 
 
 @Entity
-public class Transaction implements Serializable {
+public class transaction implements Serializable {
 	
 	/**
 	 * 
@@ -36,7 +36,7 @@ public class Transaction implements Serializable {
     
     @ManyToOne
    	@JoinColumn(name = "bookId")
-   	private Book book;
+   	private book book;
     
     @ManyToOne
    	@JoinColumn(name = "userId")
@@ -64,11 +64,11 @@ public class Transaction implements Serializable {
 		this.transactionId = transactionId;
 	}
 
-	public Book getBook() {
+	public book getBook() {
 		return book;
 	}
 
-	public void setBook(Book book) {
+	public void setBook(book book) {
 		this.book = book;
 	}
 

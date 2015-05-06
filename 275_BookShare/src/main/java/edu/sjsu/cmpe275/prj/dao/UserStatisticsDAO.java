@@ -6,15 +6,15 @@ import edu.sjsu.cmpe275.prj.models.*;
  * 
  */
 public interface UserStatisticsDAO {
-	public int insert(UserStatistics userStatistics);
+	public int insert(statistics userStatistics);
 	
 	
-	public void delete(UserStatistics userStatistics);
+	public void delete(statistics userStatistics);
 	
-	public void update(UserStatistics userStatistics);
+	public void update(statistics userStatistics);
 	
 	
-	public UserStatistics getUserStatistics(int usId);
-	public UserStatistics getUserStatisticsByUser(int userId);
+	public statistics getUserStatistics(int usId);
+	public statistics getUserStatisticsByUser(int userId);
 	
 }

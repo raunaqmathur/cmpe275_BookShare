@@ -26,12 +26,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import edu.sjsu.cmpe275.prj.dao.*;
-import edu.sjsu.cmpe275.prj.models.Book;
-import edu.sjsu.cmpe275.prj.models.Category;
-import edu.sjsu.cmpe275.prj.models.Feedback;
+import edu.sjsu.cmpe275.prj.models.book;
+import edu.sjsu.cmpe275.prj.models.category;
+import edu.sjsu.cmpe275.prj.models.feedback;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
-import edu.sjsu.cmpe275.prj.models.RequestBook;
-import edu.sjsu.cmpe275.prj.models.Transaction;
+import edu.sjsu.cmpe275.prj.models.requestBook;
+import edu.sjsu.cmpe275.prj.models.transaction;
 import edu.sjsu.cmpe275.prj.models.user;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
 
@@ -40,12 +40,12 @@ import edu.sjsu.cmpe275.prjservices.UserRecordService;
 public class FeedbackController 
 {
 	  private user userModel;
-	    private Book bookModel;
-	    private Category categoryModel;
+	    private book bookModel;
+	    private category categoryModel;
 	    HttpSession session;
-	    private Feedback feedbackbuyerModel;
-	    private Transaction transaction;
-	    List<Feedback> str;
+	    private feedback feedbackbuyerModel;
+	    private transaction transaction;
+	    List<feedback> str;
 	    
 	    @RequestMapping(value = "/feedbackbuyer/{buyerId}",method = RequestMethod.GET)
 	    public ModelAndView uploadFeedback(@PathVariable int buyerId) 

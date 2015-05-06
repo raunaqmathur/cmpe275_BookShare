@@ -51,12 +51,12 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 import edu.sjsu.cmpe275.prj.dao.*;
-import edu.sjsu.cmpe275.prj.models.Book;
+import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.BookImageUpload;
-import edu.sjsu.cmpe275.prj.models.Category;
+import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
-import edu.sjsu.cmpe275.prj.models.Transaction;
-import edu.sjsu.cmpe275.prj.models.UserStatistics;
+import edu.sjsu.cmpe275.prj.models.transaction;
+import edu.sjsu.cmpe275.prj.models.statistics;
 import edu.sjsu.cmpe275.prj.models.user;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
  
@@ -72,8 +72,8 @@ public class TransactionController {
 	
    // private user userModel;
     
-    //private Book bookModel;
-   // private Category categoryModel;
+    //private book bookModel;
+   // private category categoryModel;
     HttpSession session;
     
   
@@ -83,7 +83,7 @@ public class TransactionController {
     public ModelAndView bookTransaction(@PathVariable int bookId) {
     	ModelAndView mv = new ModelAndView();
     	//System.out.println("in transaction: " +bookModel1.getBookId() );
-    	Book bookModel1 = new Book();
+    	book bookModel1 = new book();
     	JPABookDAO objBook= new JPABookDAO();
     	bookModel1 = objBook.getBook(bookId);
     	try
@@ -99,7 +99,7 @@ public class TransactionController {
 				
 				
 				
-				Transaction newTransaction = new Transaction();
+				transaction newTransaction = new transaction();
 				if(!tempuser.equals(null))
 					newTransaction.setUser(tempuser);
 				
@@ -113,7 +113,7 @@ public class TransactionController {
 				
 				//user statistics change -- Buyer
 				JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
-            	UserStatistics userStatistics = new UserStatistics();
+            	statistics userStatistics = new statistics();
             	userStatistics = objUserStat.getUserStatisticsByUser(11); //session
             	int noOfBookPurchased = userStatistics.getNoOfBookPurchased();
             	userStatistics.setNoOfBookPurchased(noOfBookPurchased + 1);
@@ -124,7 +124,7 @@ public class TransactionController {
             	
             	//user statistics change -- Seller
 				 objUserStat = new JPAUserStatisticsDAO();
-            	userStatistics = new UserStatistics();
+            	userStatistics = new statistics();
             	userStatistics = objUserStat.getUserStatisticsByUser(bookModel1.getUserId().getUserId()); //session
             	int noOfBookTransac = userStatistics.getNoOfBookTransac();
             	userStatistics.setNoOfBookTransac(noOfBookTransac + 1);

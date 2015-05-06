@@ -48,11 +48,11 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 import edu.sjsu.cmpe275.prj.dao.*;
-import edu.sjsu.cmpe275.prj.models.Book;
+import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.BookImageUpload;
-import edu.sjsu.cmpe275.prj.models.Category;
+import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
-import edu.sjsu.cmpe275.prj.models.UserStatistics;
+import edu.sjsu.cmpe275.prj.models.statistics;
 import edu.sjsu.cmpe275.prj.models.user;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
  
@@ -69,8 +69,8 @@ public class BookController {
 	private String imagePath = "WEB-INF\\images";
     private user userModel;
     
-    private Book bookModel;
-    private Category categoryModel;
+    private book bookModel;
+    private category categoryModel;
     HttpSession session;
 
 
@@ -79,8 +79,8 @@ public class BookController {
     public ModelAndView showBook(@PathVariable int bookId, HttpServletRequest request) {
     	
     	ModelAndView mv = new ModelAndView();
-    	bookModel = new Book();
-    	//bookModel = new Book();
+    	bookModel = new book();
+    	//bookModel = new book();
     	JPABookDAO obj= new JPABookDAO();
     	bookModel = obj.getBook(bookId);
 		//System.out.println("going: " +bookModel.getBookId() );
@@ -100,7 +100,7 @@ public class BookController {
     @RequestMapping(value = "/bookhome",method = RequestMethod.GET)
     public ModelAndView uploadBook() {
     	ModelAndView mv = new ModelAndView();
-    	bookModel = new Book();
+    	bookModel = new book();
     	
 
     	mv.addObject("path", "bookhome");
@@ -117,7 +117,7 @@ public class BookController {
     @RequestMapping(value = "/bookhome/{bookId}",method = RequestMethod.GET)
     public ModelAndView updateBook(@PathVariable int bookId) {
     	ModelAndView mv = new ModelAndView();
-    	bookModel = new Book();
+    	bookModel = new book();
     	JPABookDAO obj= new JPABookDAO();
     	bookModel = obj.getBook(bookId);
 
@@ -133,7 +133,7 @@ public class BookController {
     }
     
     @RequestMapping(value = "/bookhome",method = RequestMethod.POST)
-    public ModelAndView initN1(@ModelAttribute("bookdetails")Book bookModel1, BindingResult bindingResult, 
+    public ModelAndView initN1(@ModelAttribute("bookdetails")book bookModel1, BindingResult bindingResult, 
             HttpServletRequest request,  HttpServletResponse response,
              @RequestParam(value="categoryX") int  categoryId) 
     {
@@ -158,7 +158,7 @@ public class BookController {
 
 		        	
 		        	JPACategoryDAO objCat= new JPACategoryDAO();
-		        	Category tempCat = objCat.getCategory( categoryId);
+		        	category tempCat = objCat.getCategory( categoryId);
 		        	if(!tempCat.equals(null))
 		        		bookModel1.setCategoryId(tempCat);
 
@@ -176,7 +176,7 @@ public class BookController {
 		            ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "price", "price", "Price can't be empty");
 		            
 		           // if(categoryId == 0)
-		            //	ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "category", "category", "Category can't be empty");
+		            //	ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "category", "category", "category can't be empty");
 		            
 		            System.out.println("2" );
 
@@ -252,7 +252,7 @@ public class BookController {
 		            	
 		            	//user statistics change -- uploaded, seller
 						JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
-		            	UserStatistics userStatistics = new UserStatistics();
+		            	statistics userStatistics = new statistics();
 		            	userStatistics = objUserStat.getUserStatisticsByUser(11); //session
 		            	int noOfBookUploaded = userStatistics.getNoOfBookUploaded();
 		            	userStatistics.setNoOfBookUploaded(noOfBookUploaded + 1);
@@ -263,7 +263,7 @@ public class BookController {
 		            	
 		            	
 		            	
-		            	msg="Your Book is uploaded successfully";
+		            	msg="Your book is uploaded successfully";
 		            	ModelAndView mv = new ModelAndView();
 		            	mv.addObject("redirectTo", "./bookhome");
 		            	mv.addObject("redirectToBuy", "./purchase");
@@ -326,7 +326,7 @@ public class BookController {
             	System.out.println("7" );
             	
             	JPACategoryDAO objCat= new JPACategoryDAO();
-            	Category tempCat = objCat.getCategory( categoryId);
+            	category tempCat = objCat.getCategory( categoryId);
             	if(!tempCat.equals(null))
             		bookModel1.setCategoryId(tempCat);
             	
@@ -340,7 +340,7 @@ public class BookController {
                 ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "price", "price", "Price can't be empty");
                 
                 if(categoryId == 0)
-                	ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "category", "category", "Category can't be empty");
+                	ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "category", "category", "category can't be empty");
                 
                 
                 System.out.println("2" );
@@ -384,7 +384,7 @@ public class BookController {
                 	
                 	
                 	JPABookDAO obj= new JPABookDAO();
-                	Book updateBookObj = obj.getBook(bookModel1.getBookId());
+                	book updateBookObj = obj.getBook(bookModel1.getBookId());
                 	
                 	
                 	updateBookObj.setActive(bookModel1.getActive());
@@ -406,7 +406,7 @@ public class BookController {
                 	{
 		                	//user statistics change -- deleted, seller
 							JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
-			            	UserStatistics userStatistics = new UserStatistics();
+			            	statistics userStatistics = new statistics();
 			            	userStatistics = objUserStat.getUserStatisticsByUser(11); //session
 			            	int noOfBookDeleted = userStatistics.getNoOfBookDeleted();
 			            	userStatistics.setNoOfBookDeleted(noOfBookDeleted + 1);
@@ -415,7 +415,7 @@ public class BookController {
 			            	objUserStat.update(userStatistics);
                 	}
                 	
-                	msg="Your Book is updation successfully";
+                	msg="Your book is updation successfully";
                 	ModelAndView mv = new ModelAndView();
                 	mv.addObject("redirectTo", "./bookhome");
                 	mv.addObject("redirectToBuy", "./purchase");

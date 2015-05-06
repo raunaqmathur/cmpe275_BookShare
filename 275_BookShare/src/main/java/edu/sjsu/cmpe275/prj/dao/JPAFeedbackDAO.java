@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.sjsu.cmpe275.prj.dataoperations.DBCrud;
-import edu.sjsu.cmpe275.prj.models.Feedback;
+import edu.sjsu.cmpe275.prj.models.feedback;
 
 public class JPAFeedbackDAO implements FeedbackDAO {
 
-	public List<Feedback> getFeedbackBuyer(int BuyerId) 
+	public List<feedback> getFeedbackBuyer(int BuyerId) 
 	{
-		List<Feedback> tempFeedbackBuyer = new ArrayList<Feedback>();
+		List<feedback> tempFeedbackBuyer = new ArrayList<feedback>();
 		try {
-			DBCrud<Feedback> db = new DBCrud<Feedback>();
+			DBCrud<feedback> db = new DBCrud<feedback>();
 			tempFeedbackBuyer=  db.getSellerComments(BuyerId);
 			
 		} catch (Exception e1) {
@@ -23,11 +23,11 @@ public class JPAFeedbackDAO implements FeedbackDAO {
 		return tempFeedbackBuyer;
 	}
 	
-	public List<Feedback> getFeedbackSeller(int sellerId) 
+	public List<feedback> getFeedbackSeller(int sellerId) 
 	{
-		List<Feedback> tempFeedbackBuyer = new ArrayList<Feedback>();
+		List<feedback> tempFeedbackBuyer = new ArrayList<feedback>();
 		try {
-			DBCrud<Feedback> db = new DBCrud<Feedback>();
+			DBCrud<feedback> db = new DBCrud<feedback>();
 			tempFeedbackBuyer=  db.getBuyerComments(sellerId);
 			
 		} catch (Exception e1) {

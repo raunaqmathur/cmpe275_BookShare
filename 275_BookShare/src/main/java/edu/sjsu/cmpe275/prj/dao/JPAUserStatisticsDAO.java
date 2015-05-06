@@ -11,9 +11,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.sjsu.cmpe275.prj.dataoperations.DBCrud;
-import edu.sjsu.cmpe275.prj.models.Category;
-import edu.sjsu.cmpe275.prj.models.Transaction;
-import edu.sjsu.cmpe275.prj.models.UserStatistics;
+import edu.sjsu.cmpe275.prj.models.category;
+import edu.sjsu.cmpe275.prj.models.transaction;
+import edu.sjsu.cmpe275.prj.models.statistics;
 
 
 /*
@@ -29,12 +29,12 @@ public class JPAUserStatisticsDAO implements UserStatisticsDAO{
 	 * 
 	 */
 	
-	public int insert(UserStatistics userStatistics) 
+	public int insert(statistics userStatistics) 
 	{
-		System.out.println("in UserStatistics jpa");
+		System.out.println("in statistics jpa");
 		int userStatisticsId= 0;
 		try {
-			DBCrud<UserStatistics> db = new DBCrud<UserStatistics>();
+			DBCrud<statistics> db = new DBCrud<statistics>();
 			userStatisticsId = db.Insert(userStatistics);
 			
 		} catch (Exception e1) {
@@ -49,11 +49,11 @@ public class JPAUserStatisticsDAO implements UserStatisticsDAO{
 	  * function to update address tuple n the database 
 	  * 
 	  */
-	public void update(UserStatistics userStatistics) {
+	public void update(statistics userStatistics) {
 		
-		System.out.println("in update UserStatistics jpa");
+		System.out.println("in update statistics jpa");
 				try {
-					DBCrud<UserStatistics> db = new DBCrud<UserStatistics>();
+					DBCrud<statistics> db = new DBCrud<statistics>();
 					db.update(userStatistics);
 					
 				} catch (Exception e1) {
@@ -68,12 +68,12 @@ public class JPAUserStatisticsDAO implements UserStatisticsDAO{
 	 * Function to delete address from databse
 	 * 
 	 */
-	public void delete(UserStatistics userStatistics) {
+	public void delete(statistics userStatistics) {
 		
 		
 		
 		try {
-			DBCrud<UserStatistics> db = new DBCrud<UserStatistics>();
+			DBCrud<statistics> db = new DBCrud<statistics>();
 			db.delete(userStatistics);
 			
 		} catch (Exception e1) {
@@ -92,11 +92,11 @@ public class JPAUserStatisticsDAO implements UserStatisticsDAO{
 	
 
 
-	public UserStatistics getUserStatistics(int userStatisticsId) {
-		UserStatistics result = new UserStatistics();
+	public statistics getUserStatistics(int userStatisticsId) {
+		statistics result = new statistics();
 		
 		try {
-			DBCrud<UserStatistics> db = new DBCrud<UserStatistics>();
+			DBCrud<statistics> db = new DBCrud<statistics>();
 			result = db.get(result,userStatisticsId);
 			
 		} catch (Exception e1) {
@@ -108,11 +108,11 @@ public class JPAUserStatisticsDAO implements UserStatisticsDAO{
 	}
 
 
-	public UserStatistics getUserStatisticsByUser(int userId) {
-			UserStatistics result = new UserStatistics();
+	public statistics getUserStatisticsByUser(int userId) {
+			statistics result = new statistics();
 		
 		try {
-			DBCrud<UserStatistics> db = new DBCrud<UserStatistics>();
+			DBCrud<statistics> db = new DBCrud<statistics>();
 			result = db.getUserStatisticsByUser(userId);
 			
 		} catch (Exception e1) {

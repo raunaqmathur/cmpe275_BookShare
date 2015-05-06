@@ -2,16 +2,16 @@ package edu.sjsu.cmpe275.prj.dao;
 
 import edu.sjsu.cmpe275.prj.dataoperations.DBCrud;
 
-import edu.sjsu.cmpe275.prj.models.RequestBook;
+import edu.sjsu.cmpe275.prj.models.requestBook;
 
 public class JPARequestCategory implements RequestBookDAO {
 
-	public int insert(RequestBook requestbook) 
+	public int insert(requestBook requestbook) 
 	{
 		System.out.println("in category jpa");
 		int addressId= 0;
 		try {
-			DBCrud<RequestBook> db = new DBCrud<RequestBook>();
+			DBCrud<requestBook> db = new DBCrud<requestBook>();
 			addressId = db.Insert(requestbook);
 			
 		} catch (Exception e1) {

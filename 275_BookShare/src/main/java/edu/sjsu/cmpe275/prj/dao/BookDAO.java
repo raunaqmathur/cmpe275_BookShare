@@ -6,15 +6,15 @@ import edu.sjsu.cmpe275.prj.models.*;
  * 
  */
 public interface BookDAO {
-	public int insert(Book category);
+	public int insert(book category);
 	
 	
-	public void delete(Book category);
+	public void delete(book category);
 	
-	public void update(Book category);
+	public void update(book category);
 	
 	
-	public Book getBook(int bookId);
+	public book getBook(int bookId);
 	
 	
 }

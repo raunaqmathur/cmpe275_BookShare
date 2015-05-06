@@ -40,10 +40,10 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 import edu.sjsu.cmpe275.prj.dao.*;
-import edu.sjsu.cmpe275.prj.models.Book;
-import edu.sjsu.cmpe275.prj.models.Category;
+import edu.sjsu.cmpe275.prj.models.book;
+import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
-import edu.sjsu.cmpe275.prj.models.RequestBook;
+import edu.sjsu.cmpe275.prj.models.requestBook;
 import edu.sjsu.cmpe275.prj.models.user;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
 
@@ -53,23 +53,23 @@ public class RequestBookController
 {
   
     private user userModel;
-    private Book bookModel;
-    private Category categoryModel;
-    private RequestBook requestBookModel;
+    private book bookModel;
+    private category categoryModel;
+    private requestBook requestBookModel;
     HttpSession session;
     //ex ends
   //1.Creating the u.i for user sign up page
     
     @RequestMapping(value = "/requestbook",method = RequestMethod.GET)
     public ModelAndView uploadBook() {
-    	requestBookModel = new RequestBook();
+    	requestBookModel = new requestBook();
     	
 		
        return new ModelAndView("requestbook", "requestbookdetails", requestBookModel);
     }
     @RequestMapping(value = "/requestbook",method = RequestMethod.POST)
 	
-    public ModelAndView initN1(@ModelAttribute("requestbookdetails")RequestBook requestbookModel1, BindingResult bindingResult, 
+    public ModelAndView initN1(@ModelAttribute("requestbookdetails")requestBook requestbookModel1, BindingResult bindingResult, 
             HttpServletRequest request,  HttpServletResponse response)
     {
         try 
@@ -152,7 +152,7 @@ public class RequestBookController
             	
             	msg="Your Request is made successfully";
             	ModelAndView model = new ModelAndView("requestbook");
-            	requestBookModel = new RequestBook();
+            	requestBookModel = new requestBook();
             	model.addObject("requestbookdetails", requestBookModel);
            	 	model.addObject("Message", msg);
            	 	return model;
