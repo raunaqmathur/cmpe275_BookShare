@@ -205,7 +205,7 @@ public class BookController {
 		        	String msg=null;
 
 		           
-		        	System.out.println("in book controller" + bookModel1.getBookId() );
+		        	System.out.println("in book controller" + bookModel1.getAuthor() );
 		        	JPAUserDAO objUser= new JPAUserDAO();
 		        	user tempuser = objUser.getUser(Integer.parseInt(httpSession.getAttribute("USERID").toString()));//session
 		        	if(!tempuser.equals(null))
