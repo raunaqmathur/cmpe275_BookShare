@@ -4,7 +4,9 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
+
 import redis.clients.jedis.Jedis;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.ValidationUtils;
@@ -21,21 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-//import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
  
-
-
-
-
-
-
-
-
-
-
-
 
 
 import edu.sjsu.cmpe275.prj.dao.*;
@@ -44,6 +36,7 @@ import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
 import edu.sjsu.cmpe275.prj.models.statistics;
 import edu.sjsu.cmpe275.prj.models.user;
+import edu.sjsu.cmpe275.prj.utils.PlayPP;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
  
 @SuppressWarnings("unused")
@@ -104,14 +97,36 @@ private static Jedis jedis;
             //ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult,"id","id", "id can not be empty.");
             ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult,"name","name", "name not be empty");
             ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "emailId", "emailId", "emailId cant be empty");
+            //ValidationUtils.r
  
             JPAUserDAO tempEmail = new JPAUserDAO();
             
-            if(tempEmail.getExistingEmail(userModel1.getEmailId()) > 0)
+            String one = userModel1.getEmailId();
+         	String two = ".edu";
+            if(!(one.endsWith(two)))
             {
             	
-            	 ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "emailId", "emailId", "emailId already exists");
-            	 System.out.println("ININININ");
+            	
+            	 
+            	 
+            	 ModelAndView mv = new ModelAndView();
+            	
+            	 mv.addObject("msg", "edu. email required");
+                 mv.setViewName("userhome");
+            	
+            	 return mv;
+            	
+            	 
+            	 
+            }	 
+            if(tempEmail.getExistingEmail(userModel1.getEmailId()) > 0)
+            {
+            	 ModelAndView mv1 = new ModelAndView();
+            	 mv1.addObject("msg", "user with this email already exists");
+                 mv1.setViewName("userhome");
+            	
+            	 return mv1;
+            	 
             }	
             if (bindingResult.hasErrors())
             {
@@ -125,7 +140,8 @@ private static Jedis jedis;
             	//userRecordService.insertUser(userModel1);
             	
             	userModel1.setActive(1);
-            	
+            	System.out.println(PlayPP.sha1(userModel1.getPassword()));
+            	userModel1.setPassword(PlayPP.sha1(userModel1.getPassword()));
             	JPAUserDAO obj= new JPAUserDAO();
             	int l =obj.insert(userModel1);
             	userModel1.setUserId(l);
@@ -169,6 +185,18 @@ private static Jedis jedis;
     public ModelAndView initM() {
     	
     	System.out.println("first entrii");
+    	if("hellokaran@.com".endsWith(".edu"))
+    	{
+    		System.out.println("checkkkk !!");
+    	}
+    	
+    	String one = "karan sjsu.edu";
+    	String two = "edu";
+    	System.out.println("seee here"+(one.endsWith(two)));
+    	if("hellokaran@com.org".endsWith("edu"))
+    	{
+    		System.out.println("checkkkk sol2 !!");
+    	}
     	
     	 return new ModelAndView("home", "userdetails", null);
     }
