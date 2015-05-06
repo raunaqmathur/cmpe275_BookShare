@@ -55,7 +55,8 @@ public class LoginController {
    
     Login loginModel;
     
-    HttpSession session;
+    @Autowired
+	private HttpSession httpSession;
     
     
     
@@ -115,9 +116,7 @@ public class LoginController {
             	{
             		
             		
-	            	//loginModel = new Login();
-	            	//model.addObject("msg", "Invalid user id and password combination");
-	            	//model.addObject("loginDetails", loginModel);
+            		httpSession.setAttribute("USERID", loginModel1.getUserId());
 	           	 	model.setViewName("home");
             	}
             	
