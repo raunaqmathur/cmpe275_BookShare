@@ -13,8 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+@SuppressWarnings("unused")
 @Entity
-public class requestBook implements Serializable {
+public class requestbook implements Serializable {
 	
 	 /**
 	 * 
@@ -27,13 +28,36 @@ public class requestBook implements Serializable {
 		@JoinColumn(name = "userId")
 		private user user;
 	 
-	    @Column(name = "Active", length=11)
+	    @Column(name = "Active")
 	    private int active;
 
 	    
 	    @Column(name = "Message", length = 100)
 	    private String message;
 	    
+	    @Column(name = "ParentId", length = 100)
+	    private int parentid;
+	    
+	    @Column(name = "RequestBookTime")
+	    private Date requestBookTime;
+	    
+		 public Date getRequestBookTime() 
+		{
+			return requestBookTime;
+		}
+
+		public void setRequestBookTime(Date requestBookTime) 
+		{
+			this.requestBookTime = requestBookTime;
+		}
+	    
+		public int getParentId() {
+			return parentid;
+		}
+
+		public void setParentId(int parentid) {
+			this.parentid = parentid;
+		}
 		public user getUserId() {
 			return user;
 		}

@@ -54,7 +54,7 @@
 
                 <td><form:input path="userId" ></form:input></td>
 
-                <td><font color="red"><form:errors path="userId"></form:errors></font></td>
+                <td><font color="red"><form:errors path="userId" required="true"></form:errors></font></td>
 
             </tr>
 
@@ -62,7 +62,7 @@
 
                 <td><label>Password </label></td>
 
-                <td><form:input path="password" ></form:input></td>
+                <td><form:input path="password" type="password" required="true"></form:input></td>
 
                 <td><font color="red"><form:errors path="password"></form:errors></font></td>
 

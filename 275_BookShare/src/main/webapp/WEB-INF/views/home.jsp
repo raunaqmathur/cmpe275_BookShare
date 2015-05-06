@@ -103,7 +103,7 @@
 
         <li><a href="#">Sell</a></li>
 
-        <li><a href="userhome">Login/Register</a></li>
+        <li><a href="login">Login/Register</a></li>
 
       </ul>
 

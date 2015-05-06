@@ -27,24 +27,11 @@ import org.springframework.web.servlet.view.RedirectView;
  
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
-import edu.sjsu.cmpe275.prj.models.requestBook;
+import edu.sjsu.cmpe275.prj.models.requestbook;
 import edu.sjsu.cmpe275.prj.models.user;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
 
@@ -52,34 +39,51 @@ import edu.sjsu.cmpe275.prjservices.UserRecordService;
 @Controller
 public class RequestBookController 
 {
-  
+	@Autowired
+	HttpSession httpSession;
     private user userModel;
     private book bookModel;
     private category categoryModel;
-    private requestBook requestBookModel;
-    @Autowired
-   	private HttpSession httpSession;
-   	
-   	public HttpSession getHttpSession() {
-   		return httpSession;
-   	}
-
-   	public void setHttpSession(HttpSession httpSession) {
-   		this.httpSession = httpSession;
-   	}
+    private requestbook requestBookModel,requestBookModel1;
+    HttpSession session;
+    List<requestbook> str;
+    
+    
     //ex ends
   //1.Creating the u.i for user sign up page
     
     @RequestMapping(value = "/requestbook",method = RequestMethod.GET)
     public ModelAndView uploadBook() {
-    	requestBookModel = new requestBook();
-    	
+    	requestBookModel = new requestbook();
+    	System.out.println("m here");
 		
        return new ModelAndView("requestbook", "requestbookdetails", requestBookModel);
     }
+    
+    @RequestMapping(value = "/requestdetails",method = RequestMethod.GET)
+    public ModelAndView uploadrequestbook() {
+    	JPARequestBookDAO j= new JPARequestBookDAO();
+    	str=j.getRequestdetails();
+    	ModelAndView model = new ModelAndView("requestdetails");
+    	System.out.println(str);
+    	   if(str.size() > 0)
+           {
+        	   model.addObject("RequestID", str.get(0).getRequestId());
+        	   model.addObject("Message", str.get(0).getMessage());
+        	   model.addObject("UserId", str.get(0).getUserId().getUserId());
+        	   model.addObject("Time", str.get(0).getRequestBookTime());
+        	   System.out.println(str);
+        	   
+           }
+    	   model.addObject("str", str);
+   		return model;
+       
+    }
+   
+  /* ================================================================================*/  
     @RequestMapping(value = "/requestbook",method = RequestMethod.POST)
 	
-    public ModelAndView initN1(@ModelAttribute("requestbookdetails")requestBook requestbookModel1, BindingResult bindingResult, 
+    public ModelAndView initN1(@ModelAttribute("requestbookdetails")requestbook requestbookModel1, BindingResult bindingResult, 
             HttpServletRequest request,  HttpServletResponse response)
     {
         try 
@@ -87,7 +91,11 @@ public class RequestBookController
         	System.out.println("enter into ");
         	String msg=null;
         	JPAUserDAO objUser= new JPAUserDAO();
+        	System.out.println(httpSession.getAttribute("USERID"));
         	user tempuser = objUser.getUser(Integer.parseInt(httpSession.getAttribute("USERID").toString()));
+        	
+        	       	
+        	
         	if(!tempuser.equals(null))
         		requestbookModel1.setUserId(tempuser);
         	
@@ -103,20 +111,7 @@ public class RequestBookController
             {
                 //returning the errors on same page if any errors..
             	
-            	/*if (!file.isEmpty()) {
-                    try {
-                        byte[] bytes = file.getBytes();
-                        BufferedOutputStream stream =
-                                new BufferedOutputStream(new FileOutputStream(new File(file.getName())));
-                        stream.write(bytes);
-                        stream.close();
-                        System.out.println("Successfully uploaded " + file.getName() + ".");
-                    } catch (Exception e) {
-                    	System.out.println("Failed to upload " + file.getName() + " because some exception occured.");
-                    }
-                } else {
-                	System.out.println("Failed to upload " + file.getName() + " because the file was empty.");
-                }*/
+            	
             	
             	
             	System.out.println("3" );
@@ -137,6 +132,8 @@ public class RequestBookController
             	
             	System.out.println("4" );
             	requestbookModel1.setActive(1);
+            	
+            	
             	
             	
             	try
@@ -162,7 +159,7 @@ public class RequestBookController
             	
             	msg="Your Request is made successfully";
             	ModelAndView model = new ModelAndView("requestbook");
-            	requestBookModel = new requestBook();
+            	requestBookModel = new requestbook();
             	model.addObject("requestbookdetails", requestBookModel);
            	 	model.addObject("Message", msg);
            	 	return model;
@@ -174,11 +171,5 @@ public class RequestBookController
         }
         
     }
-    
-	
-	
-	
-	
-	
-	
+
 }

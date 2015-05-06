@@ -4,6 +4,7 @@ package edu.sjsu.cmpe275.prj.dataoperations;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -14,7 +15,7 @@ import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.feedback;
-import edu.sjsu.cmpe275.prj.models.requestBook;
+import edu.sjsu.cmpe275.prj.models.requestbook;
 import edu.sjsu.cmpe275.prj.models.transaction;
 import edu.sjsu.cmpe275.prj.models.statistics;
 import edu.sjsu.cmpe275.prj.models.user;
@@ -57,8 +58,8 @@ public class DBCrud<T> {
 			id = s.getBookId();
 			System.out.println("in crud book " + id);
 		}
-		else if(obj instanceof requestBook){
-			requestBook s = (requestBook)obj;
+		else if(obj instanceof requestbook){
+			requestbook s = (requestbook)obj;
 			id = s.getRequestId();
 
 
@@ -299,4 +300,20 @@ public class DBCrud<T> {
 		
 		return result;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<requestbook> getRequestdetails()
+		{
+		List<requestbook> result = new ArrayList<requestbook>();
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+		Query query = session.createSQLQuery("select * from requestbook where ParentId=:sCode").addEntity(requestbook.class).setParameter("sCode", 0);	
+		result = (List<requestbook>)query.list();
+		session.close();
+		s.close();		
+		System.out.println("----" + result);
+		return result;
+		}
+
 }

@@ -1,5 +1,7 @@
 package edu.sjsu.cmpe275.prj.dao;
 
+import java.util.List;
+
 import edu.sjsu.cmpe275.prj.models.*;
 /*
  * DAO interface for address
@@ -7,6 +9,8 @@ import edu.sjsu.cmpe275.prj.models.*;
  */
 public interface RequestBookDAO {
 	
-	public int insert(requestBook category);
+	public int insert(requestbook category);
 	
+	public List<requestbook> getRequestdetails();
+
 }
