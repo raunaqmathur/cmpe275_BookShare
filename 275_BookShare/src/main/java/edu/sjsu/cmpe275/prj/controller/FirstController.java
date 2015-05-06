@@ -4,7 +4,9 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
+
 import redis.clients.jedis.Jedis;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,7 +40,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
+
 import edu.sjsu.cmpe275.prj.dao.*;
+import edu.sjsu.cmpe275.prj.models.LandingPage;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
@@ -49,36 +53,27 @@ import edu.sjsu.cmpe275.prjservices.UserRecordService;
 @SuppressWarnings("unused")
 @Controller
 public class FirstController {
- 
-    
-    
+
     @Autowired 
     private UserRecordService userRecordService;
- 
-    
     private HomePageModel homepageModel;
-    
     private user userModel;
-    
     private book bookModel;
     private category categoryModel;
+    private LandingPage landingPage;
     HttpSession session;
-private static Jedis jedis;
+    private static Jedis jedis;
     
     //1.Creating the u.i for user sign up page
     @RequestMapping(value = "/userhome",method = RequestMethod.GET)
     public ModelAndView initN() {
     	userModel = new user();
-    	
-		
-       return new ModelAndView("userhome", "userdetails", userModel);
+        return new ModelAndView("userhome", "userdetails", userModel);
     }
-    
-   
     
     @RequestMapping(value = "/showuser/{userId}",method = RequestMethod.GET)
     public ModelAndView showBook(@PathVariable int userId, HttpServletRequest request) {
-    	
+
     	ModelAndView mv = new ModelAndView();
     	userModel = new user();
     	
@@ -88,7 +83,7 @@ private static Jedis jedis;
         mv.addObject("userdetails", userModel);
         mv.setViewName("showuser");
         
-       return mv;
+        return mv;
     }
     
     
@@ -138,14 +133,8 @@ private static Jedis jedis;
             	userStatistics.setRatingBuyer(0);
             	userStatistics.setRatingSeller(0);
             	userStatistics.setUser(userModel1);
-            	
-            	
             	objUserStat.insert(userStatistics);
-            	
-            	
             	System.out.println(l);
-            	
-            	
             	ModelAndView model = new ModelAndView("showuser");
             	model.addObject("redirectTo", "./userhome");
             	model.addObject("userdetails", userModel1);
@@ -167,11 +156,19 @@ private static Jedis jedis;
      * Works on "/" mapping.     * */
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public ModelAndView initM() {
-    	
-    	System.out.println("first entrii");
-    	
-    	 return new ModelAndView("home", "userdetails", null);
+		System.out.println("Landing Page");
+		ModelAndView mv = new ModelAndView();
+		// getting data
+		landingPage = new LandingPage();
+		JPALandingPageDAO obj = new JPALandingPageDAO();
+		landingPage.setBooks(obj.getBooks());
+		landingPage.setCategories(obj.getCategories());
+		System.out.println(landingPage);
+		mv.addObject("pagedetails", landingPage);
+		mv.setViewName("home");
+		return mv;
     }
+    
  //karan code starts
 	 //method to testCassandra
     @RequestMapping(value = "/Cassandra",method = RequestMethod.GET)
