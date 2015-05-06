@@ -1,6 +1,8 @@
 package edu.sjsu.cmpe275.prj.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -104,6 +106,23 @@ public class JPATransactionDAO implements TransactionDAO{
 		}
 
 		return result;
+	}
+
+
+	public List<transaction> getTransactionByUser(int userId) {
+		List<transaction> lstTransac = new ArrayList<transaction>();
+		
+
+		try {
+			DBCrud<transaction> db = new DBCrud<transaction>();
+			lstTransac = db.getTransactionByUser(userId);
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return lstTransac;
 	}
 
 
