@@ -1,14 +1,23 @@
 <%@    taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
-<head>
-<title>CMPE 275 BOOK SHARE</title>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>BookShare</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+  </head>
 <body>
-    <form:form id="userhome" action="userhome" method="post"
-        commandName="userdetails">
-        <table>
+    <form:form id="userhome" action="userhome" method="post" commandName="userdetails">
+        <table align="center">
             <tr>
-                <td colspan="3"><h3>Sign up Here</h3></td>
+                <td colspan="3"><h3>Please enter your details</h3></td>
             </tr>
             
             <tr>
@@ -16,6 +25,7 @@
                 <td><form:input path="name" type="text"></form:input></td>
                 <td><font color="red"><form:errors path="name" required="true"></form:errors></font></td>
             </tr>
+            
             <tr>
                 <td><label>Age</label></td>
                 <td><form:input path="age" type="number" required="true"></form:input></td>
@@ -46,8 +56,7 @@
                 <td><form:input type="password" path="password" required="true" ></form:input></td>
 
             <tr>
-                <td colspan="2" align="center"><input type="submit"
-                    value="Create" /></td>
+                <td colspan="2" align="center"><button class="btn btn-sm btn-primary btn-block" type="submit">Create</button></td>
                 <td></td>
             </tr>
             <tr>
