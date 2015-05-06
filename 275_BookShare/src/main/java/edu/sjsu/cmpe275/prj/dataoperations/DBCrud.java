@@ -202,6 +202,20 @@ public class DBCrud<T> {
 		return result;
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 	@SuppressWarnings("unchecked")
 
 	public T getUserStatisticsByUser(int userId){
@@ -225,32 +239,5 @@ public class DBCrud<T> {
 		return obj;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<category> getCategories(){
-		s = SessionFactoryObj.getSessionFactory();
-		session = s.openSession();
-		session.beginTransaction();
 
-		Query query = session.createSQLQuery("select * from category").addEntity(category.class);
-		
-		List<category> result = (List<category>)query.list();
-		session.close();
-		s.close();
-		
-		System.out.println("----" + result);
-		return result;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<book> getBooks(){
-		s = SessionFactoryObj.getSessionFactory();
-		session = s.openSession();
-		session.beginTransaction();
-		Query query = session.createSQLQuery("select * from book").addEntity(book.class);		
-		List<book> result = (List<book>)query.list();
-		session.close();
-		s.close();		
-		System.out.println("----" + result);
-		return result;
-	}
 }

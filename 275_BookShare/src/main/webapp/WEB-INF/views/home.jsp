@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -107,42 +106,5 @@
       </a>
     </div><!-- /.carousel -->
 	</nav>
-	
-	<div class="container-fluid">
-	<c:forEach items="${pagedetails.books}" var="result" varStatus="status" step="3">             
-	  <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-3 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="${pagedetails.books[status.index].pictureId}" alt="">
-                </a>
-                <h3>
-                    <a href="#">${pagedetails.books[status.index].title}</a>
-                </h3>
-                <p>${pagedetails.books[status.index].description}</p>
-            </div>
-            <div class="col-md-3 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="${pagedetails.books[status.index+1].pictureId}" alt="">
-                </a>
-                <h3>
-                    <a href="#">${pagedetails.books[status.index+1].title}</a>
-                </h3>
-                <p>${pagedetails.books[status.index+1].description}</p>
-            </div>
-            <div class="col-md-3 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="${pagedetails.books[status.index+2].pictureId}" alt="">
-                </a>
-                <h3>
-                    <a href="#">${pagedetails.books[status.index+2].title}</a>
-                </h3>
-                <p>${pagedetails.books[status.index+2].description}</p>
-            </div>
-        </div>
-        <!-- /.row -->
-	</div>
-	</c:forEach>
-    
 </body>
 </html>
