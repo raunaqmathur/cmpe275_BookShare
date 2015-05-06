@@ -24,13 +24,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
  
 
 
+
 import edu.sjsu.cmpe275.prj.dao.*;
+import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
@@ -56,15 +57,15 @@ public class FirstController {
     private book bookModel;
     private category categoryModel;
     HttpSession session;
-private static Jedis jedis;
+    private static Jedis jedis;
     
     //1.Creating the u.i for user sign up page
-    @RequestMapping(value = "/userhome",method = RequestMethod.GET)
+    @RequestMapping(value = "/signup",method = RequestMethod.GET)
     public ModelAndView initN() {
     	userModel = new user();
     	
 		
-       return new ModelAndView("userhome", "userdetails", userModel);
+       return new ModelAndView("signup", "userdetails", userModel);
     }
     
    
@@ -86,7 +87,7 @@ private static Jedis jedis;
     
     
    
-    @RequestMapping(value = "/userhome",method = RequestMethod.POST)
+    @RequestMapping(value = "/signup",method = RequestMethod.POST)
     public ModelAndView initN1(@ModelAttribute("userdetails")user userModel1, BindingResult bindingResult, 
             HttpServletRequest request,  HttpServletResponse response) 
     {
@@ -112,7 +113,7 @@ private static Jedis jedis;
             	 ModelAndView mv = new ModelAndView();
             	
             	 mv.addObject("msg", "edu. email required");
-                 mv.setViewName("userhome");
+                 mv.setViewName("signup");
             	
             	 return mv;
             	
@@ -123,7 +124,7 @@ private static Jedis jedis;
             {
             	 ModelAndView mv1 = new ModelAndView();
             	 mv1.addObject("msg", "user with this email already exists");
-                 mv1.setViewName("userhome");
+                 mv1.setViewName("signup");
             	
             	 return mv1;
             	 
@@ -131,7 +132,7 @@ private static Jedis jedis;
             if (bindingResult.hasErrors())
             {
                 //returning the errors on same page if any errors..
-                return new ModelAndView("userhome", "userdetails", userModel1);
+                return new ModelAndView("signup", "userdetails", userModel1);
             }
             else
             {
@@ -161,17 +162,17 @@ private static Jedis jedis;
             	
             	System.out.println(l);
             	
+            	Login loginModel = new Login();
+            	ModelAndView model = new ModelAndView("login");
             	
-            	ModelAndView model = new ModelAndView("showuser");
-            	model.addObject("redirectTo", "./userhome");
-            	model.addObject("userdetails", userModel1);
+            	model.addObject("logindetails", loginModel);
            	 	
            	 	return model;
           }
         } catch (Exception e) {
             System.out.println("Exception in FirstController "+e.getMessage());
             e.printStackTrace();
-            return new ModelAndView("userhome", "userdetails", userModel1);
+            return new ModelAndView("signup", "userdetails", userModel1);
         }
         
     }
@@ -184,23 +185,11 @@ private static Jedis jedis;
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public ModelAndView initM() {
     	
-    	System.out.println("first entrii");
-    	if("hellokaran@.com".endsWith(".edu"))
-    	{
-    		System.out.println("checkkkk !!");
-    	}
     	
-    	String one = "karan sjsu.edu";
-    	String two = "edu";
-    	System.out.println("seee here"+(one.endsWith(two)));
-    	if("hellokaran@com.org".endsWith("edu"))
-    	{
-    		System.out.println("checkkkk sol2 !!");
-    	}
     	
     	 return new ModelAndView("home", "userdetails", null);
     }
- //karan code starts
+ 
 	 //method to testCassandra
     @RequestMapping(value = "/Cassandra",method = RequestMethod.GET)
     public ModelAndView initN09() {
@@ -216,7 +205,7 @@ private static Jedis jedis;
     @RequestMapping(value = "/Redis",method = RequestMethod.GET)
     public ModelAndView initN10() {
     	
-    	CassandraConnectionDAO.testCassandra();
+    	/*CassandraConnectionDAO.testCassandra();
     	userModel = new user();
     	jedis=new Jedis("localhost");
 		jedis.connect();
@@ -225,7 +214,7 @@ private static Jedis jedis;
 		System.out.println(Kar);
 		jedis.set("karan", "khanna");
 		System.out.println("saving in redis");
-		System.out.println("getting from redis---" + jedis.get("karan"));
+		System.out.println("getting from redis---" + jedis.get("karan"));*/
 		
 		
 		

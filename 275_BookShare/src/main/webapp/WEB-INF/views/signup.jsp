@@ -45,7 +45,6 @@
 
                 <td><form:input type="password" path="password" required="true" ></form:input></td>
 
-                <td><form:input path="password" ></form:input></td></tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit"
                     value="Create" /></td>
