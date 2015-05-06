@@ -151,7 +151,7 @@
 			    <td></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="right"><input type="submit" value="Buy" onClick="javascript: RedirectToBuy();" onClick="javascript: RedirectToEdit();" <c:if test="${owner == 'true'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
+				<td colspan="2" align="right"><input type="submit" value="Buy" onClick="javascript: RedirectToBuy();" <c:if test="${owner == 'true'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
 				<td colspan="2" align="right"><input type="submit" id="edit" value="Edit" onClick="javascript: RedirectToEdit();" <c:if test="${owner == 'false'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
 			<tr>
 			    <td colspan="3" align="center"><font color="red"><form:errors /></font></td>
