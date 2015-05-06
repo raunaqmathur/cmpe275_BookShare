@@ -227,7 +227,7 @@ public class DBCrud<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-<<<<<<< HEAD
+
 	public List<category> getCategories(){
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
@@ -253,7 +253,9 @@ public class DBCrud<T> {
 		session.close();
 		s.close();		
 		System.out.println("----" + result);
-=======
+
+		return result;
+	}
 	public int validate(Login login){
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
@@ -273,7 +275,6 @@ public class DBCrud<T> {
 		s.close();
 		
 		System.out.println("login - " + result);
->>>>>>> parent of cbd5675... Revert "Merge remote-tracking branch 'origin/master'"
 		return result;
-	}
+}
 }

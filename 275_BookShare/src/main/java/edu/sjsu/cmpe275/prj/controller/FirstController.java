@@ -74,13 +74,13 @@ public class FirstController {
     @RequestMapping(value = "/signup",method = RequestMethod.GET)
     public ModelAndView initN() {
     	userModel = new user();
-<<<<<<< HEAD
+
         return new ModelAndView("userhome", "userdetails", userModel);
-=======
+
     	
 		
        return new ModelAndView("signup", "userdetails", userModel);
->>>>>>> parent of cbd5675... Revert "Merge remote-tracking branch 'origin/master'"
+
     }
     
     @RequestMapping(value = "/showuser/{userId}",method = RequestMethod.GET)
@@ -170,17 +170,13 @@ public class FirstController {
             	userStatistics.setUser(userModel1);
             	objUserStat.insert(userStatistics);
             	System.out.println(l);
-<<<<<<< HEAD
-            	ModelAndView model = new ModelAndView("showuser");
-            	model.addObject("redirectTo", "./userhome");
-            	model.addObject("userdetails", userModel1);
-=======
+
             	
             	Login loginModel = new Login();
             	ModelAndView model = new ModelAndView("login");
             	
             	model.addObject("logindetails", loginModel);
->>>>>>> parent of cbd5675... Revert "Merge remote-tracking branch 'origin/master'"
+
            	 	
            	 	return model;
           }
@@ -199,7 +195,7 @@ public class FirstController {
      * Works on "/" mapping.     * */
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public ModelAndView initM() {
-<<<<<<< HEAD
+
 		System.out.println("Landing Page");
 		ModelAndView mv = new ModelAndView();
 		// getting data
@@ -214,14 +210,10 @@ public class FirstController {
     }
     
  //karan code starts
-=======
+
     	
-    	
-    	
-    	 return new ModelAndView("home", "userdetails", null);
-    }
- 
->>>>>>> parent of cbd5675... Revert "Merge remote-tracking branch 'origin/master'"
+   
+
 	 //method to testCassandra
     @RequestMapping(value = "/Cassandra",method = RequestMethod.GET)
     public ModelAndView initN09() {
