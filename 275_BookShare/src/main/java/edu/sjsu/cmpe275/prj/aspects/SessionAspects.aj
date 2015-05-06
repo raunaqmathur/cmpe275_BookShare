@@ -46,8 +46,8 @@ public aspect SessionAspects {
 	    		
 	    	       return new ModelAndView("login", "logindetails", login);
 		    	}
-		} catch (UnauthorizedException e) {
-				System.out.println("user not logged in");
+		} catch (Exception e) {
+				System.out.println("user not logged Aspect in");
     		
     			Login login = new Login();
         	

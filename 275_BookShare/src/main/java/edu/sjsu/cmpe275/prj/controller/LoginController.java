@@ -38,10 +38,11 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
+
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.Login;
-
 import edu.sjsu.cmpe275.prj.models.user;
+import edu.sjsu.cmpe275.prj.utils.PlayPP;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
  
 @SuppressWarnings("unused")
@@ -98,6 +99,10 @@ public class LoginController {
             	
             	
             	JPALoginDAO obj= new JPALoginDAO();
+            	
+            	loginModel1.setPassword(PlayPP.sha1(loginModel1.getPassword()));
+            	
+            	
             	int l =obj.validate(loginModel1);
             	
             	
