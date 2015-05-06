@@ -108,36 +108,63 @@
     </div><!-- /.carousel -->
 	</nav>
 	
-	<div class="container-fluid">
-	<c:forEach items="${pagedetails.books}" var="result" varStatus="status" step="3">             
+	<div class="container">
+	<c:forEach items="${pagedetails.books}" var="result" varStatus="status" step="6">             
 	  <!-- Projects Row -->
         <div class="row">
-            <div class="col-md-3 portfolio-item">
+            <div class="col-md-2 portfolio-item">
                 <a href="#">
                     <img class="img-responsive" src="${pagedetails.books[status.index].pictureId}" alt="">
                 </a>
-                <h3>
+                <h4>
                     <a href="#">${pagedetails.books[status.index].title}</a>
-                </h3>
+                </h4>
                 <p>${pagedetails.books[status.index].description}</p>
             </div>
-            <div class="col-md-3 portfolio-item">
+            <div class="col-md-2 portfolio-item">
                 <a href="#">
                     <img class="img-responsive" src="${pagedetails.books[status.index+1].pictureId}" alt="">
                 </a>
-                <h3>
+                <h4>
                     <a href="#">${pagedetails.books[status.index+1].title}</a>
-                </h3>
+                </h4>
                 <p>${pagedetails.books[status.index+1].description}</p>
             </div>
-            <div class="col-md-3 portfolio-item">
+            <div class="col-md-2 portfolio-item">
                 <a href="#">
                     <img class="img-responsive" src="${pagedetails.books[status.index+2].pictureId}" alt="">
                 </a>
-                <h3>
+                <h4>
                     <a href="#">${pagedetails.books[status.index+2].title}</a>
-                </h3>
+                </h4>
                 <p>${pagedetails.books[status.index+2].description}</p>
+            </div>
+            <div class="col-md-2 portfolio-item">
+                <a href="#">
+                    <img class="img-responsive" src="${pagedetails.books[status.index+3].pictureId}" alt="">
+                </a>
+                <h4>
+                    <a href="#">${pagedetails.books[status.index+3].title}</a>
+                </h4>
+                <p>${pagedetails.books[status.index+3].description}</p>
+            </div>
+            <div class="col-md-2 portfolio-item">
+                <a href="#">
+                    <img class="img-responsive" src="${pagedetails.books[status.index+4].pictureId}" alt="">
+                </a>
+                <h4>
+                    <a href="#">${pagedetails.books[status.index+4].title}</a>
+                </h4>
+                <p>${pagedetails.books[status.index+4].description}</p>
+            </div>
+            <div class="col-md-2 portfolio-item">
+                <a href="#">
+                    <img class="img-responsive" src="${pagedetails.books[status.index+5].pictureId}" alt="">
+                </a>
+                <h4>
+                    <a href="#">${pagedetails.books[status.index+5].title}</a>
+                </h4>
+                <p>${pagedetails.books[status.index+5].description}</p>
             </div>
         </div>
         <!-- /.row -->
