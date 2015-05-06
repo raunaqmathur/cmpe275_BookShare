@@ -108,6 +108,22 @@ public class TransactionController {
     
     }
     
+    
+    @RequestMapping(value = "/currenttransactions/{txId}",method = RequestMethod.GET)
+    public ModelAndView getCurrentTransactionsOfUser(@PathVariable int txId) {
+    	//int userId = Integer.parseInt(httpSession.getAttribute("USERID").toString());
+    	JPATransactionDAO obj= new JPATransactionDAO();
+    	transaction txList = new transaction();
+    	txList=obj.getCurrentTransactionByUser(txId);
+    	System.out.println("in curenttransaction: " +txList.getTransactionId() );
+       ModelAndView model = new ModelAndView();
+       
+       model.setViewName("txn");
+       model.addObject("result", txList);
+		return model;
+    
+    }
+    
     @RequestMapping(value = "/purchase/{bookId}",method = RequestMethod.GET)
     public ModelAndView bookTransaction(@PathVariable int bookId) {
     	ModelAndView mv = new ModelAndView();
@@ -115,6 +131,7 @@ public class TransactionController {
     	book bookModel1 = new book();
     	JPABookDAO objBook= new JPABookDAO();
     	bookModel1 = objBook.getBook(bookId);
+    	int txId = 0;
     	try
     	{
 	    		
@@ -145,6 +162,8 @@ public class TransactionController {
 				newTransaction.setTransactionTime((new Date()));
 				
 				obj.insert(newTransaction);
+				
+				txId = newTransaction.getTransactionId();
 				
 				//user statistics change -- Buyer
 				JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
@@ -191,7 +210,7 @@ public class TransactionController {
       */
     	System.out.println("redirectingX to transcations "+userId);
         
-       return new ModelAndView("redirect:/transactions");
+       return new ModelAndView("redirect:/currenttransactions/" + txId);
     }
     
     

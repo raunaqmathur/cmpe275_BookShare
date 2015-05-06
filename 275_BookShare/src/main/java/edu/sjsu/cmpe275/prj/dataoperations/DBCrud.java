@@ -301,6 +301,28 @@ public class DBCrud<T> {
 		
 		return result;
 	}
+	@SuppressWarnings("unchecked")
+	public transaction getCurrentTransactionByUser(int userId){
+		System.out.println(" in all transaction " );
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+
+		Query query = session.createSQLQuery(
+				"select * from transaction  where TransactionID = :sCode")
+				.addEntity(transaction.class)
+				.setParameter("sCode", userId);
+				transaction  result = (transaction)query.list().get(0);
+
+
+
+
+		session.close();
+		s.close();
+		
+		
+		return result;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<requestbook> getRequestdetails()
