@@ -57,4 +57,37 @@ public aspect SessionAspects {
 		return null;
 		
 	}
+	
+	pointcut shareAccessControl1(int a) :
+		execution(public ModelAndView edu.sjsu.cmpe275.prj.controller.BookController.updateBook(int a));
+	
+	ModelAndView around () : (shareAccessControl1()) {
+		
+		try
+    	{
+
+		    	if(!httpSession.getAttribute("USERID").toString().equals("") && httpSession.getAttribute("USERID") != null)
+		    	{	System.out.println("user Aspect logged in as: " + httpSession.getAttribute("USERID"));
+					proceed();
+		    	}
+		    	else
+		    	{
+					System.out.println("user not logged Aspect in");
+	    		
+	    			Login login = new Login();
+	        	
+	    		
+	    	       return new ModelAndView("login", "logindetails", login);
+		    	}
+		} catch (Exception e) {
+				System.out.println("user not logged Aspect in");
+    		
+    			Login login = new Login();
+        	
+    		
+    	       return new ModelAndView("login", "logindetails", login);
+		}
+		return null;
+		
+	}
 }

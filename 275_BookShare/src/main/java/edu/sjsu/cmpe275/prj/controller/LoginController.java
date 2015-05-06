@@ -27,18 +27,6 @@ import org.springframework.web.servlet.view.RedirectView;
  
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.user;
@@ -116,7 +104,7 @@ public class LoginController {
 	            	
 	            	loginModel = new Login();
 	            	model.addObject("msg", "Invalid user id and password combination");
-	            	model.addObject("loginDetails", loginModel);
+	            	model.addObject("logindetails", loginModel);
 	           	 	model.setViewName("login");
             	}
             	else

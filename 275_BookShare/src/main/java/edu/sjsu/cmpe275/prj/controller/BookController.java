@@ -54,6 +54,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
+
+
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
@@ -69,10 +71,6 @@ import edu.sjsu.cmpe275.prjservices.UserRecordService;
 public class BookController {
 
  
-    
-    
-   
-    
    
 	private String imagePath = "WEB-INF\\images";
     private user userModel;
@@ -90,6 +88,8 @@ public class BookController {
 	public void setHttpSession(HttpSession httpSession) {
 		this.httpSession = httpSession;
 	}
+	
+	JPAUserDAO jp = new JPAUserDAO();
 
 
     
@@ -114,7 +114,7 @@ public class BookController {
     }
     
     
-   
+   //new book addition
     @RequestMapping(value = "/bookhome",method = RequestMethod.GET)
     public ModelAndView uploadBook() {
     	//session = request.getSession();
@@ -167,7 +167,7 @@ public class BookController {
 
     }
     
-    
+    //update book
     @RequestMapping(value = "/bookhome/{bookId}",method = RequestMethod.GET)
     public ModelAndView updateBook(@PathVariable int bookId) {
     	ModelAndView mv = new ModelAndView();
@@ -186,13 +186,18 @@ public class BookController {
        return mv;
     }
     
+    //post for book update or creation
     @RequestMapping(value = "/bookhome",method = RequestMethod.POST)
     public ModelAndView initN1(@ModelAttribute("bookdetails")book bookModel1, BindingResult bindingResult, 
             HttpServletRequest request,  HttpServletResponse response,
              @RequestParam(value="categoryX") int  categoryId) 
     {
 
-
+    	
+		
+		int userId = (Integer) httpSession.getAttribute("USERID");
+		user tempUser = jp.getUser(userId);
+		
     	if(bookModel1.getBookId() == 0)
     	{
 		        try 
@@ -265,12 +270,7 @@ public class BookController {
 		            		
 		            	}
 		            	
-		            	
-		            	
-		            	
-		            	
-		            	
-		            	
+		           	
 		            	
 		                return new ModelAndView("bookhome", "bookdetails", bookModel1);
 		            }
@@ -338,36 +338,6 @@ public class BookController {
             {
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             	String msg=null;
                
             	System.out.println("in book update controller  " + bookModel1.getBookId() );
@@ -413,14 +383,7 @@ public class BookController {
                 		
                 	}
                 	
-                	
-                	
-                	
-                	
-                	
-                	
-                	
-                    return new ModelAndView("bookhome", "bookdetails", bookModel1);
+                   return new ModelAndView("bookhome", "bookdetails", bookModel1);
                 }
                 else
                 {
@@ -484,46 +447,6 @@ public class BookController {
                 return new ModelAndView("bookhome", "bookdetails", bookModel1);
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     	}
         
     }
@@ -535,33 +458,7 @@ public class BookController {
 
     public String BookImageSave(HttpServletRequest request,
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            @ModelAttribute("uploadForm") BookImageUpload uploadForm,@PathVariable int bookId) throws IllegalStateException, IOException {
+       @ModelAttribute("uploadForm") BookImageUpload uploadForm,@PathVariable int bookId) throws IllegalStateException, IOException {
         
     	ServletContext context = request.getServletContext();
         String appPath = context.getRealPath("");
@@ -588,91 +485,6 @@ public class BookController {
                     
                 }
             
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         }
  
