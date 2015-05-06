@@ -39,7 +39,16 @@
                 
             </tr>
             
+<<<<<<< HEAD:275_BookShare/src/main/webapp/WEB-INF/views/userhome.jsp
            
+=======
+           <tr>
+                <td><label>Password</label></td>
+
+                <td><form:input type="password" path="password" required="true" ></form:input></td>
+
+                <td><form:input path="password" ></form:input></td></tr>
+>>>>>>> parent of 7f74ba9... SignUp and Session:275_BookShare/src/main/webapp/WEB-INF/views/userhome.jsp
             <tr>
                 <td colspan="2" align="center"><input type="submit"
                     value="Create" /></td>
