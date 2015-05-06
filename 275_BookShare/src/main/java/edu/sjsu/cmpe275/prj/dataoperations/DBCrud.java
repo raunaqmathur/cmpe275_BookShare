@@ -201,20 +201,6 @@ public class DBCrud<T> {
 		System.out.println("----" + result);
 		return result;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 	@SuppressWarnings("unchecked")
 
@@ -239,5 +225,5 @@ public class DBCrud<T> {
 		return obj;
 	}
 
-
+	
 }
