@@ -28,7 +28,7 @@ public class category implements Serializable {
 	// Persistent Fields:
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CategoryID")
-    private int category_Id;
+    private int category_Id = 5;
     
     
     
