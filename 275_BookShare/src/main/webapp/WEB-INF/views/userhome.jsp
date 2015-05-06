@@ -39,7 +39,11 @@
                 
             </tr>
             
-           
+           <tr>
+                <td><label>Password</label></td>
+                <td><form:input type="password" path="password" ></form:input></td>
+                
+            </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit"
                     value="Create" /></td>

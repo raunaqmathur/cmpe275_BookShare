@@ -94,7 +94,7 @@ public class TransactionController {
 				System.out.println("in transaction: " +bookModel1.getBookId() );
 				
 				JPAUserDAO objUser= new JPAUserDAO();
-		    	user tempuser = objUser.getUser(11);//session
+		    	user tempuser = objUser.getUser(15);//session
 		    	
 				
 				
@@ -114,7 +114,7 @@ public class TransactionController {
 				//user statistics change -- Buyer
 				JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
             	statistics userStatistics = new statistics();
-            	userStatistics = objUserStat.getUserStatisticsByUser(11); //session
+            	userStatistics = objUserStat.getUserStatisticsByUser(15); //session
             	int noOfBookPurchased = userStatistics.getNoOfBookPurchased();
             	userStatistics.setNoOfBookPurchased(noOfBookPurchased + 1);
             	objUserStat = new JPAUserStatisticsDAO();

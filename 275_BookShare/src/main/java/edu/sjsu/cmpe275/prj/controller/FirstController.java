@@ -127,8 +127,8 @@ private static Jedis jedis;
             	userModel1.setActive(1);
             	
             	JPAUserDAO obj= new JPAUserDAO();
-            	long l =obj.insert(userModel1);
-            	
+            	int l =obj.insert(userModel1);
+            	userModel1.setUserId(l);
             	JPAUserStatisticsDAO objUserStat = new JPAUserStatisticsDAO();
             	statistics userStatistics = new statistics();
             	userStatistics.setNoOfBookDeleted(0);
