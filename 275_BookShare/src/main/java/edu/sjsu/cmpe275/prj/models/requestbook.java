@@ -1,6 +1,6 @@
 package edu.sjsu.cmpe275.prj.models;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,7 +38,7 @@ public class requestbook implements Serializable {
 	    @Column(name = "ParentId", length = 100)
 	    private int parentid;
 	    
-	    @Column(name = "RequestBookTime")
+	    @Column(name = "RequestBookTime",insertable=false)
 	    private Date requestBookTime;
 	    
 		 public Date getRequestBookTime() 

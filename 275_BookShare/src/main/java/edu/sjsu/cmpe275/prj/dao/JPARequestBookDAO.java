@@ -10,7 +10,7 @@ public class JPARequestBookDAO implements RequestBookDAO {
 
 	public int insert(requestbook category) {
 		
-		System.out.println("in category jpa");
+		System.out.println("in category jpa request making");
 		int addressId= 0;
 		try {
 			DBCrud<requestbook> db = new DBCrud<requestbook>();

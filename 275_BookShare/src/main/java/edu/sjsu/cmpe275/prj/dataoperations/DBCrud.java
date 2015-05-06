@@ -59,6 +59,7 @@ public class DBCrud<T> {
 			System.out.println("in crud book " + id);
 		}
 		else if(obj instanceof requestbook){
+			System.out.println("in jpa of req.book");
 			requestbook s = (requestbook)obj;
 			id = s.getRequestId();
 
@@ -308,7 +309,8 @@ public class DBCrud<T> {
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
-		Query query = session.createSQLQuery("select * from requestbook where ParentId=:sCode").addEntity(requestbook.class).setParameter("sCode", 0);	
+		Query query = session.createSQLQuery("select * from requestbook where ParentId=:sCode").addEntity(requestbook.class).setParameter("sCode", 0);
+		System.out.println("helo");
 		result = (List<requestbook>)query.list();
 		session.close();
 		s.close();		
