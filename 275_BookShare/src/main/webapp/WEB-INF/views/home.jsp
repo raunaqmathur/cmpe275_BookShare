@@ -60,7 +60,7 @@
   <!-- Projects Row -->
         <div class="row">
             <div class="col-md-2 portfolio-item">
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/showbook/${pagedetails.books[status.index].bookId}">
                     <img class="img-responsive" src="${pagedetails.books[status.index].pictureId}" width="300" height="200">
                 </a>
                 <h4>
@@ -70,7 +70,7 @@
             </div>
 
             <div class="col-md-2 portfolio-item">
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/showbook/${pagedetails.books[status.index+1].bookId}">
                     <img class="img-responsive" src="${pagedetails.books[status.index+1].pictureId}" width="300" height="200">
                 </a>
                 <h4>
@@ -80,7 +80,7 @@
             </div>
 
             <div class="col-md-2 portfolio-item">
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/showbook/${pagedetails.books[status.index+2].bookId}">
                     <img class="img-responsive" src="${pagedetails.books[status.index+2].pictureId}" width="300" height="200">
                 </a>
                 <h4>
@@ -90,7 +90,7 @@
             </div>
 
             <div class="col-md-2 portfolio-item">
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/showbook/${pagedetails.books[status.index+3].bookId}">
                     <img class="img-responsive" src="${pagedetails.books[status.index+3].pictureId}" width="300" height="200">
                 </a>
                 <h4>
@@ -100,7 +100,7 @@
             </div>
 
             <div class="col-md-2 portfolio-item">
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/showbook/${pagedetails.books[status.index+4].bookId}">
                     <img class="img-responsive" src="${pagedetails.books[status.index+4].pictureId}" width="300" height="200">
                 </a>
                 <h4>
@@ -110,7 +110,7 @@
             </div>
 
             <div class="col-md-2 portfolio-item">
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/showbook/${pagedetails.books[status.index+5].bookId}">
                     <img class="img-responsive" src="${pagedetails.books[status.index+5].pictureId}" width="200" height="200">
                 </a>
                 <h4>
