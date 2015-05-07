@@ -55,7 +55,7 @@ public class FeedbackController
 	    	//feedbackbuyerModel = new FeedbackBuyer();
 	       //return new ModelAndView("feedbackbuyer", "str", str);
 	       ModelAndView model = new ModelAndView("feedbackbuyer");
-	       System.out.println("time:" + str.get(0).getFeedbackTime());
+	       //System.out.println("time:" + str.get(0).getFeedbackTime());
 	       if(str.size() > 0)
 	       {
 	    	   model.addObject("buyerName", str.get(0).getBuyerId().getName());
@@ -75,7 +75,7 @@ public class FeedbackController
 	       //return new ModelAndView("feedbackbuyer", "str", str);
 	       ModelAndView model = new ModelAndView("feedbackseller");
 	       
-	       System.out.println("time:" + str.get(0).getFeedbackTime());
+	       //System.out.println("time:" + str.get(0).getFeedbackTime());
 	       if(str.size() > 0)
 	       {
 	    	   model.addObject("sellerName", str.get(0).getSellerId().getName());
