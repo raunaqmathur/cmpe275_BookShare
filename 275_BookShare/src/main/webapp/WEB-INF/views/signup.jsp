@@ -1,68 +1,84 @@
 <%@    taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<jsp:include page="navbar.jsp" />
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>BookShare</title>
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
-  </head>
+
 <body>
-    <form:form id="userhome" action="signup" method="post" commandName="userdetails">
-        <table align="center">
-            <tr>
-                <td colspan="3"><h3>Please enter your details</h3></td>
-            </tr>
-            
-            <tr>
-                <td><label>Name</label></td>
-                <td><form:input path="name" type="text"></form:input></td>
-                <td><font color="red"><form:errors path="name" required="true"></form:errors></font></td>
-            </tr>
-            
-            <tr>
-                <td><label>Age</label></td>
-                <td><form:input path="age" type="number" required="true"></form:input></td>
-               
-            </tr>
-           
-            <tr>
-                <td><label>Email</label></td>
-                <td><form:input type="email" path="emailId" ></form:input></td>
-                <td><font color="red"><form:errors path="emailId" required="true"></form:errors></font></td>
-                <td><label>${msg}</label></td>
-                
-            </tr>
-             <tr>
-                <td><label>Phone Number</label></td>
-                <td><form:input type="number" path="phone" required="true"></form:input></td>
-                
-            </tr>
-            <tr>
-                <td><label>Address</label></td>
-                <td><form:input path="address" required="true"></form:input></td>
-                
-            </tr>
-            
-           <tr>
-                <td><label>Password</label></td>
 
-                <td><form:input type="password" path="password" required="true" ></form:input></td>
+<div class="container">
 
-            <tr>
-                <td colspan="2" align="center"><button class="btn btn-sm btn-primary btn-block" type="submit">Create</button></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td colspan="3" align="center"><font color="red"><form:errors /></font></td>
-            </tr>
-        </table>
-    </form:form>
+	<form class="form-horizontal" id="userhome" action="signup" method="post" commandName="userdetails">
+	
+        <fieldset>
+        <!-- Form Name -->
+		<legend align="top">Register</legend>
+			
+		<!-- Text input-->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="textinput">Name</label> 
+			<div class="col-md-4">
+				<input id="name" name="name" type="text" placeholder="Enter your name" class="form-control input-md">
+				<font color="red"><form:errors path="name" required="true"></form:errors></font> 
+				<font color="red"><form:errors path="name"></form:errors></font>
+			</div>
+		</div>
+		
+		<!-- Text input-->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="textinput">Age</label> 
+			<div class="col-md-4">
+				<input id="age" name="age" type="number" placeholder="Enter your age" class="form-control input-md">
+				<font color="red"><form:errors path="age" ></form:errors></font> 
+			</div>
+		</div>
+		
+		<!-- Text input-->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="textinput">Email</label> 
+			<div class="col-md-4">
+				<input id="emailId" name="emailId" type="email" placeholder="Enter your email" class="form-control input-md">
+				<font color="red"><form:errors path="emailId" required="true"></form:errors></font> 
+				<font color="red"><label>${msg}</label></font>
+			</div>
+		</div>
+		
+		<!-- Text input-->
+		<div class="form-group control-label">
+			<label class="col-md-4 control-label" for="textinput">Phone</label> 
+			<div class="col-md-4">
+				<input id="phone" name="phone" type="number" placeholder="Enter your phone" class="form-control input-md">
+				<font color="red"><form:errors path="phone" ></form:errors></font> 
+			</div>
+		</div>
+		
+		<!-- Text input-->
+		<div class="form-group control-label">
+			<label class="col-md-4 control-label" for="textinput">Address</label> 
+			<div class="col-md-4">
+				<input id="address" name="address" type="text" placeholder="Enter your address" class="form-control input-md">
+				<font color="red"><form:errors path="address" ></form:errors></font> 
+			</div>
+		</div>
+            
+        <!-- Text input-->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="textinput">Password</label> 
+			<div class="col-md-4">
+				<input id="password" name="password" type="password" placeholder="Enter your password" class="form-control input-md">
+				<font color="red"><form:errors path="password" ></form:errors></font> 
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="singlebutton"></label>
+			<div class="col-md-4">
+				<button id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit">Register</button>
+				<div><font color="red"><form:errors /></font></div>
+			</div>
+		</div>
+		
+	</fieldset>
+</form>
+</div>
 </body>
 </html>
+	

@@ -35,12 +35,8 @@
 		  <label class="col-md-4 control-label" for="singlebutton"></label>
 		  <div class="col-md-4">
 		    <button id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit">Sign In</button>
-		  </div>
-		  	<li><a href="${pageContext.request.contextPath}/signup">Register</a></li>
-		</div>
-		
+		    <a class="btn btn-primary" href="${pageContext.request.contextPath}/signup" role="button">Create an account</a>
 		<div><font color="red"><form:errors /></font></div>
-		
 		</fieldset>
 	</form>
 </div>
