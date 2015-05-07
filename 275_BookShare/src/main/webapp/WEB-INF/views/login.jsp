@@ -36,6 +36,7 @@
 		  <div class="col-md-4">
 		    <button id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit">Sign In</button>
 		  </div>
+		  	<li><a href="${pageContext.request.contextPath}/signup">Register</a></li>
 		</div>
 		
 		<div><font color="red"><form:errors /></font></div>

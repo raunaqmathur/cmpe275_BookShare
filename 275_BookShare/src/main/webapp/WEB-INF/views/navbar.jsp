@@ -41,24 +41,10 @@
 	      <a class="navbar-brand" href="${pageContext.request.contextPath}">BookShare</a>
 	    </div>
 	    <!-- Collect the nav links, forms, and other content for toggling -->
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      
-	      <ul class="nav navbar-nav">
-	      </ul>
-	      
-<<<<<<< HEAD
-	      <ul class="nav navbar-nav navbar-right">
-	      <li><a href="search">Advance Search</a></li>
-	        <li><a href="bookhome">Sell</a></li>
-	        <li><a href="login">Login/Register</a></li>
-	      </ul>
-	      
-	      <form class="navbar-form navbar-right" role="search" action="search" method="get">
-=======
-	      <form class="navbar-form navbar-left" role="search">
->>>>>>> origin/master
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">	      
+	      <form class="navbar-form navbar-left" role="search" action="search" method="get">
 	        <div class="form-group">
-	          <input type="text" class="form-control" placeholder="Search by ISBN" name="searchbox">
+	          <input type="text" class="form-control" placeholder="Search" name="searchbox">
 	        </div>
 	        <button type="submit" class="btn btn-default">Submit</button>
 	      </form>
@@ -75,7 +61,7 @@
 		            <li><a href="${pageContext.request.contextPath}/showuser/${sessionScope.USERID}">Profile</a></li>
 				    <li><a href="#">View Transactions</a></li>
 				    <li><a href="${pageContext.request.contextPath}/requestbook">Make a request</a></li>
-				    <li><a href="#">Signout</a></li>
+				    <li><a href="${pageContext.request.contextPath}/logout">Signout</a></li>
 		          </ul>
 		        </li>
 		</ul>

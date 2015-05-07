@@ -33,7 +33,7 @@
             
              <tr>
                 <td><label>Date</label></td>
-                <td><label>${result.feedbacktime}</label></td>
+                <td><label>${result.feedbackTime}</label></td>
                 <td></td>
                 
             </tr>
