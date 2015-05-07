@@ -332,7 +332,7 @@ public class FirstController {
 		// getting data
 		
 		mv.addObject("pagedetails", lis);
-		mv.setViewName("searchResult");
+		mv.setViewName("searchResults");
 		return mv;
     	//return new ModelAndView("home");
     } 
