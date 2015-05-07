@@ -1,11 +1,12 @@
 <%@    taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="navbar.jsp" />
 <html>
-<head>
-<title>CMPE 275 BOOK SHARE</title>
-</head>
 <table>
-
+<body>
+	<div class="container">
+	<div class="table-responsive col-md-3">
+		<table class="table table-striped" align="center">
         
             <tr>
                 <td colspan="3"><h3>Your Purchase transaction: </h3><br/></td>
@@ -53,7 +54,7 @@
             </tr>
              </c:forEach>
         </table>
-    
-   
+    </div>
+   </div>
 </body>
 </html>
