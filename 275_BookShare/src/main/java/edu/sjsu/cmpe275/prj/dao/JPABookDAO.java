@@ -1,6 +1,8 @@
 package edu.sjsu.cmpe275.prj.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -27,7 +29,7 @@ public class JPABookDAO implements BookDAO{
 	 * Function to add address
 	 * 
 	 */
-	
+	List<book> listOfbooks = new ArrayList<book>();
 	public int insert(book book) 
 	{
 		System.out.println("in category jpa");
@@ -97,8 +99,34 @@ public class JPABookDAO implements BookDAO{
 
 		return tempBook	;
 	}
-
-
-
 	
+	public List<book> getAllResults(String input) {
+		
+		try {
+			DBCrud<book> db = new DBCrud<book>();
+			listOfbooks=  db.getAllResults(input);
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return listOfbooks	;
+	}
+	
+	
+public List<book> getResultsByName(String input) {
+		
+		try {
+			DBCrud<book> db = new DBCrud<book>();
+			listOfbooks=  db.getResultsByName(input);
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return listOfbooks	;
+	}
+
 }

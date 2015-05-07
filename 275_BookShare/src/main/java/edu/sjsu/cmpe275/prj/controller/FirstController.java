@@ -26,6 +26,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+
+
+
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.LandingPage;
 import edu.sjsu.cmpe275.prj.dao.*;
@@ -36,14 +39,14 @@ import edu.sjsu.cmpe275.prj.models.HomePageModel;
 import edu.sjsu.cmpe275.prj.models.statistics;
 import edu.sjsu.cmpe275.prj.models.user;
 import edu.sjsu.cmpe275.prj.utils.PlayPP;
+import edu.sjsu.cmpe275.prjservices.SearchService;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
  
 @SuppressWarnings("unused")
 @Controller
 public class FirstController {
 
-    @Autowired 
-    private UserRecordService userRecordService;
+    
     private HomePageModel homepageModel;
     private user userModel;
     private book bookModel;
@@ -51,6 +54,9 @@ public class FirstController {
     private LandingPage landingPage;
     HttpSession session;
     private static Jedis jedis;
+    
+    @Autowired
+    private SearchService searchService;
     
     //1.Creating the u.i for user sign up page
     @RequestMapping(value = "/signup",method = RequestMethod.GET)
@@ -222,5 +228,26 @@ public class FirstController {
        return initN();
     }
 	//karan code ends
-
+   
+    //method to search
+    @RequestMapping(value = "/search",method = RequestMethod.GET)
+    public ModelAndView Search(
+    		@RequestParam(value ="searchbox", required = true, defaultValue = "C++") String input,
+    		HttpServletRequest request) {
+    	System.out.println(input);
+    	List<book> lis = searchService.getAllResults(input);
+    	System.out.println("size is--"+lis.size());
+    	System.out.println("price is--"+lis.get(0).getPrice());
+    	System.out.println(searchService.getAllResults(input));
+    	System.out.println("go into search dude");
+    	System.out.println("Landing Page");
+		ModelAndView mv = new ModelAndView();
+		// getting data
+		
+		mv.addObject("pagedetails", lis);
+		mv.setViewName("searchResult");
+		return mv;
+    	//return new ModelAndView("home");
+    } 
+    
 }

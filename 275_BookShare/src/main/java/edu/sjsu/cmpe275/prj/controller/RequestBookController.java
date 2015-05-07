@@ -3,6 +3,7 @@ package edu.sjsu.cmpe275.prj.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
  
+
 
 
 import edu.sjsu.cmpe275.prj.dao.*;
@@ -155,7 +157,7 @@ public class RequestBookController
             	
               	 
             	
-            	
+            	requestbookModel1.setRequestBookTime((new Date()));
             	JPARequestBookDAO obj= new JPARequestBookDAO();
             	long l =obj.insert(requestbookModel1);
             	System.out.println(l);

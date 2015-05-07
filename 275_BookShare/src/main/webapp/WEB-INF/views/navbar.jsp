@@ -47,14 +47,14 @@
 	      </ul>
 	      
 	      <ul class="nav navbar-nav navbar-right">
-	      <li><a href="#">Advance Search</a></li>
+	      <li><a href="search">Advance Search</a></li>
 	        <li><a href="bookhome">Sell</a></li>
 	        <li><a href="login">Login/Register</a></li>
 	      </ul>
 	      
-	      <form class="navbar-form navbar-right" role="search">
+	      <form class="navbar-form navbar-right" role="search" action="search" method="get">
 	        <div class="form-group">
-	          <input type="text" class="form-control" placeholder="Search by ISBN">
+	          <input type="text" class="form-control" placeholder="Search by ISBN" name="searchbox">
 	        </div>
 	        <button type="submit" class="btn btn-default">Submit</button>
 	      </form>
