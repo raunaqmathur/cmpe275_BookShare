@@ -46,9 +46,19 @@
 	      <ul class="nav navbar-nav">
 	      </ul>
 	      
+<<<<<<< HEAD
+	      <ul class="nav navbar-nav navbar-right">
+	      <li><a href="search">Advance Search</a></li>
+	        <li><a href="bookhome">Sell</a></li>
+	        <li><a href="login">Login/Register</a></li>
+	      </ul>
+	      
+	      <form class="navbar-form navbar-right" role="search" action="search" method="get">
+=======
 	      <form class="navbar-form navbar-left" role="search">
+>>>>>>> origin/master
 	        <div class="form-group">
-	          <input type="text" class="form-control" placeholder="Search by ISBN">
+	          <input type="text" class="form-control" placeholder="Search by ISBN" name="searchbox">
 	        </div>
 	        <button type="submit" class="btn btn-default">Submit</button>
 	      </form>

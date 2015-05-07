@@ -339,5 +339,41 @@ public class DBCrud<T> {
 		System.out.println("----" + result);
 		return result;
 		}
+	
+	//search methods for books
+	
+	List<book> listOfbooks = new ArrayList<book>();
+	
+	@SuppressWarnings("unchecked")
+	public List<book> getAllResults(String input)
+		{
+		//List<requestbook> result = new ArrayList<requestbook>();
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+		Query query = session.createSQLQuery("select * from book where title=:sCode or author=:sCode or keywords=:sCode or isbn=:sCode").addEntity(book.class).setParameter("sCode", input);
+		System.out.println("helo search all");
+		listOfbooks = (List<book>)query.list();
+		session.close();
+		s.close();		
+		System.out.println("----" + listOfbooks);
+		return listOfbooks;
+		}
+	
+	@SuppressWarnings("unchecked")
+	public List<book> getResultsByName(String input)
+		{
+		//List<requestbook> result = new ArrayList<requestbook>();
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+		Query query = session.createSQLQuery("select * from book where title=:sCode and active=:sCode1 ").addEntity(book.class).setParameter("sCode", input).setParameter("sCode1", 1);
+		System.out.println("helo search by title");
+		listOfbooks = (List<book>)query.list();
+		session.close();
+		s.close();		
+		System.out.println("----" + listOfbooks);
+		return listOfbooks;
+		}
 
 }
