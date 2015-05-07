@@ -64,6 +64,7 @@
 		          <ul class="dropdown-menu" role="menu">
 		            <li><a href="${pageContext.request.contextPath}/showuser/${sessionScope.USERID}">Profile</a></li>
 				    <li><a href="#">View Transactions</a></li>
+				    <li><a href="${pageContext.request.contextPath}/requestbook">Make a request</a></li>
 				    <li><a href="#">Signout</a></li>
 		          </ul>
 		        </li>
