@@ -1,10 +1,10 @@
 <%@    taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<jsp:include page="navbar.jsp" />
 <html>
 <head>
-<title>CMPE 275 BOOK SHARE</title>
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
 
-<script >
+<script>
 
 
 		/*$(document).ready(function(){
@@ -46,8 +46,8 @@
 
 </head>
 <body>
-    
-        <table>
+	<div class="table-responsive col-md-6">
+		<table class="table table-striped">
             <tr>
                 <td colspan="3"><h3>User Details</h3></td>
             </tr>
@@ -105,6 +105,6 @@
                 <td colspan="3" align="center"><font color="red"><form:errors /></font></td>
             </tr>
         </table>
-    
+    </div>
 </body>
 </html>
