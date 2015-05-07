@@ -14,7 +14,7 @@
     <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
   </head>
 <body>
-    <form:form id="userhome" action="signup" method="post" commandName="userdetails">
+    <form:form id="userhome" action="${path}" method="post" commandName="userdetails">
         <table align="center">
             <tr>
                 <td colspan="3"><h3>Please enter your details</h3></td>
@@ -22,7 +22,8 @@
             
             <tr>
                 <td><label>Name</label></td>
-                <td><form:input path="name" type="text"></form:input></td>
+                <td><form:input path="name" type="text"></form:input>
+                <form:input path="userId" type="hidden" name="userId"></form:input></td>
                 <td><font color="red"><form:errors path="name" required="true"></form:errors></font></td>
             </tr>
             
@@ -35,7 +36,7 @@
             <tr>
                 <td><label>Email</label></td>
                 <td><form:input type="email" path="emailId" ></form:input></td>
-                <td><font color="red"><form:errors path="emailId" required="true"></form:errors></font></td>
+                <td><font color="red"><form:errors path="emailId" required="true" disabled="disabled"></form:errors></font></td>
                 <td><label>${msg}</label></td>
                 
             </tr>
@@ -56,7 +57,7 @@
                 <td><form:input type="password" path="password" required="true" ></form:input></td>
 
             <tr>
-                <td colspan="2" align="center"><button class="btn btn-sm btn-primary btn-block" type="submit">Create</button></td>
+                <td colspan="2" align="center"><button class="btn btn-sm btn-primary btn-block" type="submit">Update</button></td>
                 <td></td>
             </tr>
             <tr>

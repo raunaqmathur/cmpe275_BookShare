@@ -149,7 +149,7 @@ public class RequestBookController
             	catch(Exception ex)
             	{
             		ex.printStackTrace();
-            		
+            		return new ModelAndView("error404");
             	}
             	System.out.println("6" );
             	//Integer.parseInt(session.getAttribute("userId").toString())
@@ -173,7 +173,7 @@ public class RequestBookController
         } catch (Exception e) {
             System.out.println("Exception in Requestbook Controller "+e.getMessage());
             e.printStackTrace();
-            return new ModelAndView("requestbook", "requestbookdetails", requestbookModel1);
+            return new ModelAndView("error404");
         }
         
     }

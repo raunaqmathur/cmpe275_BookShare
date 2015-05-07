@@ -26,7 +26,7 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	  <div class="navbar-header">
-	      <a class="navbar-brand" href=".">
+	      <a class="navbar-brand" href="${pageContext.request.contextPath}">
 	        <img style="max-width:50px; margin-top: -15px;" alt="Brand" src="http://blindlibrary.utah.gov/images/logoBook.gif">
 	      </a>
 	    </div>
@@ -38,7 +38,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href=".">BookShare</a>
+	      <a class="navbar-brand" href="${pageContext.request.contextPath}">BookShare</a>
 	    </div>
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -46,6 +46,7 @@
 	      <ul class="nav navbar-nav">
 	      </ul>
 	      
+<<<<<<< HEAD
 	      <ul class="nav navbar-nav navbar-right">
 	      <li><a href="search">Advance Search</a></li>
 	        <li><a href="bookhome">Sell</a></li>
@@ -53,11 +54,35 @@
 	      </ul>
 	      
 	      <form class="navbar-form navbar-right" role="search" action="search" method="get">
+=======
+	      <form class="navbar-form navbar-left" role="search">
+>>>>>>> origin/master
 	        <div class="form-group">
 	          <input type="text" class="form-control" placeholder="Search by ISBN" name="searchbox">
 	        </div>
 	        <button type="submit" class="btn btn-default">Submit</button>
 	      </form>
+
+	      <ul class="nav navbar-nav navbar-right">
+		      <li><a href="#">Advance Search</a></li>
+		      <li><a href="bookhome">Sell</a></li>
+			  <% if(null == session.getAttribute("USERID")){ %>
+              	<li><a href="login">Login/Register</a></li>
+              <% } else { %>
+              	<li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hi ${sessionScope.USERNAME} <span class="caret"></span></a>
+		          <ul class="dropdown-menu" role="menu">
+		            <li><a href="${pageContext.request.contextPath}/showuser/${sessionScope.USERID}">Profile</a></li>
+				    <li><a href="#">View Transactions</a></li>
+				    <li><a href="#">Signout</a></li>
+		          </ul>
+		        </li>
+		</ul>
+				</div>
+              <% } %>
+	          
+	      </ul>
+	      
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 </nav>

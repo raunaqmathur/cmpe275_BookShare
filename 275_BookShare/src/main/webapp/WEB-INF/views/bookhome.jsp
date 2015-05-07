@@ -25,9 +25,9 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="textinput">Title</label>  
 		  <div class="col-md-4">
-		  <input id="title" name="title" type="text" placeholder="Enter book title" class="form-control input-md">
-		  <input id="bookId" name="bookId" type="hidden" value=0>
-		  <input id="status" name="status" type="hidden">
+		  <input id="title" name="title" type="text" placeholder="" value="${bookdetails.title}" class="form-control input-md">
+		  <input id="bookId" name="bookId" type="hidden" value="${bookdetails.bookId}">
+		  <input id="status" name="status" type="hidden" value="${bookdetails.status}">
 		  <font color="red"><form:errors path="title"></form:errors></font>
 		  </div>
 		</div>
@@ -36,7 +36,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="textinput">Author</label>  
 		  <div class="col-md-4">
-		  <input id="author" name="author" type="text" placeholder="Enter book author" class="form-control input-md">
+		  <input id="author" name="author" type="text" placeholder="" value="${bookdetails.author}" class="form-control input-md">
 		  <font color="red"><form:errors path="author"></form:errors></font>
 		  </div>
 		</div>
@@ -45,7 +45,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="textinput">ISBN</label>  
 		  <div class="col-md-4">
-		  <input id="isbn" name="isbn" type="text" placeholder="Enter book ISBN" class="form-control input-md">
+		  <input id="isbn" name="isbn" type="text" placeholder="" value="${bookdetails.isbn}" class="form-control input-md">
 		  <font color="red"><form:errors path="isbn"></form:errors></font>
 		  </div>
 		</div>
@@ -54,7 +54,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="textinput">Description</label>  
 		  <div class="col-md-4">
-		  <input id="description" name="description" type="text" placeholder="Enter book description" class="form-control input-md">
+		  <input id="description" name="description" type="text" placeholder="" value="${bookdetails.description}" class="form-control input-md">
 		  <font color="red"><form:errors path="description"></form:errors></font>
 		  </div>
 		</div>
@@ -63,7 +63,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="textinput">Picture</label>  
 		  <div class="col-md-4">
-		  <input id="pictureId" name="pictureId" type="text" placeholder="Enter book image url" class="form-control input-md">
+		  <input id="pictureId" name="pictureId" type="text" placeholder="" value="${bookdetails.pictureId}" class="form-control input-md">
 		  <font color="red"><form:errors path="pictureId"></form:errors></font>
 		  </div>
 		</div>
@@ -72,7 +72,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="textinput">Price</label>  
 		  <div class="col-md-4">
-		  <input id="price" name="price" type="text" placeholder="Enter book price" class="form-control input-md">
+		  <input id="price" name="price" type="text" placeholder="" value="${bookdetails.price}" class="form-control input-md">
 		  <font color="red"><form:errors path="price"></form:errors></font>
 		  </div>
 		</div>
@@ -81,7 +81,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="textinput">Condition</label>  
 		  <div class="col-md-4">
-		  <input id="condition" name="condition" type="text" placeholder="Enter book condition" class="form-control input-md">
+		  <input id="condition" name="condition" type="text" placeholder="" value="${bookdetails.condition}" class="form-control input-md">
 		  <font color="red"><form:errors path="condition"></form:errors></font>
 		  </div>
 		</div>
@@ -90,7 +90,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="textinput">Keywords</label>  
 		  <div class="col-md-4">
-		  <input id="keywords" name="keywords" type="text" placeholder="Enter book keywords" class="form-control input-md">
+		  <input id="keywords" name="keywords" type="text" placeholder="" value="${bookdetails.keywords}" class="form-control input-md">
 		  <font color="red"><form:errors path="keywords"></form:errors></font>
 		  </div>
 		</div>
@@ -99,7 +99,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="textinput">Category</label>  
 		  <div class="col-md-4">
-		  <input id="categoryX" name="categoryX" type="text" placeholder="Enter book category" value="${categ}" class="form-control input-md">
+		  <input id="categoryX" name="categoryX" type="text" placeholder="" value="${categ}" class="form-control input-md">
 		  <font color="red"><label id="errorCat"></label></font>
 		  </div>
 		</div>
@@ -108,7 +108,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="textinput">Pickup Address</label>  
 		  <div class="col-md-4">
-		  <input id="pickupAddress" name="pickupAddress" type="text" placeholder="Enter pickup address" class="form-control input-md">
+		  <input id="pickupAddress" name="pickupAddress" type="text" placeholder="" value="${bookdetails.pickupAddress}" class="form-control input-md">
 		  <font color="red"><form:errors path="pickupAddress"></form:errors></font>
 		  </div>
 		</div>

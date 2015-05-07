@@ -290,6 +290,7 @@ public class BookController {
 		            	catch(Exception ex)
 		            	{
 		            		ex.printStackTrace();
+		            		return new ModelAndView("error404");
 		            		
 		            	}
 		            	System.out.println("6" );
@@ -329,7 +330,7 @@ public class BookController {
 		        } catch (Exception e) {
 		            System.out.println("Exception in FirstController "+e.getMessage());
 		            e.printStackTrace();
-		            return new ModelAndView("bookhome", "bookdetails", bookModel1);
+		            return new ModelAndView("error404");
 		        }
     	}
     	else
@@ -444,7 +445,7 @@ public class BookController {
             } catch (Exception e) {
                 System.out.println("Exception in FirstController "+e.getMessage());
                 e.printStackTrace();
-                return new ModelAndView("bookhome", "bookdetails", bookModel1);
+                return new ModelAndView("error404");
             }
 
     	}

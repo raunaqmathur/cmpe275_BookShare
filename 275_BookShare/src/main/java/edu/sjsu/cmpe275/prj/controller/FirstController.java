@@ -67,7 +67,7 @@ public class FirstController {
     }
     
     @RequestMapping(value = "/showuser/{userId}",method = RequestMethod.GET)
-    public ModelAndView showBook(@PathVariable int userId, HttpServletRequest request) {
+    public ModelAndView showBook(@PathVariable int userId) {
 
     	ModelAndView mv = new ModelAndView();
     	userModel = new user();
@@ -81,6 +81,21 @@ public class FirstController {
         return mv;
     }
     
+    
+    @RequestMapping(value = "/signup/{userId}",method = RequestMethod.GET)
+    public ModelAndView edituser(@PathVariable int userId, HttpServletRequest request) {
+
+    	ModelAndView mv = new ModelAndView();
+    	userModel = new user();
+    	
+    	JPAUserDAO obj= new JPAUserDAO();
+    	userModel = obj.getUser(userId);
+    	mv.addObject("path", "../editprofile");
+        mv.addObject("userdetails", userModel);
+        mv.setViewName("profileedit");
+        
+        return mv;
+    }
     
    
     @RequestMapping(value = "/signup",method = RequestMethod.POST)
@@ -170,6 +185,78 @@ public class FirstController {
         }
         
     }
+    
+
+    
+    @RequestMapping(value = "/editprofile",method = RequestMethod.POST)
+    public ModelAndView editProfile(@ModelAttribute("userdetails")user userModel1, BindingResult bindingResult, 
+            HttpServletRequest request,  HttpServletResponse response) 
+    {
+        try 
+        {
+        	String msg=null;
+           
+            //ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult,"id","id", "id can not be empty.");
+            ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult,"name","name", "name not be empty");
+            ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "emailId", "emailId", "emailId cant be empty");
+            //ValidationUtils.r
+ 
+            JPAUserDAO tempEmail = new JPAUserDAO();
+            
+            String one = userModel1.getEmailId();
+         	
+            if (bindingResult.hasErrors())
+            {
+                //returning the errors on same page if any errors..
+            	 ModelAndView mv1 = new ModelAndView();
+            	 mv1.addObject("userdetails", userModel1);
+            	 mv1.addObject("path", "editprofile");
+                 mv1.setViewName("profileedit");
+            	
+            	 return mv1;
+                
+            }
+            else
+            {
+            	System.out.println("user model details here --" +userModel1.getName()+userModel1.getPhone());
+            	// insert the record by calling the service
+            	//userRecordService.insertUser(userModel1);
+            	
+            	//userModel1.setActive(1);
+            	System.out.println("???? " + userModel1.getUserId());
+            	userModel1.setPassword(PlayPP.sha1(userModel1.getPassword()));
+            	JPAUserDAO obj= new JPAUserDAO();
+            	
+            	
+            	user x =obj.getUser(userModel1.getUserId());
+            	//userModel1.setUserId(l);
+            	
+            	
+            	
+            	x.setActive(1);
+            	x.setAddress(userModel1.getAddress());
+            	x.setAge(userModel1.getAge());
+            	x.setName(userModel1.getName());
+            	x.setPassword(userModel1.getPassword());
+            	x.setPhone(userModel1.getPhone());
+
+            	obj= new JPAUserDAO();
+            	obj.update(x);
+            	
+            	
+            	
+
+            	
+           	 	return new ModelAndView("redirect: /showuser/" + userModel1.getUserId());
+          }
+        } catch (Exception e) {
+            System.out.println("Exception in FirstController "+e.getMessage());
+            e.printStackTrace();
+            return new ModelAndView("signup", "userdetails", userModel1);
+        }
+        
+    }
+
     
     
     

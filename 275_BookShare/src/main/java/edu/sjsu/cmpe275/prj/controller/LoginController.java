@@ -115,7 +115,7 @@ public class LoginController {
             		user tempUser = jp.getUser(loginModel1.getUserId());
             		httpSession.setAttribute("USERNAME", tempUser.getName());
             		System.out.println("my userid in session is" + httpSession.getAttribute("USERID"));
-	           	 	model.setViewName("home");
+            		return new ModelAndView("redirect:/");
             	}
             	
             	
@@ -124,13 +124,7 @@ public class LoginController {
         } catch (Exception e) {
             System.out.println("Exception in FirstController "+e.getMessage());
             e.printStackTrace();
-            
-            ModelAndView model = new ModelAndView();
-            loginModel = new Login();
-        	model.addObject("msg", "Connection Error");
-        	model.addObject("loginDetails", loginModel);
-       	 	model.setViewName("login");
-       	 	return model;
+            return new ModelAndView("error404");
         }
         
     }

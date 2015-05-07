@@ -114,7 +114,7 @@ public class CategoryController {
         } catch (Exception e) {
             System.out.println("Exception in FirstController "+e.getMessage());
             e.printStackTrace();
-            return new ModelAndView("category", "categorydetails", categoryModel1);
+            return new ModelAndView("error404");
         }
         
     }
