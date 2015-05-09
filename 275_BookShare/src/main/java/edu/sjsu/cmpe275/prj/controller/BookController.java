@@ -34,28 +34,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
@@ -64,6 +42,7 @@ import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
 import edu.sjsu.cmpe275.prj.models.statistics;
 import edu.sjsu.cmpe275.prj.models.user;
+import edu.sjsu.cmpe275.prj.utils.CheckSession;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
  
 @SuppressWarnings("unused")
@@ -71,27 +50,23 @@ import edu.sjsu.cmpe275.prjservices.UserRecordService;
 public class BookController {
 
  
-   
+	
 	private String imagePath = "WEB-INF\\images";
     private user userModel;
     
     private book bookModel;
     private category categoryModel;
     private Login login;
+    
     @Autowired
 	private HttpSession httpSession;
 	
-	public HttpSession getHttpSession() {
-		return httpSession;
-	}
-
-	public void setHttpSession(HttpSession httpSession) {
-		this.httpSession = httpSession;
-	}
+	@Autowired
+	private CheckSession sessionService;
 	
 	JPAUserDAO jp = new JPAUserDAO();
 
-
+	
     
     @RequestMapping(value = "/showbook/{bookId}",method = RequestMethod.GET)
     public ModelAndView showBook(@PathVariable int bookId, HttpServletRequest request) {
@@ -117,18 +92,26 @@ public class BookController {
    //new book addition
     @RequestMapping(value = "/bookhome",method = RequestMethod.GET)
     public ModelAndView uploadBook() {
-    	//session = request.getSession();
+    	// session check code
+    	if(!sessionService.checkAuth())
+    	{
+    		System.out.println("chk class wrked!");
+    		login = new Login();
+        	
+    		
+    	    return new ModelAndView("login", "logindetails", login);
+    		
+    		
+    	}
     	
-    	
+    	else
+    	{
     	
     	ModelAndView mv = new ModelAndView();
     	
-    	/*try
+    	try
     	{
-
-		    	if(!httpSession.getAttribute("USERID").toString().equals(""))
-		    	{
-		*/	    	bookModel = new book();
+					bookModel = new book();
 			    	
 			    	System.out.println("user logged in as: " + httpSession.getAttribute("USERID"));
 			    	
@@ -137,20 +120,11 @@ public class BookController {
 			        mv.addObject("bookdetails", bookModel);
 			        mv.addObject("buttonX", "Create");
 			        mv.setViewName("bookhome");
-		   /* 	}
-		    	else
-		    	{
-		    		
-		    		System.out.println("user not logged in");
-		    		
-		    		login = new Login();
-		        	
-		    		
-		    	       return new ModelAndView("login", "logindetails", login);
+		 
 		    		
 		    		
-		    	}*/
-    	/*}
+		    	
+    	}
     	catch(Exception ex)
     	{
     		
@@ -159,17 +133,29 @@ public class BookController {
     		login = new Login();
         	
     		
-    	       return new ModelAndView("login", "logindetails", login);
+    	    return new ModelAndView("login", "logindetails", login);
     		
     		
-    	}*/
+    	}
        return mv;
+    }
 
     }
     
     //update book
     @RequestMapping(value = "/bookhome/{bookId}",method = RequestMethod.GET)
     public ModelAndView updateBook(@PathVariable int bookId) {
+    	if(!sessionService.checkAuth())
+    	{
+    		System.out.println("chk class wrked!");
+    		login = new Login();
+        	
+    		
+    	    return new ModelAndView("login", "logindetails", login);
+    		
+    		
+    	}
+    	else{
     	ModelAndView mv = new ModelAndView();
     	bookModel = new book();
     	JPABookDAO obj= new JPABookDAO();
@@ -185,6 +171,7 @@ public class BookController {
         
        return mv;
     }
+    }
     
     //post for book update or creation
     @RequestMapping(value = "/bookhome",method = RequestMethod.POST)
@@ -193,6 +180,16 @@ public class BookController {
              @RequestParam(value="categoryX") int  categoryId) 
     {
 
+    	if(!sessionService.checkAuth())
+    	{
+    		System.out.println("chk class wrked!");
+    		login = new Login();
+        	
+    		
+    	    return new ModelAndView("login", "logindetails", login);
+    		
+    		
+    	}
     	
 		
 		int userId = (Integer) httpSession.getAttribute("USERID");
@@ -461,6 +458,9 @@ public class BookController {
 
        @ModelAttribute("uploadForm") BookImageUpload uploadForm,@PathVariable int bookId) throws IllegalStateException, IOException {
         
+    	//here session is applied through aspect. 
+    	
+    	
     	ServletContext context = request.getServletContext();
         String appPath = context.getRealPath("");
        // System.out.println("appPath = " + appPath);

@@ -56,7 +56,12 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
+
+
+
+
 import edu.sjsu.cmpe275.prj.dao.*;
+import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.BookImageUpload;
 import edu.sjsu.cmpe275.prj.models.category;
@@ -64,6 +69,7 @@ import edu.sjsu.cmpe275.prj.models.HomePageModel;
 import edu.sjsu.cmpe275.prj.models.transaction;
 import edu.sjsu.cmpe275.prj.models.statistics;
 import edu.sjsu.cmpe275.prj.models.user;
+import edu.sjsu.cmpe275.prj.utils.CheckSession;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
  
 @SuppressWarnings("unused")
@@ -73,28 +79,26 @@ public class TransactionController {
 	@Autowired
 	private HttpSession httpSession;
 	
-	public HttpSession getHttpSession() {
-		return httpSession;
-	}
-
-	public void setHttpSession(HttpSession httpSession) {
-		this.httpSession = httpSession;
-	}
-
-    
-   
-    
-   
 	
-   // private user userModel;
-    
-    //private book bookModel;
-   // private category categoryModel;
-    HttpSession session;
+   	
+   	@Autowired
+   	private CheckSession sessionService;
+	
+
     
   
     @RequestMapping(value = "/transactions",method = RequestMethod.GET)
     public ModelAndView getTransactionsOfUser() {
+    	if(!sessionService.checkAuth())
+    	{
+    		System.out.println("chk class wrked!");
+    		Login login = new Login();
+        	
+    		
+    	    return new ModelAndView("login", "logindetails", login);
+    		
+    		
+    	}
     	int userId = Integer.parseInt(httpSession.getAttribute("USERID").toString());
     	JPATransactionDAO obj= new JPATransactionDAO();
     	List<transaction> txList = new ArrayList<transaction>();
@@ -111,6 +115,17 @@ public class TransactionController {
     
     @RequestMapping(value = "/currenttransactions/{txId}",method = RequestMethod.GET)
     public ModelAndView getCurrentTransactionsOfUser(@PathVariable int txId) {
+    	
+    	if(!sessionService.checkAuth())
+    	{
+    		System.out.println("chk class wrked!");
+    		Login login = new Login();
+        	
+    		
+    	    return new ModelAndView("login", "logindetails", login);
+    		
+    		
+    	}
     	//int userId = Integer.parseInt(httpSession.getAttribute("USERID").toString());
     	JPATransactionDAO obj= new JPATransactionDAO();
     	transaction txList = new transaction();
@@ -126,6 +141,17 @@ public class TransactionController {
     
     @RequestMapping(value = "/purchase/{bookId}",method = RequestMethod.GET)
     public ModelAndView bookTransaction(@PathVariable int bookId) {
+    	
+    	if(!sessionService.checkAuth())
+    	{
+    		System.out.println("chk class wrked!");
+    		Login login = new Login();
+        	
+    		
+    	    return new ModelAndView("login", "logindetails", login);
+    		
+    		
+    	}
     	ModelAndView mv = new ModelAndView();
     	//System.out.println("in transaction: " +bookModel1.getBookId() );
     	book bookModel1 = new book();

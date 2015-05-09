@@ -29,12 +29,16 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
+
+
 import edu.sjsu.cmpe275.prj.dao.*;
+import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
 import edu.sjsu.cmpe275.prj.models.requestbook;
 import edu.sjsu.cmpe275.prj.models.user;
+import edu.sjsu.cmpe275.prj.utils.CheckSession;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
 
 @SuppressWarnings("unused")
@@ -50,12 +54,25 @@ public class RequestBookController
     HttpSession session;
     List<requestbook> str;
     
+    @Autowired
+	private CheckSession sessionService;
     
     //ex ends
   //1.Creating the u.i for user sign up page
     
     @RequestMapping(value = "/requestbook",method = RequestMethod.GET)
     public ModelAndView uploadBook() {
+    	
+    	if(!sessionService.checkAuth())
+    	{
+    		System.out.println("chk class wrked!");
+    		Login login = new Login();
+        	
+    		
+    	    return new ModelAndView("login", "logindetails", login);
+    		
+    		
+    	}
     	requestBookModel = new requestbook();
     	System.out.println("m here");
 		
@@ -64,6 +81,16 @@ public class RequestBookController
     
     @RequestMapping(value = "/requestdetails",method = RequestMethod.GET)
     public ModelAndView uploadrequestbook() {
+    	if(!sessionService.checkAuth())
+    	{
+    		System.out.println("chk class wrked!");
+    		Login login = new Login();
+        	
+    		
+    	    return new ModelAndView("login", "logindetails", login);
+    		
+    		
+    	}
     	JPARequestBookDAO j= new JPARequestBookDAO();
     	str=j.getRequestdetails();
     	System.out.println("steeerrr"+str);
@@ -89,6 +116,16 @@ public class RequestBookController
 	public ModelAndView initN1(@ModelAttribute("requestbookdetails")requestbook requestbookModel1, BindingResult bindingResult, 
             HttpServletRequest request,  HttpServletResponse response)
     {
+    	if(!sessionService.checkAuth())
+    	{
+    		System.out.println("chk class wrked!");
+    		Login login = new Login();
+        	
+    		
+    	    return new ModelAndView("login", "logindetails", login);
+    		
+    		
+    	}
         try 
         {
         	System.out.println("enter into ");

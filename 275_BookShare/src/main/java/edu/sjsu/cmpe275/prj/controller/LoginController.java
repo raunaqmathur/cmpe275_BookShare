@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.ValidationUtils;
@@ -27,9 +28,12 @@ import org.springframework.web.servlet.view.RedirectView;
  
 
 
+
+
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.user;
+import edu.sjsu.cmpe275.prj.utils.CheckSession;
 import edu.sjsu.cmpe275.prj.utils.PlayPP;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
  
@@ -42,14 +46,10 @@ public class LoginController {
     
     @Autowired
 	private HttpSession httpSession;
-    public HttpSession getHttpSession() {
-		return httpSession;
-	}
-
-	public void setHttpSession(HttpSession httpSession) {
-		this.httpSession = httpSession;
-	}
     
+    
+	@Autowired
+	private CheckSession sessionService;
     
     
     //ex ends
@@ -57,6 +57,9 @@ public class LoginController {
     
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public ModelAndView loginPage() {
+    	httpSession.removeAttribute("USERID");
+    	httpSession.removeAttribute("USERNAME");
+    	httpSession.invalidate();
     	loginModel = new Login();
     	
 		
@@ -110,10 +113,11 @@ public class LoginController {
             	else
             	{
             		JPAUserDAO jp = new JPAUserDAO();
-            		
+            		 
             		httpSession.setAttribute("USERID", loginModel1.getUserId());
             		user tempUser = jp.getUser(loginModel1.getUserId());
             		httpSession.setAttribute("USERNAME", tempUser.getName());
+            		sessionService.setHttpSession(httpSession);
             		System.out.println("my userid in session is" + httpSession.getAttribute("USERID"));
             		return new ModelAndView("redirect:/");
             	}
@@ -127,6 +131,22 @@ public class LoginController {
             return new ModelAndView("error404");
         }
         
+    }
+    
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    public ModelAndView logoutPage(HttpServletRequest request,  HttpServletResponse response) {
+    	httpSession = sessionService.getHttpSession();
+    	httpSession.removeAttribute("USERID");
+    	httpSession.removeAttribute("USERNAME");
+    	httpSession.invalidate();
+    	sessionService.setHttpSession(null);
+    	System.out.println("in logot");
+    	loginModel = new Login();
+    	response.setHeader("Cache-Control","no-cache");
+    	response.setHeader("Cache-Control","no-store");
+    	response.setDateHeader("Expires", 0);
+		
+       return new ModelAndView("login", "logindetails", loginModel);
     }
     
    

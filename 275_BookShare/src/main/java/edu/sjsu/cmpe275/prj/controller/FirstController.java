@@ -29,6 +29,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
+
+
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.LandingPage;
 import edu.sjsu.cmpe275.prj.dao.*;
@@ -38,6 +40,7 @@ import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.HomePageModel;
 import edu.sjsu.cmpe275.prj.models.statistics;
 import edu.sjsu.cmpe275.prj.models.user;
+import edu.sjsu.cmpe275.prj.utils.CheckSession;
 import edu.sjsu.cmpe275.prj.utils.PlayPP;
 import edu.sjsu.cmpe275.prjservices.SearchService;
 import edu.sjsu.cmpe275.prjservices.UserRecordService;
@@ -58,6 +61,12 @@ public class FirstController {
     @Autowired
     private SearchService searchService;
     
+    @Autowired
+   	private HttpSession httpSession;
+   	
+   	@Autowired
+   	private CheckSession sessionService;
+    
     //1.Creating the u.i for user sign up page
     @RequestMapping(value = "/signup",method = RequestMethod.GET)
     public ModelAndView initN() {
@@ -68,6 +77,17 @@ public class FirstController {
     
     @RequestMapping(value = "/showuser/{userId}",method = RequestMethod.GET)
     public ModelAndView showBook(@PathVariable int userId) {
+    	
+    	if(!sessionService.checkAuth())
+    	{
+    		System.out.println("chk class wrked!");
+    		Login login = new Login();
+        	
+    		
+    	    return new ModelAndView("login", "logindetails", login);
+    		
+    		
+    	}
 
     	ModelAndView mv = new ModelAndView();
     	userModel = new user();
@@ -192,6 +212,16 @@ public class FirstController {
     public ModelAndView editProfile(@ModelAttribute("userdetails")user userModel1, BindingResult bindingResult, 
             HttpServletRequest request,  HttpServletResponse response) 
     {
+    	if(!sessionService.checkAuth())
+    	{
+    		System.out.println("chk class wrked!");
+    		Login login = new Login();
+        	
+    		
+    	    return new ModelAndView("login", "logindetails", login);
+    		
+    		
+    	}
         try 
         {
         	String msg=null;

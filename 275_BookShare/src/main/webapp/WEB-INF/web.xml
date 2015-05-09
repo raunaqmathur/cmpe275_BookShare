@@ -18,7 +18,14 @@
     </servlet-mapping>
  
     
-    
+    <filter>
+    <filter-name>noCacheFilter</filter-name>
+    <filter-class>edu.sjsu.cmpe275.prj.utils.FilterImpl</filter-class>
+ </filter>
+ <filter-mapping>
+  <filter-name>noCacheFilter</filter-name>
+  <url-pattern>/*</url-pattern> 
+ </filter-mapping>
    
     <welcome-file-list>
         <welcome-file>homepage.jsp</welcome-file>

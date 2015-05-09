@@ -351,8 +351,46 @@ public class DBCrud<T> {
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
-		Query query = session.createSQLQuery("select * from book where title=:sCode or author=:sCode or keywords=:sCode or isbn=:sCode").addEntity(book.class).setParameter("sCode", input);
+		Query query = session.createSQLQuery("select * from book where ( title like '%"+input+"%' or author like '%"+input+"%' or keywords like '%"+input+"%' or isbn like '%"+input+"%') and active=1").addEntity(book.class);
 		System.out.println("helo search all");
+		listOfbooks = (List<book>)query.list();
+		session.close();
+		s.close();		
+		for(int i = 0; i < listOfbooks.size();i++)
+		{
+			System.out.println("book id got--"+listOfbooks.get(i).getBookId());
+		}
+		System.out.println("----" + listOfbooks);
+		return listOfbooks;
+		}
+	
+	//searches by only book title
+	@SuppressWarnings("unchecked")
+	public List<book> getResultsByName(String input)
+		{
+		//List<requestbook> result = new ArrayList<requestbook>();
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+		Query query = session.createSQLQuery("select * from book where  title like '%"+input+"%'  and active=1").addEntity(book.class);
+		System.out.println("helo search by title");
+		listOfbooks = (List<book>)query.list();
+		session.close();
+		s.close();		
+		System.out.println("----" + listOfbooks);
+		return listOfbooks;
+		}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<book> getResultsByAuthName(String input)
+		{
+		//List<requestbook> result = new ArrayList<requestbook>();
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+		Query query = session.createSQLQuery("select * from book where author like '%"+input+"%' and active=1").addEntity(book.class);
+		System.out.println("helo search by title");
 		listOfbooks = (List<book>)query.list();
 		session.close();
 		s.close();		
@@ -361,13 +399,13 @@ public class DBCrud<T> {
 		}
 	
 	@SuppressWarnings("unchecked")
-	public List<book> getResultsByName(String input)
+	public List<book> getResultsByAuthName1(String input)
 		{
 		//List<requestbook> result = new ArrayList<requestbook>();
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
-		Query query = session.createSQLQuery("select * from book where title=:sCode and active=:sCode1 ").addEntity(book.class).setParameter("sCode", input).setParameter("sCode1", 1);
+		Query query = session.createSQLQuery("select * from book where author like '%"+input+"%' and active=1").addEntity(book.class);
 		System.out.println("helo search by title");
 		listOfbooks = (List<book>)query.list();
 		session.close();
