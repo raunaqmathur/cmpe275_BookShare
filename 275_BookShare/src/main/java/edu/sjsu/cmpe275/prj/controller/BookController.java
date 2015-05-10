@@ -76,6 +76,7 @@ public class BookController {
     	//bookModel = new book();
     	JPABookDAO obj= new JPABookDAO();
     	bookModel = obj.getBook(bookId);
+    	//System.out.println("Book User ID: " +bookModel.getUserId().getUserId() );
 		//System.out.println("going: " +bookModel.getBookId() );
     	
     	System.out.println("timestamp = " + bookModel.getBookTime());
