@@ -80,99 +80,108 @@
 </head>
 
 <body>
-	<div class="table-responsive col-md-6">
-		<table class="table table-striped">
-			<tr>
-			    <td colspan="3"><h3>Book Details</h3></td>
-			</tr>
-			
-			<tr>
-			    <td colspan="3">
-			  		<img src="${bookdetails.pictureId}" alt="http://images.clipartpanda.com/books-20clipart-books-for-clip-art-9.jpg" height="100" width="100">
-			    </td>
-			</tr>
-			
-			<tr>
-			    <td><label>Title</label></td>
-			    <td><label>${bookdetails.title}</label>
-				<input type="hidden" id="bookId" value="${bookdetails.bookId}"></input>
-				<input type="hidden" id="redirectTo" value="${redirectTo}"></input>
-				<input type="hidden" id="redirectToBuy" value="${redirectToBuy}"></input>
-				<input type="hidden" id="owner" value="${owner}"></input></td>
-			    <td></td>
-			</tr>
-			
-			<tr>
-			    <td><label>Author</label></td>
-			    <td><label>${bookdetails.author}</label></td>
-			    <td></td>
-			</tr>
-			
-			<tr>
-			    <td><label>ISBN</label></td>
-			    <td><label>${bookdetails.isbn}</label></td>
-			    <td></td>
-			</tr>
-			
-			<tr>
-			    <td><label>Description</label></td>
-			    <td><label>${bookdetails.description}</label></td>
-			    <td></td>
-			</tr>
-			 
-			<tr>
-			    <td><label>Price</label></td>
-			    <td><label>${bookdetails.price}</label></td>
-			    <td></td>
-			</tr>
-			
-			<tr>
-			    <td><label>Condition</label></td>
-			    <td><label>${bookdetails.condition}</label></td>
-			    <td></td>
-			    
-			</tr>
-			
-			<tr>
-			    <td><label>Keywords</label></td>
-			    <td><label>${bookdetails.keywords}</label></td>
-			    <td></td>
-			</tr>
-			
-			<tr>
-			    <td><label>Category</label></td>
-			    <td><label id="cati">${catId}</label></td>
-			    <td></td>
-			</tr>
-			
-			<tr>
-			    <td><label>Picture link</label></td>
-			    <td><label>${bookdetails.pictureId}</label></td>
-			    <td></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right"><input type="submit" value="Buy" onClick="javascript: RedirectToBuy();" <c:if test="${owner == 'true'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
-				<td colspan="2" align="right"><input type="submit" id="edit" value="Edit" onClick="javascript: RedirectToEdit();" <c:if test="${owner == 'false'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
-			<tr>
-			    <td colspan="3" align="center"><font color="red"><form:errors /></font></td>
-			</tr>
-		</table>
-	</div>
-        	
-	<div class="table-responsive col-md-6">
-		<table class="table table-striped">
-			
-    		<tr>
-			    <td><label>Pickup Address</label></td>
-			    <td><label>${bookdetails.pickupAddress}</label></td>
-				<input type="hidden" id="address" value="${bookdetails.pickupAddress}"></input></td>
-			    <td><div id="map_container"></div></td>
-			</tr>
-			
-    		<tr>
-				
-			</tr>
-		</table>
+	<div class="container-fluid">
+		<div class="table-responsive col-md-6">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Book Details</div>
+				<table class="table table-striped">					
+					<tr>
+					    <td colspan="3">
+					  		<img src="${bookdetails.pictureId}" alt="http://images.clipartpanda.com/books-20clipart-books-for-clip-art-9.jpg" height="100" width="100">
+					    </td>
+					</tr>
+					
+					<tr>
+					    <td><label>Title</label></td>
+					    <td><label>${bookdetails.title}</label>
+						<input type="hidden" id="bookId" value="${bookdetails.bookId}"></input>
+						<input type="hidden" id="redirectTo" value="${redirectTo}"></input>
+						<input type="hidden" id="redirectToBuy" value="${redirectToBuy}"></input>
+						<input type="hidden" id="owner" value="${owner}"></input></td>
+					    <td></td>
+					</tr>
+					
+					<tr>
+					    <td><label>Author</label></td>
+					    <td><label>${bookdetails.author}</label></td>
+					    <td></td>
+					</tr>
+					
+					<tr>
+					    <td><label>ISBN</label></td>
+					    <td><label>${bookdetails.isbn}</label></td>
+					    <td></td>
+					</tr>
+					
+					<tr>
+					    <td><label>Description</label></td>
+					    <td><label>${bookdetails.description}</label></td>
+					    <td></td>
+					</tr>
+					 
+					<tr>
+					    <td><label>Price</label></td>
+					    <td><label>${bookdetails.price}</label></td>
+					    <td></td>
+					</tr>
+					
+					<tr>
+					    <td><label>Condition</label></td>
+					    <td><label>${bookdetails.condition}</label></td>
+					    <td></td>
+					    
+					</tr>
+					
+					<tr>
+					    <td><label>Keywords</label></td>
+					    <td><label>${bookdetails.keywords}</label></td>
+					    <td></td>
+					</tr>
+					
+					<tr>
+					    <td><label>Category</label></td>
+					    <td><label id="cati">${catId}</label></td>
+					    <td></td>
+					</tr>
+					
+					<%-- <tr>
+					    <td><label>Picture link</label></td>
+					    <td><label>${bookdetails.pictureId}</label></td>
+					    <td></td>
+					</tr> --%>
+					
+					<% if(null == session.getAttribute("USERID")){ %>
+						    <td colspan="2" align="right"><a class="btn btn-primary" href="${pageContext.request.contextPath}/login" role="button">Log in to Buy</a>
+						    
+		            <% } else { %>
+						<tr>
+							<td colspan="2" align="right"><input type="submit" value="Buy" onClick="javascript: RedirectToBuy();" <c:if test="${owner == 'true'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
+							<td colspan="2" align="right"><input type="submit" id="edit" value="Edit" onClick="javascript: RedirectToEdit();" <c:if test="${owner == 'false'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
+						</tr>
+					<% } %>
+					
+					<tr>
+					    <td colspan="3" align="center"><font color="red"><form:errors /></font></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	    	
+		<div class="table-responsive col-md-6">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Pickup Address</div>
+				<table class="table table-striped">
+					
+		    		<tr>
+					    <td><label>${bookdetails.pickupAddress}</label></td>
+						<input type="hidden" id="address" value="${bookdetails.pickupAddress}"></input></td>
+					</tr>
+					
+		    		<tr>
+						<td><div id="map_container"></div></td>
+					</tr>
+				</table>
+		</div>
 	</div>
 </body>
 </html>
