@@ -59,7 +59,11 @@ function searchTx()
 	        
 	        //alert('transaction searched ' + document.getElementById("searchedData").innerHTML);
 	        
-	        
+	        var s = data;
+	        if(s.indexOf("Buyer") > -1)
+	           document.getElementById("userType").value = "Buyer";
+	        else
+	        	 document.getElementById("userType").value = "Seller";
 	    }
 	    
 	});
@@ -79,7 +83,7 @@ function starClicked(x)
 <body>
 
 <div class="container">
-	<form class="form-horizontal" id="requestbook" action="requestbook" method="post" >
+	<form class="form-horizontal" id="getMessage" action="getMessage" method="post" >
 		<fieldset>
 		
 		<!-- Form Name -->
@@ -125,6 +129,7 @@ function starClicked(x)
 			<span id="3" onClick="javascript: starClicked(3);">☆</span><span id="4" onClick="javascript: starClicked(4);">☆</span>
 			<span id="5" onClick="javascript: starClicked(5);">☆</span>
 			<input id="rating" name="rating" type="hidden" >
+			<input id="userType" name="userType" type="hidden" >
 			<input id="pageContext" name="pageContext" type="hidden" value="${pageContext.request.contextPath}">
 			</div> <br/>
 			<label class="col-md-4 control-label" for="textinput">Message</label> 
