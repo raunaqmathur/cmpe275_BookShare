@@ -58,7 +58,6 @@
 
 
 		function RedirectToEdit() {
-			alert('edit ' + document.getElementById('redirectTo').value);
 			var x = document.getElementById('bookId').value;
 			if(document.getElementById('redirectTo').value == '')
 				window.location = "../bookhome/" + x;
@@ -68,7 +67,6 @@
 		}
 	
 		function RedirectToBuy() {
-			alert('purchase ' + document.getElementById('redirectToBuy').value);
 			var x = document.getElementById('bookId').value;
 			if(document.getElementById('redirectToBuy').value == '')
 				window.location = "../purchase/" + x;
@@ -84,14 +82,14 @@
 		<div class="table-responsive col-md-6">
 			<div class="panel panel-primary">
 				<div class="panel-heading">Book Details</div>
-				<table class="table table-striped">					
-					<tr>
+				<table class="table">					
+					<tr class="active">
 					    <td colspan="3">
 					  		<img src="${bookdetails.pictureId}" alt="http://images.clipartpanda.com/books-20clipart-books-for-clip-art-9.jpg" height="100" width="100">
 					    </td>
 					</tr>
 					
-					<tr>
+					<tr class="info">
 					    <td><label>Title</label></td>
 					    <td><label>${bookdetails.title}</label>
 						<input type="hidden" id="bookId" value="${bookdetails.bookId}"></input>
@@ -101,58 +99,56 @@
 					    <td></td>
 					</tr>
 					
-					<tr>
+					<tr class="info">
 					    <td><label>Author</label></td>
 					    <td><label>${bookdetails.author}</label></td>
 					    <td></td>
 					</tr>
 					
-					<tr>
+					<tr class="info">
 					    <td><label>ISBN</label></td>
 					    <td><label>${bookdetails.isbn}</label></td>
 					    <td></td>
 					</tr>
 					
-					<tr>
+					<tr class="info">
 					    <td><label>Description</label></td>
 					    <td><label>${bookdetails.description}</label></td>
 					    <td></td>
 					</tr>
 					 
-					<tr>
+					<tr class="info">
 					    <td><label>Price</label></td>
 					    <td><label>${bookdetails.price}</label></td>
 					    <td></td>
 					</tr>
 					
-					<tr>
+					<tr class="info">
 					    <td><label>Condition</label></td>
 					    <td><label>${bookdetails.condition}</label></td>
 					    <td></td>
 					    
 					</tr>
 					
-					<tr>
+					<tr class="info">
 					    <td><label>Keywords</label></td>
 					    <td><label>${bookdetails.keywords}</label></td>
 					    <td></td>
 					</tr>
 					
-					<tr>
+					<tr class="info">
 					    <td><label>Category</label></td>
 					    <td><label id="cati">${catId}</label></td>
 					    <td></td>
 					</tr>
 					
-					<%-- <tr>
-					    <td><label>Picture link</label></td>
-					    <td><label>${bookdetails.pictureId}</label></td>
-					    <td></td>
-					</tr> --%>
-					
-					<tr>
+					<tr class="info">
 					    <td><label>Uploader</label></td>
-					    <td><label><a href="${pageContext.request.contextPath}/showuser/${bookdetails.getUserId().getUserId()}" role="button">${bookdetails.getUserId().getName()}</a></label></td>
+					    <% if(null == session.getAttribute("USERID")){ %>
+					    	<td><label>${bookdetails.getUserId().getName()}</label></td>
+					    <% } else { %>
+					    	<td><label><a href="${pageContext.request.contextPath}/showuser/${bookdetails.getUserId().getUserId()}" role="button">${bookdetails.getUserId().getName()}</a></label></td>
+					    <% } %>
 					    <td></td>
 					</tr>
 					
@@ -183,10 +179,11 @@
 						<input type="hidden" id="address" value="${bookdetails.pickupAddress}"></input></td>
 					</tr>
 					
-		    		<tr>
-						<td><div id="map_container"></div></td>
+		    		<tr >
+						<td><div id="map_container" align="center"></div></td>
 					</tr>
 				</table>
+			</div>
 		</div>
 	</div>
 </body>

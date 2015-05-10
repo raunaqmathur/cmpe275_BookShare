@@ -23,7 +23,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container-fluid">
 	  <div class="navbar-header">
 	      <a class="navbar-brand" href="${pageContext.request.contextPath}">
@@ -59,7 +59,7 @@
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hi ${sessionScope.USERNAME} <span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
 		            <li><a href="${pageContext.request.contextPath}/showuser/${sessionScope.USERID}">Profile</a></li>
-				    <li><a href="#">View Transactions</a></li>
+				    <li><a href="${pageContext.request.contextPath}/transactions">View Transactions</a></li>
 				    <li><a href="${pageContext.request.contextPath}/requestbook">Make a request</a></li>
 				    <li><a href="${pageContext.request.contextPath}/logout">Signout</a></li>
 		          </ul>
