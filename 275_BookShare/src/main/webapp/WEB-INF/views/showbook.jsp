@@ -150,13 +150,19 @@
 					    <td></td>
 					</tr> --%>
 					
+					<tr>
+					    <td><label>Uploader</label></td>
+					    <td><label><a href="${pageContext.request.contextPath}/showuser/${bookdetails.getUserId().getUserId()}" role="button">${bookdetails.getUserId().getName()}</a></label></td>
+					    <td></td>
+					</tr>
+					
 					<% if(null == session.getAttribute("USERID")){ %>
 						    <td colspan="2" align="right"><a class="btn btn-primary" href="${pageContext.request.contextPath}/login" role="button">Log in to Buy</a>
 						    
 		            <% } else { %>
 						<tr>
-							<td colspan="2" align="right"><input type="submit" value="Buy" onClick="javascript: RedirectToBuy();" <c:if test="${owner == 'true'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
-							<td colspan="2" align="right"><input type="submit" id="edit" value="Edit" onClick="javascript: RedirectToEdit();" <c:if test="${owner == 'false'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
+							<td colspan="2" align="right"><input type="submit" class="btn btn-md btn-primary" value="Buy" onClick="javascript: RedirectToBuy();" <c:if test="${owner == 'true'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
+							<td colspan="2" align="right"><input type="submit" class="btn btn-md btn-primary" id="edit" value="Edit" onClick="javascript: RedirectToEdit();" <c:if test="${owner == 'false'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
 						</tr>
 					<% } %>
 					
