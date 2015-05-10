@@ -301,6 +301,33 @@ public class DBCrud<T> {
 		
 		return result;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<transaction> getTransactionByUserAsBuyer(int buyerId){
+		System.out.println(" in all transaction " );
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+
+		Query query = session.createSQLQuery(
+				"select t.TransactionID, t.UserID, t.Price, t.BookID, t.TransactionTime from transaction t, book b  where t.BookID = b.BookID and b.UserID = :sCode")
+				.addEntity(transaction.class)
+				.setParameter("sCode", buyerId);
+				List<transaction>  result = (List<transaction>)query.list();
+
+
+
+
+		session.close();
+		s.close();
+		
+		
+		return result;
+	}
+
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	public transaction getCurrentTransactionByUser(int userId){
 		System.out.println(" in all transaction " );

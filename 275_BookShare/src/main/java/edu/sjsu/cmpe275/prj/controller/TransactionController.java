@@ -104,10 +104,18 @@ public class TransactionController {
     	List<transaction> txList = new ArrayList<transaction>();
     	txList=obj.getTransactionByUser(userId);
     	
-       ModelAndView model = new ModelAndView("transactions");
+    	List<transaction> txListAsBuyer = new ArrayList<transaction>();
+    	txListAsBuyer=obj.getTransactionByUserAsBuyer(userId);
+    	
+       
+    	
+    	
+    	
+    	ModelAndView model = new ModelAndView("transactions");
        
        
        model.addObject("str", txList);
+       model.addObject("strBuyer", txListAsBuyer);
 		return model;
     
     }

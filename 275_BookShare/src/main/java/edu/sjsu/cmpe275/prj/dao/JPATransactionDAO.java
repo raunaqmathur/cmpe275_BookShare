@@ -124,6 +124,22 @@ public class JPATransactionDAO implements TransactionDAO{
 		
 		return lstTransac;
 	}
+	
+	public List<transaction> getTransactionByUserAsBuyer(int buyerId) {
+		List<transaction> lstTransac = new ArrayList<transaction>();
+		
+
+		try {
+			DBCrud<transaction> db = new DBCrud<transaction>();
+			lstTransac = db.getTransactionByUserAsBuyer(buyerId);
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return lstTransac;
+	}
 
 	public transaction getCurrentTransactionByUser(int userId) {
 		transaction lstTransac = new transaction();
