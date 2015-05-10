@@ -2,9 +2,7 @@ package edu.sjsu.cmpe275.prj.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import edu.sjsu.cmpe275.prj.dataoperations.DBCrud;
-import edu.sjsu.cmpe275.prj.models.feedback;
 import edu.sjsu.cmpe275.prj.models.requestbook;
 
 public class JPARequestCategory implements RequestBookDAO {

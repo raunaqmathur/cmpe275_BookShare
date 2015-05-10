@@ -5,38 +5,25 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
 
 <script >
-
-
 		$(document).ready(function(){
 		    if(document.getElementById('active').value == 0)
 				document.getElementById('activeX').checked = true;
 		    else
 		    	document.getElementById('activeX').checked = false;
-			
-			
 		});
-
-
 
 	function changeRemove()
 	{
 		
 		var x = document.getElementById('activeX').checked;
 		
-		//alert('' + document.getElementById('active').value);
-		
 		if(x == true)
 			document.getElementById('active').value = 0;
 		else
 			document.getElementById('active').value = 1;
 		
-		
-		//alert('' + document.getElementById('active').value);
-		
 	}
 
-	
-	
 </script>
 </head>
 <body>
