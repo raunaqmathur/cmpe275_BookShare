@@ -158,10 +158,10 @@
 					
 					<% if(null == session.getAttribute("USERID")){ %>
 						    <td colspan="2" align="right"><a class="btn btn-primary" href="${pageContext.request.contextPath}/login" role="button">Log in to Buy</a>
-					<% } else if(bookStatus.equalsIgnoreCase("sold")){ %>
-						    <td colspan="2" align="right"><a class="btn btn-primary" href="${pageContext.request.contextPath}/requestbook" role="button">Make a request</a>
-		            <% } else if(ownerId == Integer.parseInt(session.getAttribute("USERID").toString())){ %>
-							<td colspan="2" align="right"><input type="submit" class="btn btn-md btn-primary" id="edit" value="Edit" onClick="javascript: RedirectToEdit();"></td>
+					<% } else if(ownerId == Integer.parseInt(session.getAttribute("USERID").toString())){ %>
+						    <td colspan="2" align="right"><input type="submit" class="btn btn-md btn-primary" id="edit" value="Edit" onClick="javascript: RedirectToEdit();"></td>
+		            <% } else if(bookStatus.equalsIgnoreCase("sold")){ %>
+							<td colspan="2" align="right"><a class="btn btn-primary" href="${pageContext.request.contextPath}/requestbook" role="button">Make a request</a>
 					<% } else {%>
 							<td colspan="2" align="right"><input type="submit" class="btn btn-md btn-primary" value="Buy" onClick="javascript: RedirectToBuy();" ></td>
 					<% } %>
