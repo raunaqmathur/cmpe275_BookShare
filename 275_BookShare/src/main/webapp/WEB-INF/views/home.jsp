@@ -57,7 +57,7 @@
 	<div class="container-fluid" style="margin-top:15px">  
 		<div class="row">
 			<c:forEach items="${pagedetails.books}" var="result">
-				<c:if test="${result.getStatus() != 'Sold'}">
+<%-- 				<c:if test="${result.getStatus() != 'Sold'}"> --%>
 					<div class="col-md-2">
 						<a href="${pageContext.request.contextPath}/showbook/${result.bookId}">
 							<img class="img-thumbnail" src="${result.pictureId}" width="300" height="200">
@@ -67,7 +67,7 @@
 						</h4>
 						<p>Price: $${result.getPrice()}</p>
 					</div>
-				</c:if>
+<%-- 				</c:if> --%>
 			</c:forEach>
 		</div>
 	</div>
