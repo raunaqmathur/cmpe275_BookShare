@@ -182,8 +182,8 @@
 					    <td><label>${bookdetails.pickupAddress}</label></td>
 						<input type="hidden" id="address" value="${bookdetails.pickupAddress}"></input></td>
 					</tr>
-					
-		    		<tr >
+
+		    		<tr>
 						<td><div id="map_container" align="center"></div></td>
 					</tr>
 				</table>
