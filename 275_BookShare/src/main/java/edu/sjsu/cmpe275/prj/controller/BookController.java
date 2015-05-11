@@ -79,7 +79,8 @@ public class BookController {
 		//System.out.println("going: " +bookModel.getBookId() );
     	
     	System.out.println("timestamp = " + bookModel.getBookTime());
-    	
+    	//test
+    	mv.addObject("one","toooo");
     	
         mv.addObject("catId", bookModel.getCategoryId().getName());
         mv.addObject("bookdetails", bookModel);
@@ -91,15 +92,12 @@ public class BookController {
     
    //new book addition
     @RequestMapping(value = "/bookhome",method = RequestMethod.GET)
-    public ModelAndView uploadBook() {
+    public Object uploadBook() {
     	// session check code
     	if(!sessionService.checkAuth())
     	{
-    		System.out.println("chk class wrked!");
-    		login = new Login();
-        	
     		
-    	    return new ModelAndView("login", "logindetails", login);
+    		return "redirect:/login";
     		
     		
     	}
@@ -130,10 +128,7 @@ public class BookController {
     		
     		System.out.println("user not logged in");
     		
-    		login = new Login();
-        	
-    		
-    	    return new ModelAndView("login", "logindetails", login);
+    		return "redirect:/login";
     		
     		
     	}
@@ -144,14 +139,14 @@ public class BookController {
     
     //update book
     @RequestMapping(value = "/bookhome/{bookId}",method = RequestMethod.GET)
-    public ModelAndView updateBook(@PathVariable int bookId) {
+    public Object updateBook(@PathVariable int bookId) {
     	if(!sessionService.checkAuth())
     	{
     		System.out.println("chk class wrked!");
     		login = new Login();
         	
     		
-    	    return new ModelAndView("login", "logindetails", login);
+    		return "redirect:/login";
     		
     		
     	}
@@ -175,18 +170,14 @@ public class BookController {
     
     //post for book update or creation
     @RequestMapping(value = "/bookhome",method = RequestMethod.POST)
-    public ModelAndView initN1(@ModelAttribute("bookdetails")book bookModel1, BindingResult bindingResult, 
+    public Object initN1(@ModelAttribute("bookdetails")book bookModel1, BindingResult bindingResult, 
             HttpServletRequest request,  HttpServletResponse response,
              @RequestParam(value="categoryX") int  categoryId) 
     {
 
     	if(!sessionService.checkAuth())
     	{
-    		System.out.println("chk class wrked!");
-    		login = new Login();
-        	
-    		
-    	    return new ModelAndView("login", "logindetails", login);
+    		return "redirect:/login";
     		
     		
     	}

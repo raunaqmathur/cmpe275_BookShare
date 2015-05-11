@@ -48,24 +48,13 @@ import edu.sjsu.cmpe275.prjservices.UserRecordService;
 @Controller
 public class CategoryController {
  
-    
-    
-   
-    
-   
-    
-    private user userModel;
+      private user userModel;
     
     private book bookModel;
     private category categoryModel;
     HttpSession session;
     
-    
-    
-    
-    //ex ends
-  //1.Creating the u.i for user sign up page
-    
+  
     @RequestMapping(value = "/category",method = RequestMethod.GET)
     public ModelAndView uploadCategory() {
     	categoryModel = new category();

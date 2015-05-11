@@ -3,7 +3,10 @@ package edu.sjsu.cmpe275.prj.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import redis.clients.jedis.Jedis;
 
@@ -25,7 +28,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
+
+
+
+
+
+
+
 
 
 
@@ -209,7 +221,7 @@ public class FirstController {
 
     
     @RequestMapping(value = "/editprofile",method = RequestMethod.POST)
-    public ModelAndView editProfile(@ModelAttribute("userdetails")user userModel1, BindingResult bindingResult, 
+    public Object editProfile(@ModelAttribute("userdetails")user userModel1, BindingResult bindingResult, 
             HttpServletRequest request,  HttpServletResponse response) 
     {
     	if(!sessionService.checkAuth())
@@ -218,7 +230,7 @@ public class FirstController {
     		Login login = new Login();
         	
     		
-    	    return new ModelAndView("login", "logindetails", login);
+    		return "redirect:/login";
     		
     		
     	}
@@ -347,24 +359,38 @@ public class FirstController {
 	//karan code ends
    
     //method to search
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value = "/searchResults",method = RequestMethod.GET)
+    public Object SearchR(
+    		HttpServletRequest request,final RedirectAttributes redirectAttributes) {
+    	List<book> list1 = new ArrayList<book>();
+    	
+    	Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+    	  if (inputFlashMap != null) {
+    	    
+			 list1 = (List<book>) inputFlashMap.get("pagedetails");
+			
+    	  }
+    	 
+    	ModelAndView mv = new ModelAndView();
+    	mv.addObject("pagedetails", list1);
+  		mv.setViewName("searchResults");
+	return mv;
+    } 
+    
     @RequestMapping(value = "/search",method = RequestMethod.GET)
-    public ModelAndView Search(
+    public String Search(
     		@RequestParam(value ="searchbox", required = true, defaultValue = "C++") String input,
-    		HttpServletRequest request) {
+    		HttpServletRequest request,final RedirectAttributes redirectAttributes) {
     	System.out.println(input);
     	List<book> lis = searchService.getAllResults(input);
-    	System.out.println("size is--"+lis.size());
-    	System.out.println("price is--"+lis.get(0).getPrice());
-    	System.out.println(searchService.getAllResults(input));
-    	System.out.println("go into search dude");
-    	System.out.println("Landing Page");
-		ModelAndView mv = new ModelAndView();
-		// getting data
+    	
+		redirectAttributes.addFlashAttribute("pagedetails", lis);
 		
-		mv.addObject("pagedetails", lis);
-		mv.setViewName("searchResults");
-		return mv;
-    	//return new ModelAndView("home");
+		return "redirect:searchResults";
+
     } 
+    
+    
     
 }

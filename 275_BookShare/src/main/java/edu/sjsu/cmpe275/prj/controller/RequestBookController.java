@@ -61,15 +61,12 @@ public class RequestBookController
   //1.Creating the u.i for user sign up page
     
     @RequestMapping(value = "/requestbook",method = RequestMethod.GET)
-    public ModelAndView uploadBook() {
+    public Object uploadBook() {
     	
     	if(!sessionService.checkAuth())
     	{
-    		System.out.println("chk class wrked!");
-    		Login login = new Login();
-        	
     		
-    	    return new ModelAndView("login", "logindetails", login);
+    		return "redirect:/login";
     		
     		
     	}
@@ -80,14 +77,10 @@ public class RequestBookController
     }
     
     @RequestMapping(value = "/requestdetails",method = RequestMethod.GET)
-    public ModelAndView uploadrequestbook() {
+    public Object uploadrequestbook() {
     	if(!sessionService.checkAuth())
     	{
-    		System.out.println("chk class wrked!");
-    		Login login = new Login();
-        	
-    		
-    	    return new ModelAndView("login", "logindetails", login);
+    			return "redirect:/login";
     		
     		
     	}
@@ -113,16 +106,13 @@ public class RequestBookController
    
   /* ================================================================================*/  
     @RequestMapping(value = "/requestbook",method = RequestMethod.POST)
-	public ModelAndView initN1(@ModelAttribute("requestbookdetails")requestbook requestbookModel1, BindingResult bindingResult, 
+	public Object initN1(@ModelAttribute("requestbookdetails")requestbook requestbookModel1, BindingResult bindingResult, 
             HttpServletRequest request,  HttpServletResponse response)
     {
     	if(!sessionService.checkAuth())
     	{
-    		System.out.println("chk class wrked!");
-    		Login login = new Login();
-        	
     		
-    	    return new ModelAndView("login", "logindetails", login);
+    		return "redirect:/login";
     		
     		
     	}

@@ -88,14 +88,14 @@ public class TransactionController {
     
   
     @RequestMapping(value = "/transactions",method = RequestMethod.GET)
-    public ModelAndView getTransactionsOfUser() {
+    public Object getTransactionsOfUser() {
     	if(!sessionService.checkAuth())
     	{
     		System.out.println("chk class wrked!");
     		Login login = new Login();
         	
     		
-    	    return new ModelAndView("login", "logindetails", login);
+    		return "redirect:/login";
     		
     		
     	}
@@ -122,7 +122,7 @@ public class TransactionController {
     
     
     @RequestMapping(value = "/currenttransactions/{txId}",method = RequestMethod.GET)
-    public ModelAndView getCurrentTransactionsOfUser(@PathVariable int txId) {
+    public Object getCurrentTransactionsOfUser(@PathVariable int txId) {
     	
     	if(!sessionService.checkAuth())
     	{
@@ -130,7 +130,7 @@ public class TransactionController {
     		Login login = new Login();
         	
     		
-    	    return new ModelAndView("login", "logindetails", login);
+    		return "redirect:/login";
     		
     		
     	}
@@ -148,7 +148,7 @@ public class TransactionController {
     }
     
     @RequestMapping(value = "/purchase/{bookId}",method = RequestMethod.GET)
-    public ModelAndView bookTransaction(@PathVariable int bookId) {
+    public Object bookTransaction(@PathVariable int bookId) {
     	
     	if(!sessionService.checkAuth())
     	{
@@ -156,7 +156,7 @@ public class TransactionController {
     		Login login = new Login();
         	
     		
-    	    return new ModelAndView("login", "logindetails", login);
+    		return "redirect:/login";
     		
     		
     	}
