@@ -16,28 +16,28 @@
 	      <!-- Wrapper for slides -->
 	      <div class="carousel-inner" role="listbox">
 	        <div class="item active">
-	          <img src="http://ecx.images-amazon.com/images/I/41wgksZup2L.jpg" alt="First slide" width="460" height="345">
+	          <img src="${pagedetails.books[1].pictureId}" alt="First slide" width="460" height="345">
 	          <div class="container">
 	            <div class="carousel-caption">
-	              <p><a class="btn btn-sm btn-primary" href="#" role="button">Buy Now</a></p>
+	              <p><a class="btn btn-sm btn-primary" href="${pageContext.request.contextPath}/showbook/${pagedetails.books[1].bookId}" role="button">Buy Now</a></p>
 	            </div>
 	          </div>
 	        </div>
 	        
 	        <div class="item">
-	          <img class="second-slide" src="http://i.imgur.com/7lnka2Z.jpg" alt="Second slide">
+	          <img class="second-slide" src="${pagedetails.books[2].pictureId}" alt="Second slide">
 	          <div class="container">
 	            <div class="carousel-caption">
-	              <p><a class="btn btn-sm btn-primary" href="#" role="button">Buy Now</a></p>
+	              <p><a class="btn btn-sm btn-primary" href="${pageContext.request.contextPath}/showbook/${pagedetails.books[2].bookId}" role="button">Buy Now</a></p>
 	            </div>
 	          </div>
 	        </div>
 	
 	        <div class="item">
-	          <img class="third-slide" src="http://ecx.images-amazon.com/images/I/41loDlWPAnL.jpg" alt="Third slide">
+	          <img class="third-slide" src="${pagedetails.books[3].pictureId}" alt="Third slide">
 	          <div class="container">
 	            <div class="carousel-caption">
-					<p><a class="btn btn-sm btn-primary" href="#" role="button">Buy Now</a></p>
+					<p><a class="btn btn-sm btn-primary" href="${pageContext.request.contextPath}/showbook/${pagedetails.books[3].bookId}" role="button">Buy Now</a></p>
 	            </div>
 	          </div>
 	        </div>
