@@ -147,6 +147,50 @@ public class TransactionController {
     
     }
     
+    
+    @RequestMapping(value = "/searchTransaction/{txId}",method = RequestMethod.GET)
+    @ResponseBody
+    public String searchTransactions(@PathVariable int txId) {
+    	
+    	
+    	int userId = Integer.parseInt(httpSession.getAttribute("USERID").toString());
+    	JPATransactionDAO obj= new JPATransactionDAO();
+    	transaction txList = new transaction();
+    	txList=obj.getCurrentTransactionByUser(txId);
+    	System.out.println("in searchtransaction: " +txList.getTransactionId() );
+       
+    	
+    	String model = "";
+       
+    	
+       if(txList.getBook().getUserId().getUserId() == userId || txList.getUser().getUserId() == userId)
+       {
+    	   	model =  "Transaction Id: " + txList.getTransactionId() 
+       		   + " <br/>" + "Book Id: " + txList.getBook().getBookId() 
+    		   + " <br/>" + "Book Title: " + txList.getBook().getTitle()
+    		   + " <br/>" + "Price: " + txList.getPrice()
+    		   + " <br/>" + "Transaction time: " + txList.getTransactionTime();
+       
+    	   	if(txList.getBook().getUserId().getUserId() == userId)
+    	   	{
+    	   		model+= " <br/>" + "Buyer: " + txList.getUser().getName();
+    	   	}
+    	   	else
+    	   		model+= " <br/>" + "Seller: " + txList.getBook().getUserId().getName();
+    	   	
+    	   	
+       }else
+    	   model = "";
+       System.out.println("in searchtransaction: " +model );
+       
+   	
+       
+		return model;
+    
+    }
+    
+    
+    
     @RequestMapping(value = "/purchase/{bookId}",method = RequestMethod.GET)
     public Object bookTransaction(@PathVariable int bookId) {
     	
