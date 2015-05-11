@@ -42,6 +42,12 @@
 			                <td><label>${result.transactionTime}</label></td>
 			                <td></td>
 			            </tr>
+			            
+			            <tr class="info">
+			                <td colspan="2" align="right">
+			                	<a class="btn btn-primary" href="${pageContext.request.contextPath}/feedback/seller/${result.transactionId}" role="button">Feedback</a>
+			                </td>
+			            </tr>
 		            
 					</c:forEach>
 					
@@ -84,6 +90,12 @@
 			                <td><label>Transaction Date</label></td>
 			                <td><label>${result.transactionTime}</label></td>
 			                <td></td>		                
+			            </tr>
+			            
+			            <tr class="info">
+			                <td colspan="2" align="right">
+			                	<a class="btn btn-primary" href="${pageContext.request.contextPath}/feedback/buyer/${result.transactionId}" role="button">Feedback</a>
+			                </td>
 			            </tr>
 		            
 					</c:forEach>

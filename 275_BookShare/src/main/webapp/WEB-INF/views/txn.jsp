@@ -17,7 +17,7 @@
 	<div class="container-fluid">
 		<div class="table-responsive col-md-offset-3 col-md-6">
 			<div class="panel panel-primary">
-				<div class="panel-heading">Transaction details</div>
+				<div class="panel-heading">Transaction Details</div>
 				
 				<table class="table">
             
@@ -48,7 +48,13 @@
 		            <tr class="info">
 		                <td><label>Transaction Time</label></td>
 		                <td><label>${result.transactionTime}</label></td>
-		                <td><input type="submit" class="btn btn-md btn-primary" value="View All Transactions" onClick="javascript: RedirectToTransactions();"></td>
+		            </tr>
+		            
+		            <tr class="info">
+		                <td colspan="2" align="right">
+		                	<a class="btn btn-primary" href="${pageContext.request.contextPath}/feedback/buyer/${result.transactionId}" role="button">Feedback</a>
+		                	<td><input type="submit" class="btn btn-md btn-primary" value="View All Transactions" onClick="javascript: RedirectToTransactions();"></td>
+		                </td>
 		            </tr>
 		            
         		</table>
