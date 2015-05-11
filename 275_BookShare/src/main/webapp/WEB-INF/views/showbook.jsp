@@ -1,5 +1,6 @@
 <%@    taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="edu.sjsu.cmpe275.prj.models.book" %>
 <jsp:include page="navbar.jsp" />
 <html>
 <head>
@@ -151,14 +152,19 @@
 					    <% } %>
 					    <td></td>
 					</tr>
+					<% book Book = (book)request.getAttribute("bookdetails"); 
+					   int ownerId = Book.getUserId().getUserId();%>
 					
 					<% if(null == session.getAttribute("USERID")){ %>
 						    <td colspan="2" align="right"><a class="btn btn-primary" href="${pageContext.request.contextPath}/login" role="button">Log in to Buy</a>
 						    
-		            <% } else { %>
+		            <% } else if(ownerId == Integer.parseInt(session.getAttribute("USERID").toString())){ %>
 						<tr>
-							<td colspan="2" align="right"><input type="submit" class="btn btn-md btn-primary" value="Buy" onClick="javascript: RedirectToBuy();" <c:if test="${owner == 'true'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
-							<td colspan="2" align="right"><input type="submit" class="btn btn-md btn-primary" id="edit" value="Edit" onClick="javascript: RedirectToEdit();" <c:if test="${owner == 'false'}"><c:out value="disabled='disabled'"/> </c:if> /></td>
+							<td colspan="2" align="right"><input type="submit" class="btn btn-md btn-primary" id="edit" value="Edit" onClick="javascript: RedirectToEdit();"></td>
+						</tr>
+					<% } else {%>
+						<tr>
+							<td colspan="2" align="right"><input type="submit" class="btn btn-md btn-primary" value="Buy" onClick="javascript: RedirectToBuy();" ></td>
 						</tr>
 					<% } %>
 					
