@@ -7,14 +7,14 @@
 	<div class="container-fluid">
 		<div class="table-responsive col-md-6">
 			<div class="panel panel-primary">
-				<div class="panel-heading">Purchase transactions</div>
+				<div class="panel-heading">Purchase Transactions</div>
 				
 				<table class="table">	
 		            
 		            <c:forEach items="${str}" var="result">
 		            
 			            <tr class="active">
-			                <td><label>transaction request number</label></td>
+			                <td><label>Transaction Number</label></td>
 			                <td><label>${result.transactionId}</label></td>
 			                <td></td>
 			            </tr>
@@ -38,7 +38,7 @@
 			            </tr>
 			            
 			            <tr class="info">
-			                <td><label>transaction date</label></td>
+			                <td><label>Transaction Date</label></td>
 			                <td><label>${result.transactionTime}</label></td>
 			                <td></td>
 			            </tr>
@@ -51,13 +51,13 @@
 	
 		<div class="table-responsive col-md-6">
 			<div class="panel panel-primary">
-				<div class="panel-heading">Sale transactions</div>
+				<div class="panel-heading">Sale Transactions</div>
 				
 				<table class="table">		            
 		            <c:forEach items="${strBuyer}" var="result">
 		            
 			            <tr class="active">
-			                <td><label>transaction request number</label></td>
+			                <td><label>Transaction Number</label></td>
 			                <td><label>${result.transactionId}</label></td>
 			                <td></td>
 			            </tr>
@@ -81,7 +81,7 @@
 			            </tr>
 			            
 			            <tr class="info">
-			                <td><label>transaction date</label></td>
+			                <td><label>Transaction Date</label></td>
 			                <td><label>${result.transactionTime}</label></td>
 			                <td></td>		                
 			            </tr>
