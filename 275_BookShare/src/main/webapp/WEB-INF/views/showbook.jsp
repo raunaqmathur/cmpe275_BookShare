@@ -86,7 +86,7 @@
 				<table class="table">					
 					<tr class="active">
 					    <td colspan="3">
-					  		<img src="${bookdetails.pictureId}" alt="http://images.clipartpanda.com/books-20clipart-books-for-clip-art-9.jpg" height="100" width="100">
+					  		<img src="${bookdetails.pictureId}" height="100" width="100">
 					    </td>
 					</tr>
 					
