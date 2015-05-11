@@ -54,74 +54,24 @@
 	      </a>
 	    </div><!-- /.carousel -->
 
-<div class="container" style="margin-top:15px">  
-<c:forEach items="${pagedetails.books}" var="result" varStatus="status" step="6"> 
-          
-  <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-2 portfolio-item">
-                <a href="${pageContext.request.contextPath}/showbook/${pagedetails.books[status.index].bookId}">
-                    <img class="img-responsive" src="${pagedetails.books[status.index].pictureId}" width="300" height="200">
-                </a>
-                <h4>
-                    <a href="#">${pagedetails.books[status.index].title}</a>
-                </h4>
-                <p>${pagedetails.books[status.index].description}</p>
-            </div>
-
-            <div class="col-md-2 portfolio-item">
-                <a href="${pageContext.request.contextPath}/showbook/${pagedetails.books[status.index+1].bookId}">
-                    <img class="img-responsive" src="${pagedetails.books[status.index+1].pictureId}" width="300" height="200">
-                </a>
-                <h4>
-                    <a href="#">${pagedetails.books[status.index+1].title}</a>
-                </h4>
-                <p>${pagedetails.books[status.index+1].description}</p>
-            </div>
-
-            <div class="col-md-2 portfolio-item">
-                <a href="${pageContext.request.contextPath}/showbook/${pagedetails.books[status.index+2].bookId}">
-                    <img class="img-responsive" src="${pagedetails.books[status.index+2].pictureId}" width="300" height="200">
-                </a>
-                <h4>
-                    <a href="#">${pagedetails.books[status.index+2].title}</a>
-                </h4>
-                <p>${pagedetails.books[status.index+2].description}</p>
-            </div>
-
-            <div class="col-md-2 portfolio-item">
-                <a href="${pageContext.request.contextPath}/showbook/${pagedetails.books[status.index+3].bookId}">
-                    <img class="img-responsive" src="${pagedetails.books[status.index+3].pictureId}" width="300" height="200">
-                </a>
-                <h4>
-                    <a href="#">${pagedetails.books[status.index+3].title}</a>
-                </h4>
-                <p>${pagedetails.books[status.index+3].description}</p>
-            </div>
-
-            <div class="col-md-2 portfolio-item">
-                <a href="${pageContext.request.contextPath}/showbook/${pagedetails.books[status.index+4].bookId}">
-                    <img class="img-responsive" src="${pagedetails.books[status.index+4].pictureId}" width="300" height="200">
-                </a>
-                <h4>
-                    <a href="#">${pagedetails.books[status.index+4].title}</a>
-                </h4>
-                <p>${pagedetails.books[status.index+4].description}</p>
-            </div>
-
-            <div class="col-md-2 portfolio-item">
-                <a href="${pageContext.request.contextPath}/showbook/${pagedetails.books[status.index+5].bookId}">
-                    <img class="img-responsive" src="${pagedetails.books[status.index+5].pictureId}" width="200" height="200">
-                </a>
-                <h4>
-                    <a href="#">${pagedetails.books[status.index+5].title}</a>
-                </h4>
-                <p>${pagedetails.books[status.index+5].description}</p>
-            </div>
-            
-        </div>
-        <!-- /.row -->
-</c:forEach>
-</div>
+	<div class="container-fluid" style="margin-top:15px">  
+		<div class="row-fluid">
+			<div class="container-fluid">
+			<c:forEach items="${pagedetails.books}" var="result">
+<%-- 				<c:if test="${result.getStatus() != 'Sold'}"> --%>
+					<div class="col-md-2">
+						<a href="${pageContext.request.contextPath}/showbook/${result.bookId}">
+							<img class="img-thumbnail" src="${result.pictureId}" width="300" height="200">
+						</a>
+						<h4>
+					    	<a href="#">${result.title}</a>
+						</h4>
+						<p>Price: $${result.getPrice()}</p>
+					</div>
+<%-- 				</c:if> --%>
+			</c:forEach>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
