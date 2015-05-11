@@ -67,8 +67,8 @@
 			</div>
 			
 			<div class="form-group">
-				<label class="col-md-7 control-label" for="singlebutton"></label>
-				<div class="col-md-4">
+				<label class="col-md-4 control-label" for="singlebutton"></label>
+				<div class="col-md-7">
 					<button id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit">Register</button>
 					<div><font color="red"><form:errors /></font></div>
 				</div>
