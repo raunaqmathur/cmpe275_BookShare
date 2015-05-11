@@ -1,16 +1,10 @@
 package edu.sjsu.cmpe275.prj.dataoperations;
 
-
-
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
@@ -29,7 +23,6 @@ public class DBCrud<T> {
 	Session session;
 	SessionFactory s;
 	public DBCrud(){}
-	
 	
 	/*
 	 * Function to save new record
@@ -62,31 +55,19 @@ public class DBCrud<T> {
 			System.out.println("in jpa of req.book");
 			requestbook s = (requestbook)obj;
 			id = s.getRequestId();
-
-
 			System.out.println("in crud book " + id);
 		}
-		
 		else if(obj instanceof feedback){
 			feedback s = (feedback)obj;
 			id = s.getFeedbackId();
-
-
 			System.out.println("in crud book " + id);
-		}
-		
-		
+		}		
 		else if(obj instanceof transaction){
-
-
 			transaction s = (transaction)obj;
 			id = s.getTransactionId();
 			System.out.println("in crud transaction " + id);
 		}
-
 		else if(obj instanceof statistics){
-
-
 			statistics s = (statistics)obj;
 			id = s.getUsId();
 			System.out.println("in crud statistics " + id);
@@ -99,7 +80,7 @@ public class DBCrud<T> {
 	
 	
 	/*
-	 * Function to reterieve tuple from database
+	 * Function to retrieve tuple from database
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
@@ -109,13 +90,10 @@ public class DBCrud<T> {
 		session.beginTransaction();
 		T newR;
 		newR = (T)session.get(obj.getClass(), id);
-		
 		session.close();
 		s.close();
-		
 		return newR;
 	}
-	
 	
 	/*
 	 * Function to update a tuple
@@ -131,7 +109,6 @@ public class DBCrud<T> {
 		s.close();
 	}
 	
-	
 	/*
 	 * Function to delete a tuple
 	 * 
@@ -144,9 +121,7 @@ public class DBCrud<T> {
 		session.getTransaction().commit();
 		session.close();
 		s.close();
-	}
-
-	
+	}	
 	
 	public int getExistingEmail(String emailId){
 		s = SessionFactoryObj.getSessionFactory();
@@ -159,12 +134,10 @@ public class DBCrud<T> {
 				int  result = query.list().size();
 		session.close();
 		s.close();
-		
 		System.out.println("----" + result);
 		return result;
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	public List<feedback> getSellerComments(int buyerID){
 		s = SessionFactoryObj.getSessionFactory();
@@ -177,14 +150,12 @@ public class DBCrud<T> {
 				List<feedback>  result = (List<feedback>)query.list();
 		session.close();
 		s.close();
-		
 		System.out.println("----" + result);
 		return result;
 	}
 	
-@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public List<feedback> getBuyerComments(int sellerID){
-
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
@@ -194,19 +165,14 @@ public class DBCrud<T> {
 				.addEntity(feedback.class)
 				.setParameter("sCode", sellerID);
 				List<feedback>  result = (List<feedback>)query.list();
-
-
-
-
+				
 		session.close();
 		s.close();
-		
 		System.out.println("----" + result);
 		return result;
 	}
 
 	@SuppressWarnings("unchecked")
-
 	public T getUserStatisticsByUser(int userId){
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
@@ -229,7 +195,6 @@ public class DBCrud<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-
 	public List<category> getCategories(){
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
@@ -271,14 +236,14 @@ public class DBCrud<T> {
 		
 		
 				int  result = query.list().size();
-				
 		
 		session.close();
 		s.close();
 		
 		System.out.println("login - " + result);
 		return result;
-}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<transaction> getTransactionByUser(int userId){
 		System.out.println(" in all transaction " );
@@ -292,13 +257,9 @@ public class DBCrud<T> {
 				.setParameter("sCode", userId);
 				List<transaction>  result = (List<transaction>)query.list();
 
-
-
-
 		session.close();
 		s.close();
-		
-		
+				
 		return result;
 	}
 	
@@ -310,23 +271,16 @@ public class DBCrud<T> {
 		session.beginTransaction();
 
 		Query query = session.createSQLQuery(
-				"select t.TransactionID, t.UserID, t.Price, t.BookID, t.TransactionTime from transaction t, book b  where t.BookID = b.BookID and b.UserID = :sCode")
+				"select t.TransactionID, t.UserID, t.Price, t.BookID, t.TransactionTime from transaction t, book b  where t.BookID = b.BookID and t.UserID = :sCode")
 				.addEntity(transaction.class)
 				.setParameter("sCode", buyerId);
 				List<transaction>  result = (List<transaction>)query.list();
 
-
-
-
 		session.close();
 		s.close();
 		
-		
 		return result;
 	}
-
-	
-	
 	
 	@SuppressWarnings("unchecked")
 	public transaction getCurrentTransactionByUser(int userId){
@@ -341,19 +295,14 @@ public class DBCrud<T> {
 				.setParameter("sCode", userId);
 				transaction  result = (transaction)query.list().get(0);
 
-
-
-
 		session.close();
 		s.close();
-		
 		
 		return result;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<requestbook> getRequestdetails()
-		{
+	public List<requestbook> getRequestdetails() {
 		List<requestbook> result = new ArrayList<requestbook>();
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
@@ -365,16 +314,13 @@ public class DBCrud<T> {
 		s.close();		
 		System.out.println("----" + result);
 		return result;
-		}
+	}
 	
 	//search methods for books
-	
 	List<book> listOfbooks = new ArrayList<book>();
 	
 	@SuppressWarnings("unchecked")
-	public List<book> getAllResults(String input)
-		{
-		//List<requestbook> result = new ArrayList<requestbook>();
+	public List<book> getAllResults(String input) {
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
@@ -384,18 +330,14 @@ public class DBCrud<T> {
 		session.close();
 		s.close();		
 		for(int i = 0; i < listOfbooks.size();i++)
-		{
 			System.out.println("book id got--"+listOfbooks.get(i).getBookId());
-		}
 		System.out.println("----" + listOfbooks);
 		return listOfbooks;
-		}
+	}
 	
 	//searches by only book title
 	@SuppressWarnings("unchecked")
-	public List<book> getResultsByName(String input)
-		{
-		//List<requestbook> result = new ArrayList<requestbook>();
+	public List<book> getResultsByName(String input) {
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
@@ -406,13 +348,10 @@ public class DBCrud<T> {
 		s.close();		
 		System.out.println("----" + listOfbooks);
 		return listOfbooks;
-		}
-	
+	}	
 	
 	@SuppressWarnings("unchecked")
-	public List<book> getResultsByAuthName(String input)
-		{
-		//List<requestbook> result = new ArrayList<requestbook>();
+	public List<book> getResultsByAuthName(String input) {
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
@@ -423,12 +362,10 @@ public class DBCrud<T> {
 		s.close();		
 		System.out.println("----" + listOfbooks);
 		return listOfbooks;
-		}
+	}
 	
 	@SuppressWarnings("unchecked")
-	public List<book> getResultsByAuthName1(String input)
-		{
-		//List<requestbook> result = new ArrayList<requestbook>();
+	public List<book> getResultsByAuthName1(String input) {
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
@@ -439,6 +376,6 @@ public class DBCrud<T> {
 		s.close();		
 		System.out.println("----" + listOfbooks);
 		return listOfbooks;
-		}
+	}
 
 }

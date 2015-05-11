@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 <%@    taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+=======
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<jsp:include page="navbar.jsp" />
+>>>>>>> Stashed changes
 <html>
   <head>
     <meta charset="utf-8">
