@@ -26,7 +26,7 @@
 
 </head>
 <body>
-	<div class="container-fluid" style="margin-top:15px">
+	<div class="container-fluid">
 		<div class="table-responsive col-md-offset-3 col-md-6">
 			<div class="panel panel-primary">
 				<div class="panel-heading">User Details</div>
