@@ -1,9 +1,7 @@
 package edu.sjsu.cmpe275.prj.models;
 
-
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,20 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 public class transaction implements Serializable {
 	
-	
 	private static final long serialVersionUID = 1L;
-
-
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "TransactionID")
     private int transactionId;
-    
-    
     
     @ManyToOne
    	@JoinColumn(name = "bookId")
@@ -34,12 +26,6 @@ public class transaction implements Serializable {
     @ManyToOne
    	@JoinColumn(name = "userId")
    	private user user;
-    
-    
-  
-    
-    
-    
     
     @Column(name = "price")
     private double price;
@@ -58,6 +44,9 @@ public class transaction implements Serializable {
 		this.sellerFeedback = sellerFeedback;
 	}
 
+	@Column(name = "BuyerFeedback")
+    private int buyerFeedback;
+	
 	public int getBuyerFeedback() {
 		return buyerFeedback;
 	}
@@ -65,9 +54,6 @@ public class transaction implements Serializable {
 	public void setBuyerFeedback(int buyerFeedback) {
 		this.buyerFeedback = buyerFeedback;
 	}
-
-	@Column(name = "BuyerFeedback")
-    private int buyerFeedback;
 
 	public int getTransactionId() {
 		return transactionId;
@@ -93,7 +79,6 @@ public class transaction implements Serializable {
 		this.user = user;
 	}
 
-	
 	public double getPrice() {
 		return price;
 	}
@@ -109,9 +94,5 @@ public class transaction implements Serializable {
 	public void setTransactionTime(Date transactionTime) {
 		this.transactionTime = transactionTime;
 	}
-    
-    
-
-
 	
 }
