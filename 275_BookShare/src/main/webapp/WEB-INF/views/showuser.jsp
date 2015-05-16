@@ -1,5 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <jsp:include page="navbar.jsp" />
+<%@ page import="edu.sjsu.cmpe275.prj.models.user" %>
 <html>
 <head>
 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
@@ -30,54 +31,54 @@
 		<div class="table-responsive col-md-offset-3 col-md-6">
 			<div class="panel panel-primary">
 				<div class="panel-heading">User Details</div>
-				<table class="table table-striped">
+				<table class="table">
             
-		            <tr>
+		            <tr class="info">
 		                <td><label>Name</label></td>
 		                <td><label>${userdetails.name}</label>
 		                <input type="hidden" id="userId" value="${userdetails.userId}"></input>
 		                <input type="hidden" id="redirectTo" value="${redirectTo}"></input>
 		                <input type="hidden" id="redirectToTransac" value="${redirectToTransac}"></input></td>
-		                <td></td>
 		            </tr>
 	           
-		            <tr>
+		            <tr class="info">
 		                <td><label>Email Id</label></td>
-		                <td><label >${userdetails.emailId}</label></td>
-		                <td></td>
-		                
+		                <td><label>${userdetails.emailId}</label></td>
 		            </tr>
 	            
-					<tr>
+					<tr class="info">
 		                <td><label>Address</label></td>
 		                <td><label>${userdetails.address}</label></td>
-		                <td></td>
 					</tr>
 					
-					<tr>
+					<tr class="info">
 					   <td><label>Phone Number</label></td>
 					   <td><label>${userdetails.phone}</label></td>
-					   <td></td>
 					</tr>
 	             
-					<tr>
+					<tr class="info">
 					   <td><label>Age</label></td>
 					   <td><label>${userdetails.age}</label></td>
-					    <td></td>
 					</tr>
 	            
-		            <%-- <tr>
-		                <td><label>Active</label></td>
-		                <td><label>${userdetails.active}</label></td>
-		                <td></td>
-		            </tr> --%>
-	             
-		            <tr>
-		                <td colspan="2" align="center"><input type="submit" class="btn btn-md btn-primary" value="View transactions" onClick="javascript: RedirectToTransactions();" />
-						<input type="submit" class="btn btn-md btn-primary" value="Edit Profile" onClick="javascript: RedirectToEdit();" /></td>
-		            </tr>
-		            
-		            <tr>
+		            <% user User = (user)request.getAttribute("userdetails"); 
+					   int ownerId = User.getUserId(); %>
+	             	
+	             	<tr class="info">
+             		<% if(ownerId == Integer.parseInt(session.getAttribute("USERID").toString())){ %>
+		                <td colspan="2" align="center">
+			                <input type="submit" class="btn btn-md btn-primary" value="View transactions" onClick="javascript: RedirectToTransactions();"></input>
+							<input type="submit" class="btn btn-md btn-primary" value="Edit Profile" onClick="javascript: RedirectToEdit();"></input>
+							<a class="btn btn-primary" href="${pageContext.request.contextPath}/feedback/buyer/${result.transactionId}" role="button">Feedbacks</a>
+						</td>
+		        	<% } else {%>
+		        		<td colspan="2" align="center">
+			                <a class="btn btn-primary" href="${pageContext.request.contextPath}/feedback/buyer/${result.transactionId}" role="button">Feedbacks</a>
+						</td>
+					<% } %> 
+					</tr>
+					
+		            <tr class="info">
 		                <td colspan="3" align="center"><font color="red"><form:errors /></font></td>
 		            </tr>
 	        	</table>
