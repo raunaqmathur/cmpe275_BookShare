@@ -46,6 +46,28 @@ public class transaction implements Serializable {
 
     @Column(name = "TransactionTime")
     private Date transactionTime;
+    
+    @Column(name = "SellerFeedback")
+    private int sellerFeedback;
+    
+    public int getSellerFeedback() {
+		return sellerFeedback;
+	}
+
+	public void setSellerFeedback(int sellerFeedback) {
+		this.sellerFeedback = sellerFeedback;
+	}
+
+	public int getBuyerFeedback() {
+		return buyerFeedback;
+	}
+
+	public void setBuyerFeedback(int buyerFeedback) {
+		this.buyerFeedback = buyerFeedback;
+	}
+
+	@Column(name = "BuyerFeedback")
+    private int buyerFeedback;
 
 	public int getTransactionId() {
 		return transactionId;
