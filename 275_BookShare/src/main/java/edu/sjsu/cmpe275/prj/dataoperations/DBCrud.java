@@ -2,9 +2,11 @@ package edu.sjsu.cmpe275.prj.dataoperations;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
@@ -374,6 +376,36 @@ public class DBCrud<T> {
 		s.close();		
 		System.out.println("----" + listOfbooks);
 		return listOfbooks;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public feedback getFeedbackByTransaction(int txId){
+		System.out.println(" in all transaction " );
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+		feedback  result = new feedback();
+		try
+		{
+		Query query = session.createSQLQuery(
+				"select * from feedback  where TransactionID = :sCode")
+				.addEntity(feedback.class)
+				.setParameter("sCode", txId);
+				  result = (feedback)query.list().get(0);
+
+		}
+		catch(Exception ex)
+		{
+			
+			result = null;
+		}
+
+
+		session.close();
+		s.close();
+		
+		
+		return result;
 	}
 
 }
