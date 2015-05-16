@@ -271,7 +271,7 @@ public class DBCrud<T> {
 		session.beginTransaction();
 
 		Query query = session.createSQLQuery(
-				"select t.TransactionID, t.userID, t.Price, t.BookID, t.TransactionTime from transaction t, book b  where b.BookID = t.BookID and b.userID = :sCode")
+				"select t.TransactionID, t.userID, t.Price, t.BookID, t.TransactionTime, t.BuyerFeedback, t.SellerFeedback from transaction t, book b  where b.BookID = t.BookID and b.userID = :sCode")
 				.addEntity(transaction.class)
 				.setParameter("sCode", buyerId);
 				List<transaction> result = (List<transaction>)query.list();
