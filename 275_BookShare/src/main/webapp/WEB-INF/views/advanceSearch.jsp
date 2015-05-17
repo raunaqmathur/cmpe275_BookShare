@@ -27,7 +27,7 @@
 
 </c:forEach>
 <br>
-<label>mhere</label>
+<label>Corresponding filters won't work unless the checkboxes are checked</label>
 
 <br> <INPUT TYPE=submit name=submit Value="Submit">
        </form:form>

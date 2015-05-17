@@ -53,7 +53,7 @@
 	      		</form>
 
 	      		<ul class="nav navbar-nav navbar-right">
-			      	<li><a href="#">Advance Search</a></li>
+			      	<li><a href="${pageContext.request.contextPath}/advanceSearch">Advance Search</a></li>
 			      	<li><a href="${pageContext.request.contextPath}/bookhome">Sell</a></li>
 				  	<% if(null == session.getAttribute("USERID")){ %>
 	              		<li><a href="${pageContext.request.contextPath}/login">Login/Register</a></li>
