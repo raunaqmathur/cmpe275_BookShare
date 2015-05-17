@@ -14,7 +14,6 @@ import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.dao.JPABookDAO;
 import edu.sjsu.cmpe275.prj.dao.JPARequestCategory;
-import edu.sjsu.cmpe275.prj.dao.UserDAO;
 
 /**
  * Implementation of UserRecordService

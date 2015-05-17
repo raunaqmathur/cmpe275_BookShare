@@ -5,7 +5,6 @@ import java.util.List;
 
 import edu.sjsu.cmpe275.prj.dataoperations.DBCrud;
 import edu.sjsu.cmpe275.prj.models.bid;
-import edu.sjsu.cmpe275.prj.models.feedback;
 
 public class JPABidDAO implements BidDAO {
 

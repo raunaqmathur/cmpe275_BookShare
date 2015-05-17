@@ -21,7 +21,6 @@ import edu.sjsu.cmpe275.prj.models.user;
  * Class to perform database operation using sessionfactory object
  * perform Create, read, update, delete operation
  */
-@SuppressWarnings("unused")
 public class DBCrud<T> {
 	Session session;
 	SessionFactory s;
@@ -283,7 +282,6 @@ public class DBCrud<T> {
 		return result;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public transaction getCurrentTransactionByUser(int userId){
 		System.out.println(" in all transaction " );
 		s = SessionFactoryObj.getSessionFactory();
@@ -497,7 +495,6 @@ public class DBCrud<T> {
 		
 			}
 
-	@SuppressWarnings("unchecked")
 	public feedback getFeedbackByTransaction(int txId){
 		System.out.println(" in all transaction " );
 		s = SessionFactoryObj.getSessionFactory();

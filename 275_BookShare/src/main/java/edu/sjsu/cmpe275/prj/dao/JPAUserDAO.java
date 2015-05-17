@@ -20,7 +20,7 @@ import edu.sjsu.cmpe275.prj.models.user;
  * it implements the DAO of address
  */
 @SuppressWarnings("unused")
-public class JPAUserDAO implements UserDAO{
+public class JPAUserDAO {
 
 	
 	/*
@@ -118,58 +118,4 @@ public class JPAUserDAO implements UserDAO{
 
 		return tempUser;
 	}
-
-
-	public int insert1(user user) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	public int insertUser(user user) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	public user getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public void delete1(user user) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	public boolean deleteUser(user homepageModel) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	public void update1(user user) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	public int updateUser(user userModel) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	public user getUser(user userModel) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	
-
-
-	
 }

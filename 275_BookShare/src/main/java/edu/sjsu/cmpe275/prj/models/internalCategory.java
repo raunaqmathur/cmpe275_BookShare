@@ -3,8 +3,6 @@ package edu.sjsu.cmpe275.prj.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 /**
  * This model class contains the properties for the filed on the login.jsp page.
  * @author karan

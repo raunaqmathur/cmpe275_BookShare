@@ -48,13 +48,14 @@
 		            <tr class="info">
 		                <td><label>Transaction Time</label></td>
 		                <td><label>${result.transactionTime}</label></td>
+		                <td></td>
 		            </tr>
 		            
-		            <tr class="info">
+		            <tr>
 		                <td colspan="2" align="right">
 		                	<a class="btn btn-primary" href="${pageContext.request.contextPath}/feedback/buyer/${result.transactionId}" role="button">Feedback</a>
-		                	<td><input type="submit" class="btn btn-md btn-primary" value="View All Transactions" onClick="javascript: RedirectToTransactions();"></td>
 		                </td>
+		                <td><input type="submit" class="btn btn-md btn-primary" value="View All Transactions" onClick="javascript: RedirectToTransactions();"></td>
 		            </tr>
 		            
         		</table>
