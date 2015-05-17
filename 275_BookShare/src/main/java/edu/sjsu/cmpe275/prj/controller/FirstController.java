@@ -428,108 +428,77 @@ public class FirstController {
     		
     		HttpServletRequest request) {
     	
-    	
     	System.out.println("in advancesearch post");
-    	
-    	
     	double priceLow=00.00,priceHigh=00.00;
     	int [] catArray={-1};
     	String [] condi= new String[2];
     	condi[0]="ALL";
-    	
-    	
-    	if(byAuthChkBox.equalsIgnoreCase("Def"))
-    	{
+    	if(byAuthChkBox.equalsIgnoreCase("Def")) {
     		System.out.println("not checked");
     		byAuthTxt="ALL";
     		System.out.println(byAuthTxt+"  auth name not picked dude");
     	}
     	
     	//condition input parsing starts
-    	if(byCondChkBox.equalsIgnoreCase("Def"))
-    	{
+    	if(byCondChkBox.equalsIgnoreCase("Def")) {
     		System.out.println("cond. not checked");
     		newCondCheckbox="ALL";
     		oldCondCheckbox="ALL";
     		condi[0]="ALL";
-   		System.out.println(newCondCheckbox+"---new cond,old cond---"+oldCondCheckbox);
+    		System.out.println(newCondCheckbox+"---new cond,old cond---"+oldCondCheckbox);
     	}
-    	if((!(byCondChkBox.equalsIgnoreCase("Def"))) && (!(newCondCheckbox.equalsIgnoreCase("Def"))) && (!(oldCondCheckbox.equalsIgnoreCase("Def"))))
-    	{
+    	
+    	if((!(byCondChkBox.equalsIgnoreCase("Def"))) && (!(newCondCheckbox.equalsIgnoreCase("Def"))) && (!(oldCondCheckbox.equalsIgnoreCase("Def")))) {
     		condi[0]="New";
     		condi[1]="Old";
     	}
     	
-    	if((!(byCondChkBox.equalsIgnoreCase("Def"))) && (newCondCheckbox.equalsIgnoreCase("Def")) && (!(oldCondCheckbox.equalsIgnoreCase("Def"))))
-    	{
-    		//condi[0]="New";
+    	if((!(byCondChkBox.equalsIgnoreCase("Def"))) && (newCondCheckbox.equalsIgnoreCase("Def")) && (!(oldCondCheckbox.equalsIgnoreCase("Def")))) {
     		condi[0]="Old";
     		condi[1]="Old";
     	}
     	
-    	if((!(byCondChkBox.equalsIgnoreCase("Def"))) && (!(newCondCheckbox.equalsIgnoreCase("Def"))) && (oldCondCheckbox.equalsIgnoreCase("Def")))
-    	{
+    	if((!(byCondChkBox.equalsIgnoreCase("Def"))) && (!(newCondCheckbox.equalsIgnoreCase("Def"))) && (oldCondCheckbox.equalsIgnoreCase("Def"))) {
     		condi[0]="New";
     		condi[1]="New";
     	}
     	//condition input parsing ends
     	
-    	
-    	if(byPricChkBox.equalsIgnoreCase("Def"))
-    	{
+    	if(byPricChkBox.equalsIgnoreCase("Def")) {
     		System.out.println("price. not checked");
     		byPriceLowerTxt="ALL";
     		byPriceUpperTxt="ALL";
     		priceHigh=00.00;
     		priceLow=00.00;
-   		System.out.println(priceHigh+"---hgh price cond,low price---"+priceLow);
+    		System.out.println(priceHigh+"---hgh price cond,low price---"+priceLow);
     	}
-    	if(!(byPricChkBox.equalsIgnoreCase("Def")))
-    	{
-    		
+    	
+    	if(!(byPricChkBox.equalsIgnoreCase("Def"))) {
     		priceHigh=Double.parseDouble(byPriceUpperTxt)+00.00;
     		priceLow=Double.parseDouble(byPriceLowerTxt)+00.00;
     	}
     	
-    	
-    	
     	//byCategChkBoxP
     	
-    	if(byCategChkBoxP.equalsIgnoreCase("Def"))
-    	{
+    	if(byCategChkBoxP.equalsIgnoreCase("Def")) {
     		System.out.println("cat. not checked");
     		catArray[0]=-1;
-    		
-   		//System.out.println(newCondCheckbox+"---new cond,old cond---"+oldCondCheckbox);
     	}
-    	if(!(byCategChkBoxP.equalsIgnoreCase("Def")))
-    	{
+    	
+    	if(!(byCategChkBoxP.equalsIgnoreCase("Def"))) {
     		for (int categ : cobj.getSlist()) {
-        		
-    			System.out.println(categ);
-    			
-    			//System.out.println(categ.getCategoryId());
+        		System.out.println(categ);
     		}
     		catArray=cobj.getSlist();
     	}
     	
-    	
-    	
-    	List<book> lb =searchService.doAdvanceSearch(byAuthTxt, priceLow, priceHigh, condi, catArray);
-    	System.out.println("searchAdavance result size"+lb.size());
+    	List<book> lb = searchService.doAdvanceSearch(byAuthTxt, priceLow, priceHigh, condi, catArray);
+    	System.out.println("advanceSearch result size " + lb.size());
     	System.out.println(lb.get(0).getAuthor());
     	
-		
-    	
-    	//ModelAndView mv = new ModelAndView();
-    	//mv.addObject("pagedetails", lb);
-  		//mv.setViewName("advanceSearchresults");
-  		//return mv;
-    	
-    return null;
-
-    } 
-    
-    
-    
+    	ModelAndView mv = new ModelAndView();
+    	mv.addObject("pagedetails", lb);
+  		mv.setViewName("searchResults");
+  		return mv;
+    }
 }
