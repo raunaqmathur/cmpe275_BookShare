@@ -247,40 +247,38 @@ public class DBCrud<T> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<transaction> getTransactionByUser(int userId){
-		System.out.println(" in all transaction " );
+	public List<transaction> getTransactionByUserAsBuyer(int userId){
+		System.out.println(" in all transaction ");
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
 
 		Query query = session.createSQLQuery(
-				"select * from transaction  where userID = :sCode")
+				"select * from transaction where userID = :sCode")
 				.addEntity(transaction.class)
 				.setParameter("sCode", userId);
-				List<transaction>  result = (List<transaction>)query.list();
-
+				List<transaction> result = (List<transaction>)query.list();
 		session.close();
-		s.close();
-				
+		s.close();	
 		return result;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<transaction> getTransactionByUserAsBuyer(int buyerId){
-		System.out.println(" in all transaction " );
+	public List<transaction> getTransactionByUserAsSeller(int buyerId){
+		System.out.println(" in seller transaction ");
 		s = SessionFactoryObj.getSessionFactory();
 		session = s.openSession();
 		session.beginTransaction();
 
 		Query query = session.createSQLQuery(
-				"select t.TransactionID, t.UserID, t.Price, t.BookID, t.TransactionTime from transaction t, book b  where t.BookID = b.BookID and t.UserID = :sCode")
+				"select t.TransactionID, t.userID, t.Price, t.BookID, t.TransactionTime, t.BuyerFeedback, t.SellerFeedback from transaction t, book b  where b.BookID = t.BookID and b.userID = :sCode")
 				.addEntity(transaction.class)
 				.setParameter("sCode", buyerId);
-				List<transaction>  result = (List<transaction>)query.list();
+				List<transaction> result = (List<transaction>)query.list();
 
 		session.close();
 		s.close();
-		
+		System.out.println(result);
 		return result;
 	}
 	
@@ -497,5 +495,36 @@ public class DBCrud<T> {
 				return lbooks;
 		
 			}
+
+	@SuppressWarnings("unchecked")
+	public feedback getFeedbackByTransaction(int txId){
+		System.out.println(" in all transaction " );
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+		feedback  result = new feedback();
+		try
+		{
+		Query query = session.createSQLQuery(
+				"select * from feedback  where TransactionID = :sCode")
+				.addEntity(feedback.class)
+				.setParameter("sCode", txId);
+				  result = (feedback)query.list().get(0);
+
+		}
+		catch(Exception ex)
+		{
+			
+			result = null;
+		}
+
+
+		session.close();
+		s.close();
+		
+		
+		return result;
+	}
+
 
 }

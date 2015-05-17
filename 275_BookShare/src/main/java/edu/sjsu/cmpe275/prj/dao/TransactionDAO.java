@@ -9,17 +9,9 @@ import edu.sjsu.cmpe275.prj.models.*;
  */
 public interface TransactionDAO {
 	public int insert(transaction transaction);
-	
-	
 	public void delete(transaction transaction);
-	
 	public void update(transaction transaction);
-	
-	
 	public transaction getTransaction(int transactionId);
-	
-	
-	
 	public List<transaction> getTransactionByUser(int userId);
 	
 }

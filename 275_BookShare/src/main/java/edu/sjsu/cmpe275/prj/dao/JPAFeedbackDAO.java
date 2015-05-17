@@ -38,5 +38,49 @@ public class JPAFeedbackDAO implements FeedbackDAO {
 		return tempFeedbackBuyer;
 	}
 	
+	public feedback getFeedbackByTransaction(int txId) 
+	{
+		feedback tempFeedbackBuyer = new feedback();
+		try {
+			DBCrud<feedback> db = new DBCrud<feedback>();
+			tempFeedbackBuyer=  db.getFeedbackByTransaction(txId);
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return tempFeedbackBuyer;
+	}
+
+	public int insert(feedback feedback) {
+		System.out.println("in feedback jpa");
+		int feedbackId= 0;
+		try {
+			DBCrud<feedback> db = new DBCrud<feedback>();
+			feedbackId = db.Insert(feedback);
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return feedbackId;
+	}
+
+	public void delete(feedback feedback) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void update(feedback feedback) {
+		try {
+			DBCrud<feedback> db = new DBCrud<feedback>();
+			db.update(feedback);
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 
 }
