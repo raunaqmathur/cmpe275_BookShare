@@ -4,17 +4,17 @@
 <%@ page import="edu.sjsu.cmpe275.prj.models.transaction" %>
 <html>
 <body>
-	<form class="form-horizontal col-md-offset-3 col-md-6" id="provideFeedback" action="insertfeedback" method="post" commandName="feedbackModelDetails">
+	<form class="form-horizontal col-md-offset-3 col-md-6" id="provideFeedback" action="${pageContext.request.contextPath}/insertfeedback" method="post" commandName="feedbackModelDetails">
   		<div class="panel panel-primary">
 			<div class="panel-heading">Enter Your Feedback</div>
-			
 			<!-- Text input-->
 			<div class="form-group" style="margin-top:15px">
 				<label class="col-md-3 control-label" for="comment">Comment:</label>
-				<textarea class="col-md-8" rows="5" id="comment"></textarea>
+				<textarea class="col-md-8" rows="5" id="comment" name="comment"></textarea>
+				<input id="transactionId" name="transactionId" type="hidden" value="${feedbackModelDetails.getTransactionId().getTransactionId()}">
 			</div>
 			
-			<div class="form-group" style="margin-top:15px">
+			<div class="form-group">
 				<label class="col-md-3 control-label" for="textinput">Rating</label>  
 				<label class="radio-inline"> <input type="radio" name="rating" id="rating1" value=1> Worst </label>
 				<label class="radio-inline"> <input type="radio" name="rating" id="rating2" value=2> Bad </label>
