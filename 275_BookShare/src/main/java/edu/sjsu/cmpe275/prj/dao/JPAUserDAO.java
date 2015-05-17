@@ -28,13 +28,13 @@ public class JPAUserDAO implements UserDAO{
 	 * 
 	 */
 	
-	public int insert(user address) 
+	public int insert(user user1) 
 	{
 		System.out.println("in user jpa");
 		int addressId= 0;
 		try {
 			DBCrud<user> db = new DBCrud<user>();
-			addressId = db.Insert(address);
+			addressId = db.Insert(user1);
 			
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
@@ -120,49 +120,49 @@ public class JPAUserDAO implements UserDAO{
 	}
 
 
-	public int insert(HomePageModel user) {
+	public int insert1(user user) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 
-	public int insertUser(HomePageModel user) {
+	public int insertUser(user user) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 
-	public HomePageModel getAll() {
+	public user getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	public void delete(HomePageModel user) {
+	public void delete1(user user) {
 		// TODO Auto-generated method stub
 		
 	}
 
 
-	public boolean deleteUser(HomePageModel homepageModel) {
+	public boolean deleteUser(user homepageModel) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 
-	public void update(HomePageModel user) {
+	public void update1(user user) {
 		// TODO Auto-generated method stub
 		
 	}
 
 
-	public int updateUser(HomePageModel homepageModel) {
+	public int updateUser(user userModel) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 
-	public HomePageModel getUser(HomePageModel homepageModel) {
+	public user getUser(user userModel) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import edu.sjsu.cmpe275.prj.models.Login;
+import edu.sjsu.cmpe275.prj.models.bid;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.feedback;
@@ -524,6 +525,21 @@ public class DBCrud<T> {
 		
 		
 		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<bid> getBidByBook(int bookId) {
+		List<bid> lbids = new ArrayList<bid>();
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+		Query query = session.createSQLQuery("select * from bid where bookid ="+bookId+" and active=1").addEntity(bid.class);
+		System.out.println("helo search by title");
+		lbids = (List<bid>)query.list();
+		session.close();
+		s.close();		
+		System.out.println("----" + lbids);
+		return lbids;
 	}
 
 
