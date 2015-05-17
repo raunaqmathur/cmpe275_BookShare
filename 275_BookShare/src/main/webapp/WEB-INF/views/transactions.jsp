@@ -12,11 +12,6 @@
 				
 				<table class="table">	
 		            <c:forEach items="${strSeller}" var="result">
-		           
-			            <tr  style="border-style: solid;">
-			                <td><label>transaction request number</label></td>
-			                <td><label>${result.transactionId}</label></td>
-			            </tr>
 			            
 			            <tr class="active">
 			                <td><label>Transaction Number</label></td>
@@ -43,21 +38,6 @@
 			                <td><label>Transaction Date</label></td>
 			                <td><label>${result.transactionTime}</label></td>
 				        </tr>
-				        
-			            <tr>
-			                <td><label>Book Title</label></td>
-			                <td><label>${result.book.title}</label></td>	                
-			            </tr>  
-			            
-			            <tr>
-			                <td><label>Seller Id</label></td>
-			                <td><label>${result.book.userId.userId}</label></td>		                
-			            </tr>   
-			            
-			            <tr>
-			                <td><label>Price</label></td>
-			                <td><label>${result.price}</label></td>
-			            </tr>
 		             	
 	             		<c:if test="${result.sellerFeedback == 0}">
 						   <td colspan="2" align="right">
@@ -76,25 +56,6 @@
 				
 				<table class="table">		            
 		            <c:forEach items="${strBuyer}" var="result">
-			            <tr style="border-style: solid;">
-			                <td><label>transaction request number</label></td>
-			                <td><label>${result.transactionId}</label></td>		                
-			            </tr>
-			            
-			            <tr>
-			                <td><label>Book Title</label></td>
-			                <td><label>${result.book.title}</label></td>
-			            </tr>  
-			            
-			            <tr>
-			                <td><label>Seller Id</label></td>
-			                <td><label>${result.book.userId.userId}</label></td>
-			            </tr>   
-			            
-			            <tr>
-			                <td><label>Price</label></td>
-			                <td><label>${result.price}</label></td>
-			            </tr>
 			            
 			            <tr class="active">
 			                <td><label>Transaction Number</label></td>
