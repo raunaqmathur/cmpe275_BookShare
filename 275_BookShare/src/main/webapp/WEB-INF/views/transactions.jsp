@@ -82,7 +82,7 @@
 			                <td><label>${result.transactionTime}</label></td>		                
 			            </tr>
 			            
-			            <c:if test="${result.sellerFeedback == 0}">
+			            <c:if test="${result.buyerFeedback == 0}">
 						   <td colspan="2" align="right">
 			                	<a class="btn btn-primary" href="${pageContext.request.contextPath}/feedback/buyer/${result.transactionId}" role="button">Feedback</a>
 			                </td>
