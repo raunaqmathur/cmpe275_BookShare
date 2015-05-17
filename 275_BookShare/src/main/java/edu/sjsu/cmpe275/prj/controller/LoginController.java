@@ -57,27 +57,33 @@ public class LoginController {
             HttpServletRequest request,  HttpServletResponse response) 
     {
         try {
+        	
         	String msg=null;
+        	
+           if(loginModel1.getUserEmail().equals(null) || loginModel1.getUserEmail().isEmpty())
+           {
+        	ModelAndView model = new ModelAndView();
+        	loginModel = new Login();
+           	model.addObject("msg", "Invalid user email and password combination");
+           	model.addObject("logindetails", loginModel);
+          	model.setViewName("login"); 
+           }
            
-            ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult,"userId","userId", "User Id can't be empty");
-            ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult,"password","password", "Password Id can't be empty");
-            
-            if (bindingResult.hasErrors()) {
-                //returning the errors on same page if any errors..
-                return new ModelAndView("login", "logindetails", loginModel1);
-            } else {
+        	else {
             	JPALoginDAO obj= new JPALoginDAO();
             	loginModel1.setPassword(PlayPP.sha1(loginModel1.getPassword()));
             	int l =obj.validate(loginModel1);
-            	System.out.println(l);
+            	
             	ModelAndView model = new ModelAndView();
             	if(l == 0) {
 	            	loginModel = new Login();
-	            	model.addObject("msg", "Invalid user id and password combination");
+	            	model.addObject("msg", "Invalid user email and password combination");
 	            	model.addObject("logindetails", loginModel);
 	           	 	model.setViewName("login");
             	} else {
             		JPAUserDAO jp = new JPAUserDAO();
+            		
+            		loginModel1.setUserId(l);
             		httpSession.setAttribute("USERID", loginModel1.getUserId());
             		user tempUser = jp.getUser(loginModel1.getUserId());
             		httpSession.setAttribute("USERNAME", tempUser.getName());
@@ -92,6 +98,7 @@ public class LoginController {
             e.printStackTrace();
             return new ModelAndView("error404");
         }
+		return null;
     }
     
     @RequestMapping(value = "/logout",method = RequestMethod.GET)

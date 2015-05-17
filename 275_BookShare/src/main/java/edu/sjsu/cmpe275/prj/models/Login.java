@@ -25,6 +25,8 @@ public class Login implements Serializable {
    
     private int userId;
     
+    private String userEmail;
+    
     
     
     
@@ -56,6 +58,20 @@ public class Login implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+
+
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
     
 	

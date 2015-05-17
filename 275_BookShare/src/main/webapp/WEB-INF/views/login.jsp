@@ -10,12 +10,12 @@
 			<div class="panel-heading">Log In</div>
 			
 			<!-- Text input-->
-			<div class="form-group" style="margin-top:15px">
-			  <label class="col-md-3 control-label" for="textinput">User ID</label>  
+			<div class="form-group" style="margin-top:15px" action="login" method="post" commandName="logindetails">
+			  <label class="col-md-3 control-label" for="textinput">User Email</label>  
 			  <div class="col-md-8">
-				  <input id="userId" name="userId" type="text" placeholder="Enter your User ID" class="form-control input-md">
-				  <font color="red"><form:errors path="userId" required="true"></form:errors></font> 
-				  <font color="red"><form:errors path="userId"></form:errors></font>
+				  <input id="userEmail" name="userEmail" type="text" placeholder="Enter your User Email" class="form-control input-md" required=true>
+				  <font color="red"><form:errors path="userEmail" required="true"></form:errors></font> 
+				  <font color="red"><form:errors path="userEmail"></form:errors></font>
 			  </div>
 			</div>
 			
@@ -23,7 +23,7 @@
 			<div class="form-group">
 			  <label class="col-md-3 control-label" for="textinput">Password</label>  
 			  <div class="col-md-8">
-				  <input id="password" name="password" type="password" placeholder="Enter your password" class="form-control input-md">
+				  <input id="password" name="password" type="password" placeholder="Enter your password" class="form-control input-md" required=true>
 				  <font color="red"><form:errors path="password"></form:errors></font>
 				  <font color="red"><label>${msg}</label></font>
 			  </div>

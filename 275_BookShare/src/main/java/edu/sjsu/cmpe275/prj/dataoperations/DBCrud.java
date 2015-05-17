@@ -230,20 +230,25 @@ public class DBCrud<T> {
 		session = s.openSession();
 		session.beginTransaction();
 		
+		int result,returnedId = 0;
 		Query query = session.createSQLQuery(
-				"select * from user  where UserId = :sCode and password = :jCode")
+				"select * from user  where EmailID = :sCode and password = :jCode")
 				.addEntity(user.class)
-				.setParameter("sCode", login.getUserId())
+				.setParameter("sCode", login.getUserEmail())
 				.setParameter("jCode", login.getPassword());
 		
 		
-				int  result = query.list().size();
+				result = query.list().size();
+				if(result!=0)
+				{
+				returnedId = ((user)query.list().get(0)).getUserId();
+				System.out.println("returned id" + returnedId);
+				}
 		
 		session.close();
 		s.close();
-		
-		System.out.println("login - " + result);
-		return result;
+	
+		return returnedId;
 	}
 	
 	@SuppressWarnings("unchecked")
