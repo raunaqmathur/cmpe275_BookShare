@@ -49,31 +49,23 @@ public class FeedbackController
 	HttpSession session;
 	private feedback feedbackbuyerModel;
 	private transaction transaction;
-	List<feedback> str;
+	private List<feedback> feedbacks;
 	    
-    @RequestMapping(value = "/feedbackbuyer/{buyerId}",method = RequestMethod.GET)
+    @RequestMapping(value = "/feedbackasbuyer/{buyerId}",method = RequestMethod.GET)
     public ModelAndView uploadFeedback(@PathVariable int buyerId) {
-    	JPAFeedbackDAO j=new JPAFeedbackDAO();
-	    str=j.getFeedbackBuyer(buyerId);
-	    ModelAndView model = new ModelAndView("feedbackbuyer");
-	    if(str.size() > 0) {
-			model.addObject("buyerName", str.get(0).getBuyerId().getName());
-			model.addObject("buyerId", str.get(0).getBuyerId().getUserId());
-	    }
-	    model.addObject("str", str);
+    	JPAFeedbackDAO j = new JPAFeedbackDAO();
+	    feedbacks = j.getFeedbackBuyer(buyerId);
+	    ModelAndView model = new ModelAndView("feedbackAsBuyer");
+	    model.addObject("str", feedbacks);
 		return model;
 	}
 	    
-	@RequestMapping(value = "/feedbackseller/{sellerId}",method = RequestMethod.GET)
+	@RequestMapping(value = "/feedbackasseller/{sellerId}",method = RequestMethod.GET)
 	public ModelAndView uploadFeedbackSeller(@PathVariable int sellerId) {
-		JPAFeedbackDAO j=new JPAFeedbackDAO();
-		str=j.getFeedbackSeller(sellerId);
-	    ModelAndView model = new ModelAndView("feedbackseller");
-	    if(str.size() > 0) {
-	    	model.addObject("sellerName", str.get(0).getSellerId().getName());
-	    	model.addObject("buyerId", str.get(0).getSellerId().getUserId());
-	    }
-	    model.addObject("str", str);
+		JPAFeedbackDAO j = new JPAFeedbackDAO();
+		feedbacks = j.getFeedbackSeller(sellerId);
+	    ModelAndView model = new ModelAndView("feedbackAsSeller");
+	    model.addObject("str", feedbacks);
 		return model;
 	}
 	    

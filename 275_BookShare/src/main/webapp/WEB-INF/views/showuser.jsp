@@ -69,11 +69,13 @@
 		                <td colspan="2" align="center">
 			                <input type="submit" class="btn btn-md btn-primary" value="View transactions" onClick="javascript: RedirectToTransactions();"></input>
 							<input type="submit" class="btn btn-md btn-primary" value="Edit Profile" onClick="javascript: RedirectToEdit();"></input>
-							<a class="btn btn-primary" href="${pageContext.request.contextPath}/feedback/buyer/${result.transactionId}" role="button">Feedback</a>
+							<a class="btn btn-primary" href="${pageContext.request.contextPath}/feedbackasbuyer/${userdetails.getUserId()}" role="button">Feedback as a Buyer</a>
+							<a class="btn btn-primary" href="${pageContext.request.contextPath}/feedbackasseller/${userdetails.getUserId()}" role="button">Feedback as a Seller</a>
 						</td>
 		        	<% } else {%>
 		        		<td colspan="2" align="center">
-			                <a class="btn btn-primary" href="${pageContext.request.contextPath}/feedback/buyer/${result.transactionId}" role="button">Feedback</a>
+			                <a class="btn btn-primary" href="${pageContext.request.contextPath}/feedbackasbuyer/${userdetails.getUserId()}" role="button">Feedback as a Buyer</a>
+			                <a class="btn btn-primary" href="${pageContext.request.contextPath}/feedbackasseller/${userdetails.getUserId()}" role="button">Feedback as a Seller</a>
 						</td>
 					<% } %> 
 					
