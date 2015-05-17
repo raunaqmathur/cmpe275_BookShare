@@ -128,5 +128,17 @@ public List<book> getResultsByName(String input) {
 
 		return listOfbooks	;
 	}
-
+public List<book> doAdvanceSearch(String auth, double priceLow, double priceHigh,
+		String [] condition, int[] categories) {
+	try {
+		DBCrud<book> db = new DBCrud<book>();
+		listOfbooks=  db.doAdvanceSearch(auth, priceLow, priceHigh, condition, categories);
+		
+	} catch (Exception e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+			return listOfbooks;
+	
+}
 }

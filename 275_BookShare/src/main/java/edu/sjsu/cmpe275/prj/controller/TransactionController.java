@@ -65,7 +65,7 @@ import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.BookImageUpload;
 import edu.sjsu.cmpe275.prj.models.category;
-import edu.sjsu.cmpe275.prj.models.HomePageModel;
+import edu.sjsu.cmpe275.prj.models.internalCategory;
 import edu.sjsu.cmpe275.prj.models.transaction;
 import edu.sjsu.cmpe275.prj.models.statistics;
 import edu.sjsu.cmpe275.prj.models.user;

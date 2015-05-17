@@ -142,73 +142,73 @@ public class UserDAOImpl implements UserDAO {
 			/*
 			 * This method updates the record of user in db
 			 * */
-			public int updateUser(HomePageModel homepageModel)
-			{
-			String SQL2 = "UPDATE user_details set firstname = ?, lastname = ?, email = ?, address = ?, organization = ?, aboutMyself =? where id = ? ;";
-		
-		       
-	        try
-	        {
-	        	System.out.println("in db update user method");
-	        	
-	        	
-	           
-	           
-	            PreparedStatement ps= ConnectionDAO.getConnection().prepareStatement(SQL2);
-	            ps.setString(1, homepageModel.getFirstname());
-	            ps.setString(2, homepageModel.getLastname());
-	            ps.setString(3, homepageModel.getEmail());
-	            ps.setString(4, homepageModel.getAddress());
-	            ps.setString(5, homepageModel.getOrganization());
-	            ps.setString(6, homepageModel.getAboutMyself());
-	            ps.setString(7, homepageModel.getId());
-	           
-	           
-	            if (ps.executeUpdate()==1)
-	            {
-	            	System.out.println("user record updation  done in db");
-	            	
-	            	
-	            	return 1;
-	                
-	            }
-	            else
-	            {
-	            	return 0;
-	            }
-	            
-	           
-	        }
-	        catch (SQLException e)
-	        {
-	        	System.out.println("catch in user details updation");
-	            System.out.println("SQL Exception : "+e.getMessage());
-	            return 0;
-	           
-	            
-	        }
-}
-
-			public int insert(HomePageModel user) {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-
-			
-			public HomePageModel getAll() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
-			public void delete(HomePageModel user) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public void update(HomePageModel user) {
-				// TODO Auto-generated method stub
-				
-			}
+//			public int updateUser(HomePageModel homepageModel)
+//			{
+//			String SQL2 = "UPDATE user_details set firstname = ?, lastname = ?, email = ?, address = ?, organization = ?, aboutMyself =? where id = ? ;";
+//		
+//		       
+//	        try
+//	        {
+//	        	System.out.println("in db update user method");
+//	        	
+//	        	
+//	           
+//	           
+//	            PreparedStatement ps= ConnectionDAO.getConnection().prepareStatement(SQL2);
+//	            ps.setString(1, homepageModel.getFirstname());
+//	            ps.setString(2, homepageModel.getLastname());
+//	            ps.setString(3, homepageModel.getEmail());
+//	            ps.setString(4, homepageModel.getAddress());
+//	            ps.setString(5, homepageModel.getOrganization());
+//	            ps.setString(6, homepageModel.getAboutMyself());
+//	            ps.setString(7, homepageModel.getId());
+//	           
+//	           
+//	            if (ps.executeUpdate()==1)
+//	            {
+//	            	System.out.println("user record updation  done in db");
+//	            	
+//	            	
+//	            	return 1;
+//	                
+//	            }
+//	            else
+//	            {
+//	            	return 0;
+//	            }
+//	            
+//	           
+//	        }
+//	        catch (SQLException e)
+//	        {
+//	        	System.out.println("catch in user details updation");
+//	            System.out.println("SQL Exception : "+e.getMessage());
+//	            return 0;
+//	           
+//	            
+//	        }
+//}
+//
+//			public int insert(HomePageModel user) {
+//				// TODO Auto-generated method stub
+//				return 0;
+//			}
+//
+//			
+//			public HomePageModel getAll() {
+//				// TODO Auto-generated method stub
+//				return null;
+//			}
+//
+//			public void delete(HomePageModel user) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			public void update(HomePageModel user) {
+//				// TODO Auto-generated method stub
+//				
+//			}
 
 			public user getUser(int userId) {
 				// TODO Auto-generated method stub

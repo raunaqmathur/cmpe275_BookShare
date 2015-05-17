@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.sjsu.cmpe275.prj.dataoperations.DBCrud;
-import edu.sjsu.cmpe275.prj.models.HomePageModel;
+import edu.sjsu.cmpe275.prj.models.internalCategory;
 import edu.sjsu.cmpe275.prj.models.user;
 
 

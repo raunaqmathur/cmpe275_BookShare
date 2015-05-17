@@ -1,6 +1,6 @@
 package edu.sjsu.cmpe275.prjservices;
 
-import edu.sjsu.cmpe275.prj.models.HomePageModel;
+//import edu.sjsu.cmpe275.prj.models.HomePageModel;
 
 /**
  * UserRecordService Interface
@@ -9,8 +9,8 @@ import edu.sjsu.cmpe275.prj.models.HomePageModel;
  */
 public interface UserRecordService {
  
-	public int insertUser(HomePageModel homepageModel);
+	/*public int insertUser(HomePageModel homepageModel);
 	public HomePageModel getUser(HomePageModel homepageModel);
 	public boolean deleteUser(HomePageModel homepageModel);
-	public int updateUser(HomePageModel homepageModel);
+	public int updateUser(HomePageModel homepageModel);*/
 }

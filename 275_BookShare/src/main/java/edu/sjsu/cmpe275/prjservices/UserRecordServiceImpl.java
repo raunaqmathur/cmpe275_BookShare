@@ -21,21 +21,21 @@ public class UserRecordServiceImpl implements UserRecordService {
  
     
 
-	public int insertUser(HomePageModel homepageModel) {
-	return userDAO.insertUser(homepageModel);
-	}
-
-	public HomePageModel getUser(HomePageModel homepageModel) {
-		return userDAO.getUser(homepageModel);
-		
-	}
-
-	public boolean deleteUser(HomePageModel homepageModel) {
-		return userDAO.deleteUser(homepageModel);
-	}
-
-	public int updateUser(HomePageModel homepageModel) {
-		return userDAO.updateUser(homepageModel);
-	}
+//	public int insertUser(HomePageModel homepageModel) {
+//	return userDAO.insertUser(homepageModel);
+//	}
+//
+//	public HomePageModel getUser(HomePageModel homepageModel) {
+//		return userDAO.getUser(homepageModel);
+//		
+//	}
+//
+//	public boolean deleteUser(HomePageModel homepageModel) {
+//		return userDAO.deleteUser(homepageModel);
+//	}
+//
+//	public int updateUser(HomePageModel homepageModel) {
+//		return userDAO.updateUser(homepageModel);
+//	}
  
 }

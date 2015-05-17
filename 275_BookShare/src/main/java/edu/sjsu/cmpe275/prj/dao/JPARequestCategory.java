@@ -2,7 +2,9 @@ package edu.sjsu.cmpe275.prj.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import edu.sjsu.cmpe275.prj.dataoperations.DBCrud;
+import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.requestbook;
 
 public class JPARequestCategory implements RequestBookDAO {
@@ -38,6 +40,21 @@ public class JPARequestCategory implements RequestBookDAO {
 		return temprequestBook;
 	}
 	
+	public List<category> getCategoriesByBookJonCateg() {
+		List<category> lcat = new ArrayList<category>();
+		try {
+			DBCrud<category> db = new DBCrud<category>();
+			lcat=  db.getCategoriesByBookJonCateg();
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return lcat;
 	}
+	}
+	
+
 	
 

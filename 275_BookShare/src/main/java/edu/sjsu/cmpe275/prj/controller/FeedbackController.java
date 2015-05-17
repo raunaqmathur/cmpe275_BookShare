@@ -29,7 +29,7 @@ import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
 import edu.sjsu.cmpe275.prj.models.feedback;
-import edu.sjsu.cmpe275.prj.models.HomePageModel;
+
 import edu.sjsu.cmpe275.prj.models.requestbook;
 import edu.sjsu.cmpe275.prj.models.transaction;
 import edu.sjsu.cmpe275.prj.models.user;

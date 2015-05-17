@@ -35,7 +35,7 @@ import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
-import edu.sjsu.cmpe275.prj.models.HomePageModel;
+import edu.sjsu.cmpe275.prj.models.internalCategory;
 import edu.sjsu.cmpe275.prj.models.requestbook;
 import edu.sjsu.cmpe275.prj.models.user;
 import edu.sjsu.cmpe275.prj.utils.CheckSession;

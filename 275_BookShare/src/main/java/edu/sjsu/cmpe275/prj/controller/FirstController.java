@@ -37,19 +37,14 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 
-
-
-
-
-
-
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.LandingPage;
 import edu.sjsu.cmpe275.prj.dao.*;
 import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
-import edu.sjsu.cmpe275.prj.models.HomePageModel;
+import edu.sjsu.cmpe275.prj.models.internalCategory;
+import edu.sjsu.cmpe275.prj.models.internalCategory;
 import edu.sjsu.cmpe275.prj.models.statistics;
 import edu.sjsu.cmpe275.prj.models.user;
 import edu.sjsu.cmpe275.prj.utils.CheckSession;
@@ -62,7 +57,7 @@ import edu.sjsu.cmpe275.prjservices.UserRecordService;
 public class FirstController {
 
     
-    private HomePageModel homepageModel;
+    private internalCategory homepageModel;
     private user userModel;
     private book bookModel;
     private category categoryModel;
@@ -388,6 +383,150 @@ public class FirstController {
 		redirectAttributes.addFlashAttribute("pagedetails", lis);
 		
 		return "redirect:searchResults";
+
+    } 
+    
+    
+    @RequestMapping(value = "/advanceSearch",method = RequestMethod.GET)
+    public Object SearchA( 
+    		HttpServletRequest request) {
+    	
+    	System.out.println("in advance search get");
+    	List<category> cat = new ArrayList<category>();
+    	cat =searchService.getCategoriesByBookJonCateg();
+    	
+    	internalCategory cobj = new internalCategory();
+    	
+    	List<internalCategory> clist = new ArrayList<internalCategory>();
+    	clist=cobj.change(cat);
+    	
+    	
+    	
+    	cobj.setCm(clist);
+    	
+    	ModelAndView mv = new ModelAndView();
+    	
+    	mv.addObject("advanceSearchDetails", cobj);
+  		mv.setViewName("advanceSearch");
+  		return mv;
+
+    } 
+    
+    @RequestMapping(value = "/advanceSearch",method = RequestMethod.POST)
+    public Object SearchAR(
+    		@RequestParam(value ="byAuthChkBox", defaultValue = "Def") String byAuthChkBox,
+    		@RequestParam(value ="byAuthTxt",  defaultValue = "Def") String byAuthTxt,
+    		@RequestParam(value ="byCondChkBox",  defaultValue = "Def") String byCondChkBox,
+    		@RequestParam(value ="oldCondCheckbox",  defaultValue = "Def") String oldCondCheckbox,
+    		@RequestParam(value ="newCondCheckbox",  defaultValue = "Def") String newCondCheckbox,
+    		@RequestParam(value ="byPricChkBox",  defaultValue = "Def") String byPricChkBox,
+    		@RequestParam(value ="byPriceLowerTxt",  defaultValue = "0.0") String byPriceLowerTxt,
+    		@RequestParam(value ="byPriceUpperTxt",  defaultValue = "0.0") String byPriceUpperTxt,
+    		@RequestParam(value ="byCategChkBoxP",  defaultValue = "Def") String byCategChkBoxP,
+    		@ModelAttribute("advanceSearchDetails")internalCategory cobj,
+    		
+    		
+    		HttpServletRequest request) {
+    	
+    	
+    	System.out.println("in advancesearch post");
+    	
+    	
+    	double priceLow=00.00,priceHigh=00.00;
+    	int [] catArray={-1};
+    	String [] condi= new String[2];
+    	condi[0]="ALL";
+    	
+    	
+    	if(byAuthChkBox.equalsIgnoreCase("Def"))
+    	{
+    		System.out.println("not checked");
+    		byAuthTxt="ALL";
+    		System.out.println(byAuthTxt+"  auth name not picked dude");
+    	}
+    	
+    	//condition input parsing starts
+    	if(byCondChkBox.equalsIgnoreCase("Def"))
+    	{
+    		System.out.println("cond. not checked");
+    		newCondCheckbox="ALL";
+    		oldCondCheckbox="ALL";
+    		condi[0]="ALL";
+   		System.out.println(newCondCheckbox+"---new cond,old cond---"+oldCondCheckbox);
+    	}
+    	if((!(byCondChkBox.equalsIgnoreCase("Def"))) && (!(newCondCheckbox.equalsIgnoreCase("Def"))) && (!(oldCondCheckbox.equalsIgnoreCase("Def"))))
+    	{
+    		condi[0]="New";
+    		condi[1]="Old";
+    	}
+    	
+    	if((!(byCondChkBox.equalsIgnoreCase("Def"))) && (newCondCheckbox.equalsIgnoreCase("Def")) && (!(oldCondCheckbox.equalsIgnoreCase("Def"))))
+    	{
+    		//condi[0]="New";
+    		condi[0]="Old";
+    		condi[1]="Old";
+    	}
+    	
+    	if((!(byCondChkBox.equalsIgnoreCase("Def"))) && (!(newCondCheckbox.equalsIgnoreCase("Def"))) && (oldCondCheckbox.equalsIgnoreCase("Def")))
+    	{
+    		condi[0]="New";
+    		condi[1]="New";
+    	}
+    	//condition input parsing ends
+    	
+    	
+    	if(byPricChkBox.equalsIgnoreCase("Def"))
+    	{
+    		System.out.println("price. not checked");
+    		byPriceLowerTxt="ALL";
+    		byPriceUpperTxt="ALL";
+    		priceHigh=00.00;
+    		priceLow=00.00;
+   		System.out.println(priceHigh+"---hgh price cond,low price---"+priceLow);
+    	}
+    	if(!(byPricChkBox.equalsIgnoreCase("Def")))
+    	{
+    		
+    		priceHigh=Double.parseDouble(byPriceUpperTxt)+00.00;
+    		priceLow=Double.parseDouble(byPriceLowerTxt)+00.00;
+    	}
+    	
+    	
+    	
+    	//byCategChkBoxP
+    	
+    	if(byCategChkBoxP.equalsIgnoreCase("Def"))
+    	{
+    		System.out.println("cat. not checked");
+    		catArray[0]=-1;
+    		
+   		//System.out.println(newCondCheckbox+"---new cond,old cond---"+oldCondCheckbox);
+    	}
+    	if(!(byCategChkBoxP.equalsIgnoreCase("Def")))
+    	{
+    		for (int categ : cobj.getSlist()) {
+        		
+    			System.out.println(categ);
+    			
+    			//System.out.println(categ.getCategoryId());
+    		}
+    		catArray=cobj.getSlist();
+    	}
+    	
+    	
+    	
+    	List<book> lb =searchService.doAdvanceSearch(byAuthTxt, priceLow, priceHigh, condi, catArray);
+    	System.out.println("searchAdavance result size"+lb.size());
+    	System.out.println(lb.get(0).getAuthor());
+    	
+		
+    	
+    	//ModelAndView mv = new ModelAndView();
+    	//mv.addObject("pagedetails", lb);
+  		//mv.setViewName("advanceSearchresults");
+  		//return mv;
+    	
+    return null;
 
     } 
     

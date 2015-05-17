@@ -2,9 +2,11 @@ package edu.sjsu.cmpe275.prj.dataoperations;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import edu.sjsu.cmpe275.prj.models.Login;
 import edu.sjsu.cmpe275.prj.models.book;
 import edu.sjsu.cmpe275.prj.models.category;
@@ -377,5 +379,123 @@ public class DBCrud<T> {
 		System.out.println("----" + listOfbooks);
 		return listOfbooks;
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<category> getCategoriesByBookJonCateg() {
+		List <category> lcat= new ArrayList<category>();
+		s = SessionFactoryObj.getSessionFactory();
+		session = s.openSession();
+		session.beginTransaction();
+		Query query = session.createSQLQuery("SELECT distinct (c.name), b.CategoryID, c.active FROM booksharedb.category c right join booksharedb.book b on c.CategoryID=b.CategoryID;").addEntity(category.class);
+		System.out.println("helo search by join");
+		System.out.println(query.list().get(0));
+		//System.out.println(query.);
+		lcat = (List<category>)query.list();
+		session.close();
+		s.close();		
+		System.out.println("----" + lcat.get(0).getName());
+		return lcat;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<book> doAdvanceSearch(String auth, double priceLow, double priceHigh,
+			String [] condition, int[] categories)
+			{
+		String params="where";
+		String Cati=" ( ";
+		String Cat="";
+		
+				if(!(auth.equalsIgnoreCase("ALL")))
+				{
+					
+					params=params+" author like '%"+auth+"%' "; 
+				}
+				
+				if(priceLow!=00.00 && priceHigh!=00.00)
+				{	if(params.equalsIgnoreCase("where"))
+					{
+					params=params+" price between "+priceLow + " AND " +priceHigh+" "; 
+					}
+					else
+					{
+					params=params+" and price between "+priceLow + " AND " +priceHigh+" ";
+					}
+				}
+				
+				if(!(condition[0].equalsIgnoreCase("ALL")))
+				{
+					String Condi=" conditions IN ( ";
+					String Cond="";
+					for(int i =0; i<condition.length;i++)
+					{
+						Cond=Cond+"'"+condition[i]+"'";
+						if(condition.length!=1 && i!=condition.length-1)
+						{
+							Cond=Cond+" , ";
+						}
+						
+					}
+					Cond=Condi+Cond+" )";
+					if(params.equalsIgnoreCase("where"))
+					{
+					params=params+ Cond; 
+					}
+					else
+					{
+						params=params+" and "+Cond; 
+					}
+				}
+				
+				if(categories[0]!=-1)
+				{
+					Cati=" ( ";
+					Cat="";
+					for(int i =0; i<categories.length;i++)
+					{
+						Cat=Cat+categories[i]+"";
+						if(categories.length!=1 && i!=categories.length-1)
+						{
+							Cat=Cat+" , ";
+						}
+						
+					}
+					Cat=Cati+Cat+" )";
+					
+					if(params.equalsIgnoreCase("where"))
+					{
+					params=params+"  CategoryID IN "+Cat; 
+					}
+					else
+					{
+						params=params+" and CategoryID IN "+Cat ; 
+					}
+				}
+				
+				if(params.equalsIgnoreCase("where"))
+				{
+				params=params+"  active = 1";
+				}
+				else
+				{
+					params=params+" and active = 1"; 
+				}
+				
+				
+				System.out.println(params);
+				
+				List <book> lbooks= new ArrayList<book>();
+				s = SessionFactoryObj.getSessionFactory();
+				session = s.openSession();
+				session.beginTransaction();
+				Query query = session.createSQLQuery("select * from book "+params+" ;").addEntity(book.class);
+				
+				lbooks = (List<book>)query.list();
+				session.close();
+				s.close();		
+				System.out.println("----" + lbooks.get(0).getBookId());
+				return lbooks;
+		
+			}
 
 }

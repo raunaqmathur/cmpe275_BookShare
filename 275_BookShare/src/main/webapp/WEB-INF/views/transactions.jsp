@@ -20,7 +20,7 @@
 		            
 		            <c:forEach items="${str}" var="result">
 		            
-<<<<<<< Updated upstream
+
 		           
 		            <tr  style="border-style: solid;">
 		                <td><label>transaction request number</label></td>
@@ -28,7 +28,7 @@
 		                <td></td>
 		                
 		            </tr>
-=======
+
 			            <tr class="active">
 			                <td><label>Transaction Number</label></td>
 			                <td><label>${result.transactionId}</label></td>
@@ -58,7 +58,7 @@
 			                <td><label>${result.transactionTime}</label></td>
 			                <td></td>
 			            </tr>
->>>>>>> Stashed changes
+
 		            
 		             <tr >
 		                <td><label>Book Title</label></td>
@@ -103,7 +103,7 @@
 		            
 		            <c:forEach items="${strBuyer}" var="result">
 		            
-<<<<<<< Updated upstream
+
 		           
 		            <tr style="border-style: solid;">
 		                <td><label>transaction request number</label></td>
@@ -132,7 +132,7 @@
 		                <td></td>
 		                
 		            </tr>
-=======
+
 			            <tr class="active">
 			                <td><label>Transaction Number</label></td>
 			                <td><label>${result.transactionId}</label></td>
@@ -162,7 +162,7 @@
 			                <td><label>${result.transactionTime}</label></td>
 			                <td></td>		                
 			            </tr>
->>>>>>> Stashed changes
+
 		            
 		            <tr >
 		                <td><label>transaction date</label></td>
