@@ -10,9 +10,12 @@
         <!-- Database connection settings -->
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://cmpe275bookshare.cpusgzoh9nxr.us-west-1.rds.amazonaws.com:3306/booksharedb</property>
+        <!-- <property name="connection.url">jdbc:mysql://cmpe275bookshare.cpusgzoh9nxr.us-west-1.rds.amazonaws.com:3306/booksharedb</property>
         <property name="connection.username">team8</property>
-        <property name="connection.password">team8_275</property>
+        <property name="connection.password">team8_275</property> -->
+        <property name="connection.url">jdbc:mysql://localhost:3306/booksharedb</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
 
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">20</property>
