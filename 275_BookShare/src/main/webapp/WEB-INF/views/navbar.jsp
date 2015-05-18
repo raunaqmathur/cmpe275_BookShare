@@ -72,6 +72,6 @@
 			</div>  
 		</div>
 	</nav>
-	<div class="container-fluid" style="margin-top:60px">
+	<div class="container-fluid" style="margin-top:60px"></div>
 </body>
 </html>
