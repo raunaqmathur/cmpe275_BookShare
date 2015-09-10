@@ -1,5 +1,4 @@
 package edu.sjsu.cmpe275.prj.controller;
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,7 +6,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
